@@ -10,8 +10,8 @@ import pandas as pd
 import sys
 import pdb
 import os
-from softdtw import SoftDTW
-from utils import dct_2d
+# from softdtw import SoftDTW
+# from utils import dct_2d
 from torch.utils.data import Dataset
 
 
@@ -60,14 +60,14 @@ class Feeder(Dataset):
             data_dict =  data['test']
 
         self.data = []
-        self.labels = []
+        self.label = []
         for k, v in data_dict.items():
             value = np.array(v)
             lb = k[-1]
             T, C, N = value.shape
             value =  np.reshape(value,(T,N,C))
             self.data.append(value)
-            self.labels.append(lb)
+            self.label.append(lb)
             
     def rand_view_transform(self,X, agx, agy, s):
         agx = math.radians(agx)
@@ -80,7 +80,7 @@ class Feeder(Dataset):
         return X
 
     def __getitem__(self, index: Any) -> Any:
-        label = self.labels[index]
+        label = self.label[index]
         value = self.data[index]
         if self.split == 'train':
             random.random()
@@ -137,6 +137,12 @@ class Feeder(Dataset):
     
     def __len__(self):
         return len(self.data)
+
+    def top_k(self, score, top_k):
+        rank = score.argsort()
+
+        hit_top_k = [l in rank[i, -top_k:] for i, l in enumerate(self.label)]
+        return sum(hit_top_k) * 1.0 / len(hit_top_k)
     
 def import_class(name):
     components = name.split('.')
