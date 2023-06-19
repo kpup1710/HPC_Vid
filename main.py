@@ -83,7 +83,7 @@ class Processor():
     def load_data(self):
         Feeder = import_class(self.arg.feeder)
         self.data_loader = dict()
-        data_path = f'data/{self.arg.dataset}/{self.arg.datacase}_aligned.npz'
+        data_path = f'data/{self.arg.dataset}/{self.arg.dataset}.pickle'
         if self.arg.phase == 'train':
             dt = Feeder(data_path=data_path,
                 split='train',
@@ -348,7 +348,7 @@ class Processor():
             cls_loss = np.mean(cls_loss_value)
             mmd_loss = np.mean(mmd_loss_value)
             l2_z_mean_loss = np.mean(l2_z_mean_value)
-            if 'ucla' in self.arg.feeder:
+            if 'ec3d' in self.arg.feeder:
                 self.data_loader[ln].dataset.sample_name = np.arange(len(score))
 
             score_dict = dict(

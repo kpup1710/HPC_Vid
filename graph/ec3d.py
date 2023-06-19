@@ -4,7 +4,7 @@ import numpy as np
 sys.path.extend(['../'])
 from graph import tools
 
-num_node = 20
+num_node = 25
 self_link = [(i, i) for i in range(num_node)]
 inward_ori_index = [(0, 1), (1, 2), (2, 3), (3, 4), (1, 5), (5, 6), (6, 7), (1, 8),(8, 9), (9, 10), (10, 11), (8, 12), (12, 13), (13, 14), (1, 15), (1, 16), (1, 17), (1, 18), (11, 24), (14, 21), (14, 19), (14, 20), (11, 22), (11, 23)]
 inward = [(i - 1, j - 1) for (i, j) in inward_ori_index]
