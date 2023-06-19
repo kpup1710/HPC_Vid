@@ -1,3 +1,4 @@
+from typing import Any
 import numpy as np
 import pickle
 import torch
@@ -8,6 +9,7 @@ import math
 import pandas as pd
 import sys
 import pdb
+import os
 from softdtw import SoftDTW
 from utils import dct_2d
 from torch.utils.data import Dataset
@@ -15,7 +17,7 @@ from torch.utils.data import Dataset
 
 
 class Feeder(Dataset):
-    def __init__(self, data_path, split=None, p_interval=None, repeat=5, random_choose=False, random_shift=False, random_move=False, random_rot=False, window_size=-1, normalization=False, debug=False, use_mmap=True, bone=False, vel=False, sort=False)
+    def __init__(self, data_path, split='train', p_interval=None, repeat=5, random_choose=False, random_shift=False, random_move=False, random_rot=False, window_size=-1, normalization=False, debug=False, use_mmap=True, bone=False, vel=False, sort=False):
         """
         :param data_path:
         :param label_path:
@@ -33,7 +35,7 @@ class Feeder(Dataset):
         """
         self.debug = debug
         self.data_path = data_path
-        self.label_path = label_path
+        # self.label_path = label_path
         self.split = split
         self.random_choose = random_choose
         self.random_shift = random_shift
@@ -44,138 +46,105 @@ class Feeder(Dataset):
         self.p_interval = p_interval
         self.random_rot = random_rot
         self.vel = vel
-        with open(self.data_path, "rb") as f:
-            data = pickle.load(f)
-    
-    def load_data(self):
+        self.time_steps = 40
+        self.bone = [(0, 1), (1, 2), (2, 3), (3, 4), (1, 5), (5, 6), (6, 7), (1, 8),(8, 9), (9, 10), (10, 11), (8, 12), (12, 13), (13, 14), (1, 15), (1, 16), (1, 17), (1, 18), (11, 24), (14, 21), (14, 19), (14, 20), (11, 22), (11, 23)]
+        self.load_data(self.data_path)
+
+    def load_data(self, data_path):
         # data: N C V T M
-        self.data = []
-        for data in self.data_dict:
-            file_name = data['file_name']
-            with open(self.nw_ucla_root + file_name + '.json', 'r') as f:
-                json_file = json.load(f)
-            skeletons = json_file['skeletons']
-            value = np.array(skeletons)
-            self.data.append(value)
-
-
-class EC3D(Dataset):
-    def __init__(self, data_path, dct_n=25, split=0, sets=None, is_cuda=False, add_data=None):
-        if sets is None:
-            sets = [[0, 1], [2], [3]]
-        self.dct_n = dct_n
-        correct, other = load_data(data_path, sets[split], add_data=add_data)
-        pairs = dtw_pairs(correct, other, is_cuda=is_cuda)
-
-        self.targets_label = [i[1] for i in pairs]
-        self.inputs_label = [i[0] for i in pairs] 
-
-        self.targets = [correct[i] for i in self.targets_label]
-        self.inputs_raw = [other[i] for i in self.inputs_label]
-        
-        self.inputs = [dct_2d(torch.from_numpy(x))[:, :self.dct_n].numpy() if x.shape[1] >= self.dct_n else
-                       dct_2d(torch.nn.ZeroPad2d((0, self.dct_n - x.shape[1], 0, 0))(torch.from_numpy(x))).numpy()
-                       for x in self.inputs_raw]
-
-        self.node_n = np.shape(self.inputs_raw[0])[0]
-        self.batch_ids = list(range(len(self.inputs_raw)))
-        self.name = "EC3D"
-        # pdb.set_trace()
-        # with open('data/DTW_Method.pickle', 'wb') as f:
-        #     pickle.dump({'targets':self.targets,'tar_label':self.targets_label,'inputs':self.inputs,'inputs_raw':self.inputs_raw, 'inputs_label': self.inputs_label}, f)
-
-
-    def __len__(self):
-        return np.shape(self.inputs)[0]
-
-    def __getitem__(self, item):
-        return self.batch_ids[item], self.inputs[item]
-
-def load_data(data_path, subs, add_data=None):
-    with open(data_path, "rb") as f:
-        data_gt = pickle.load(f)
-
-    if add_data is not None:
-        with open(add_data, "rb") as f:
+        with open(data_path, 'rb') as f:
             data = pickle.load(f)
-        labels = pd.DataFrame(data['labels'], columns=['act', 'sub', 'lab', 'rep', 'cam'])
-    else:
-        data = data_gt
-        labels = pd.DataFrame(data['labels'], columns=['act', 'sub', 'lab', 'rep', 'frame'])
-        labels['cam'] = 'gt'
-    # import pdb; pdb.set_trace()
-    joints = list(range(15)) + [19, 21, 22, 24]
+        if self.split == 'train':
+            data_dict = data['train']
+        elif self.split == 'test':
+            data_dict =  data['test']
 
-    labels_gt = pd.DataFrame(data_gt['labels'], columns=['act', 'sub', 'lab', 'rep', 'frame'])
-    labels_gt['cam'] = 'gt'
+        self.data = []
+        self.labels = []
+        for k, v in data_dict.items():
+            value = np.array(v)
+            lb = k[-1]
+            T, C, N = value.shape
+            value =  np.reshape(value,(T,N,C))
+            self.data.append(value)
+            self.labels.append(lb)
+            
+    def rand_view_transform(self,X, agx, agy, s):
+        agx = math.radians(agx)
+        agy = math.radians(agy)
+        Rx = np.asarray([[1,0,0], [0,math.cos(agx),math.sin(agx)], [0, -math.sin(agx),math.cos(agx)]])
+        Ry = np.asarray([[math.cos(agy), 0, -math.sin(agy)], [0,1,0], [math.sin(agy), 0, math.cos(agy)]])
+        Ss = np.asarray([[s,0,0],[0,s,0],[0,0,s]])
+        X0 = np.dot(np.reshape(X,(-1,3)), np.dot(Ry,np.dot(Rx,Ss)))
+        X = np.reshape(X0, X.shape)
+        return X
 
-    labels[['lab', 'rep']] = labels[['lab', 'rep']].astype(int)
-    labels_gt[['lab', 'rep']] = labels_gt[['lab', 'rep']].astype(int)
+    def __getitem__(self, index: Any) -> Any:
+        label = self.labels[index]
+        value = self.data[index]
+        if self.split == 'train':
+            random.random()
+            agx = random.randint(-60, 60)
+            agy = random.randint(-60, 60)
+            s = random.uniform(0.5, 1.5)
 
-    subs = labels[['act', 'sub', 'lab', 'rep']].drop_duplicates().groupby('sub').count().rep[subs]
+            center = value[0,1,:]
+            value = value - center
+            scalerValue = self.rand_view_transform(value, agx, agy, s)
 
-    indices = labels['sub'].isin(subs.index)
-    indices_gt = labels_gt['sub'].isin(subs.index)
-    labels = labels[indices]
-    labels_gt = labels_gt[indices_gt]
+            scalerValue = np.reshape(scalerValue, (-1, 3))
+            scalerValue = (scalerValue - np.min(scalerValue,axis=0)) / (np.max(scalerValue,axis=0) - np.min(scalerValue,axis=0))
+            scalerValue = scalerValue*2-1
+            scalerValue = np.reshape(scalerValue, (-1, 25, 3))
 
-    lab1 = labels_gt[labels_gt['lab'] == 1].groupby(['act', 'sub', 'lab', 'rep', 'cam']).groups
-    labnot1 = labels.groupby(['act', 'sub', 'lab', 'rep', 'cam']).groups
+            data = np.zeros( (self.time_steps, 25, 3) )
 
-    poses = data['poses'][:, :, joints]
-    poses_gt = data_gt['poses'][:, :, joints]
+            value = scalerValue[:,:,:]
+            length = value.shape[0]
 
-    correct = {k: poses_gt[v].reshape(-1, poses_gt.shape[1] * poses_gt.shape[2]).T for k, v in lab1.items()}
-    other = {k: poses[v].reshape(-1, poses.shape[1] * poses.shape[2]).T for k, v in labnot1.items()}
+            random_idx = random.sample(list(np.arange(length))*100, self.time_steps)
+            random_idx.sort()
+            data[:,:,:] = value[random_idx,:,:]
+            data[:,:,:] = value[random_idx,:,:]
 
-    return correct, other
-
-
-def dtw_pairs(correct, incorrect, is_cuda=False):
-    pairs = []
-    for act, sub in set([(k[0], k[1]) for k in incorrect.keys()]):
-        ''' fetch from all sets or only training set (dataset_fetch baseline used to compare dtw_loss)'''
-        correct_sub = {k: v for k, v in correct.items() if k[0] == act and k[1] == sub} # all dastasets
-        # correct_sub = {k: v for k, v in correct.items() if k[0] == act and k[1] != sub}  # training sets
-        incorrect_sub = {k: v for k, v in incorrect.items() if k[0] == act and k[1] == sub}
-        dtw_sub = {k: {} for k in incorrect_sub.keys()}
-        for i, pair in enumerate(itertools.product(incorrect_sub, correct_sub)):
-            criterion = SoftDTW(use_cuda=is_cuda, gamma=0.01)
-            if is_cuda:
-                p0 = torch.from_numpy(np.expand_dims(incorrect_sub[pair[0]].T, axis=0)).cuda()
-                p1 = torch.from_numpy(np.expand_dims(correct_sub[pair[1]].T, axis=0)).cuda()
-            else:
-                p0 = torch.from_numpy(np.expand_dims(incorrect_sub[pair[0]].T, axis=0))
-                p1 = torch.from_numpy(np.expand_dims(correct_sub[pair[1]].T, axis=0))
-            dtw_sub[pair[0]][pair[1]] = (criterion(p0, p1) - 1 / 2 * (criterion(p0, p0) + criterion(p1, p1))).item()
-        dtw = pd.DataFrame.from_dict(dtw_sub, orient='index').idxmin(axis=1)
-        pairs = pairs + list(zip(dtw.index, dtw))
-    return pairs
-
- 
-def dtw_pairs_4targ(correct, incorrect, is_cuda=False, test=False):
-    pairs = []
-    for sub in set([k[1] for k in correct.keys()]):
-        dtw_sub = {k: {} for k in incorrect.keys()}
-        if test:
-            correct_sub = correct
         else:
-            correct_sub = {k: v for k, v in correct.items() if k[1] == sub}
-        for i, pair in enumerate(itertools.product(incorrect, correct_sub)):
-            criterion = SoftDTW(use_cuda=is_cuda, gamma=0.01)
-            if is_cuda:
-                p0 = torch.from_numpy(np.expand_dims(incorrect[pair[0]].T, axis=0)).cuda()
-                p1 = torch.from_numpy(np.expand_dims(correct_sub[pair[1]].T, axis=0)).cuda()
-            else:
-                p0 = torch.from_numpy(np.expand_dims(incorrect[pair[0]].T, axis=0))
-                p1 = torch.from_numpy(np.expand_dims(correct_sub[pair[1]].T, axis=0))
-            dtw_sub[pair[0]][pair[1]] = (criterion(p0, p1) - 1 / 2 * (criterion(p0, p0) + criterion(p1, p1))).item()
-        dtw = pd.DataFrame.from_dict(dtw_sub, orient='index').idxmin(axis=1)
-        pairs = pairs + list(zip(dtw.index, dtw))
-        if test:
-            return pairs
-    return pairs
+            random.random()
+            agx = 0
+            agy = 0
+            s = 1.0
 
-# data_train = HV3D('Data/data_3D.pickle', sets=[[0,1,2],[3]], split=0, is_cuda=True)
-# data_test = HV3D('Data/data_3D.pickle', sets=[[0,1],[2],[3]], split=2, is_cuda=True)
-# pdb.set_trace()
+            center = value[0,1,:]
+            value = value - center
+            scalerValue = self.rand_view_transform(value, agx, agy, s)
+
+            scalerValue = np.reshape(scalerValue, (-1, 3))
+            scalerValue = (scalerValue - np.min(scalerValue,axis=0)) / (np.max(scalerValue,axis=0) - np.min(scalerValue,axis=0))
+            scalerValue = scalerValue*2-1
+
+            scalerValue = np.reshape(scalerValue, (-1, 25, 3))
+
+            data = np.zeros( (self.time_steps, 25, 3) )
+
+            value = scalerValue[:,:,:]
+            length = value.shape[0]
+
+            idx = np.linspace(0,length-1,self.time_steps).astype(int)
+            data[:,:,:] = value[idx,:,:] # T,V,C
+        data = np.transpose(data, (2, 0, 1))
+        C,T,V = data.shape
+        data = np.reshape(data,(C,T,V,1))
+        return data, label, index
+    
+    def __len__(self):
+        return len(self.data)
+    
+def import_class(name):
+    components = name.split('.')
+    mod = __import__(components[0])
+    for comp in components[1:]:
+        mod = getattr(mod, comp)
+    return mod
+
+if __name__ == '__main__':
+    dataset = Feeder(data_path='C:\\Users\\RedmiBook\\HUST\\Documents\\Studying\\Deep Learning\\project\\Human Pose Estimation\\code\\HPC_vid\\HPC_Vid\\data\\ec3d\\ec3d.pickle')
+    print(dataset[0][0].shape)
