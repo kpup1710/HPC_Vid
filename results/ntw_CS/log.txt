@@ -1,0 +1,1 @@
+[ Wed Jun  7 18:30:14 2023 ] using warm up, epoch: 5

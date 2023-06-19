@@ -1,0 +1,928 @@
+[ Sun Jun 18 14:09:27 2023 ] using warm up, epoch: 5
+[ Sun Jun 18 14:10:06 2023 ] using warm up, epoch: 5
+[ Sun Jun 18 14:10:31 2023 ] using warm up, epoch: 5
+[ Sun Jun 18 14:11:41 2023 ] using warm up, epoch: 5
+[ Sun Jun 18 14:11:45 2023 ] Parameters:
+{'debug': False, 'log_dir': '.', 'model_saved_name': '', 'noise_ratio': 0.5, 'n_desired': 40000, 'num_point': 20, 'num_person': 1, 'num_class': 60, 'dataset': 'ntu', 'datacase': 'NTU60_CS', 'use_vel': False, 'phase': 'train', 'save_score': False, 'seed': 1, 'log_interval': 100, 'save_interval': 1, 'save_epoch': 60, 'eval_interval': 5, 'print_log': True, 'show_topk': [1, 5], 'feeder': 'feeders.feeder_ucla.Feeder', 'num_worker': 4, 'balanced_sampling': False, 'random_rot': True, 'repeat': 1, 'weights': None, 'ignore_weights': [], 'n_heads': 3, 'k': 1, 'z_prior_gain': 3, 'graph': 'graph.ucla.Graph', 'base_lr': 0.1, 'step': [90, 100], 'optimizer': 'SGD', 'nesterov': True, 'batch_size': 128, 'test_batch_size': 128, 'start_epoch': 0, 'num_epoch': 110, 'weight_decay': 0.0005, 'lr_decay_rate': 0.1, 'warm_up_epoch': 5, 'lambda_1': 0.0001, 'lambda_2': 0.1, 'half': False, 'amp_opt_level': 1, 'work_dir': 'results/ntu_NTU60_CS'}
+
+[ Sun Jun 18 14:11:45 2023 ] # Parameters: 1546572
+[ Sun Jun 18 14:11:45 2023 ] Training epoch: 1
+[ Sun Jun 18 14:12:21 2023 ] using warm up, epoch: 5
+[ Sun Jun 18 14:12:24 2023 ] Parameters:
+{'debug': False, 'log_dir': '.', 'model_saved_name': '', 'noise_ratio': 0.5, 'n_desired': 40000, 'num_point': 20, 'num_person': 1, 'num_class': 60, 'dataset': 'ntu', 'datacase': 'NTU60_CS', 'use_vel': False, 'phase': 'train', 'save_score': False, 'seed': 1, 'log_interval': 100, 'save_interval': 1, 'save_epoch': 60, 'eval_interval': 5, 'print_log': True, 'show_topk': [1, 5], 'feeder': 'feeders.feeder_ucla.Feeder', 'num_worker': 4, 'balanced_sampling': False, 'random_rot': True, 'repeat': 1, 'weights': None, 'ignore_weights': [], 'n_heads': 3, 'k': 1, 'z_prior_gain': 3, 'graph': 'graph.ucla.Graph', 'base_lr': 0.1, 'step': [90, 100], 'optimizer': 'SGD', 'nesterov': True, 'batch_size': 128, 'test_batch_size': 128, 'start_epoch': 0, 'num_epoch': 110, 'weight_decay': 0.0005, 'lr_decay_rate': 0.1, 'warm_up_epoch': 5, 'lambda_1': 0.0001, 'lambda_2': 0.1, 'half': False, 'amp_opt_level': 1, 'work_dir': 'results/ntu_NTU60_CS'}
+
+[ Sun Jun 18 14:12:24 2023 ] # Parameters: 1546572
+[ Sun Jun 18 14:12:24 2023 ] Training epoch: 1
+[ Sun Jun 18 14:12:45 2023 ] using warm up, epoch: 5
+[ Sun Jun 18 14:12:48 2023 ] Parameters:
+{'debug': False, 'log_dir': '.', 'model_saved_name': '', 'noise_ratio': 0.5, 'n_desired': 40000, 'num_point': 20, 'num_person': 1, 'num_class': 60, 'dataset': 'ntu', 'datacase': 'NTU60_CS', 'use_vel': False, 'phase': 'train', 'save_score': False, 'seed': 1, 'log_interval': 100, 'save_interval': 1, 'save_epoch': 60, 'eval_interval': 5, 'print_log': True, 'show_topk': [1, 5], 'feeder': 'feeders.feeder_ucla.Feeder', 'num_worker': 4, 'balanced_sampling': False, 'random_rot': True, 'repeat': 1, 'weights': None, 'ignore_weights': [], 'n_heads': 3, 'k': 1, 'z_prior_gain': 3, 'graph': 'graph.ucla.Graph', 'base_lr': 0.1, 'step': [90, 100], 'optimizer': 'SGD', 'nesterov': True, 'batch_size': 128, 'test_batch_size': 128, 'start_epoch': 0, 'num_epoch': 110, 'weight_decay': 0.0005, 'lr_decay_rate': 0.1, 'warm_up_epoch': 5, 'lambda_1': 0.0001, 'lambda_2': 0.1, 'half': False, 'amp_opt_level': 1, 'work_dir': 'results/ntu_NTU60_CS'}
+
+[ Sun Jun 18 14:12:48 2023 ] # Parameters: 1546572
+[ Sun Jun 18 14:12:48 2023 ] Training epoch: 1
+[ Sun Jun 18 14:13:03 2023 ] using warm up, epoch: 5
+[ Sun Jun 18 14:13:06 2023 ] Parameters:
+{'debug': False, 'log_dir': '.', 'model_saved_name': '', 'noise_ratio': 0.5, 'n_desired': 40000, 'num_point': 20, 'num_person': 1, 'num_class': 60, 'dataset': 'ntu', 'datacase': 'NTU60_CS', 'use_vel': False, 'phase': 'train', 'save_score': False, 'seed': 1, 'log_interval': 100, 'save_interval': 1, 'save_epoch': 60, 'eval_interval': 5, 'print_log': True, 'show_topk': [1, 5], 'feeder': 'feeders.feeder_ucla.Feeder', 'num_worker': 4, 'balanced_sampling': False, 'random_rot': True, 'repeat': 1, 'weights': None, 'ignore_weights': [], 'n_heads': 3, 'k': 1, 'z_prior_gain': 3, 'graph': 'graph.ucla.Graph', 'base_lr': 0.1, 'step': [90, 100], 'optimizer': 'SGD', 'nesterov': True, 'batch_size': 128, 'test_batch_size': 128, 'start_epoch': 0, 'num_epoch': 110, 'weight_decay': 0.0005, 'lr_decay_rate': 0.1, 'warm_up_epoch': 5, 'lambda_1': 0.0001, 'lambda_2': 0.1, 'half': False, 'amp_opt_level': 1, 'work_dir': 'results/ntu_NTU60_CS'}
+
+[ Sun Jun 18 14:13:06 2023 ] # Parameters: 1546572
+[ Sun Jun 18 14:13:06 2023 ] Training epoch: 1
+[ Sun Jun 18 14:14:36 2023 ] using warm up, epoch: 5
+[ Sun Jun 18 14:14:40 2023 ] Parameters:
+{'debug': False, 'log_dir': '.', 'model_saved_name': '', 'noise_ratio': 0.5, 'n_desired': 40000, 'num_point': 20, 'num_person': 1, 'num_class': 60, 'dataset': 'ntu', 'datacase': 'NTU60_CS', 'use_vel': False, 'phase': 'train', 'save_score': False, 'seed': 1, 'log_interval': 100, 'save_interval': 1, 'save_epoch': 60, 'eval_interval': 5, 'print_log': True, 'show_topk': [1, 5], 'feeder': 'feeders.feeder_ucla.Feeder', 'num_worker': 4, 'balanced_sampling': False, 'random_rot': True, 'repeat': 1, 'weights': None, 'ignore_weights': [], 'n_heads': 3, 'k': 1, 'z_prior_gain': 3, 'graph': 'graph.ucla.Graph', 'base_lr': 0.1, 'step': [90, 100], 'optimizer': 'SGD', 'nesterov': True, 'batch_size': 128, 'test_batch_size': 128, 'start_epoch': 0, 'num_epoch': 110, 'weight_decay': 0.0005, 'lr_decay_rate': 0.1, 'warm_up_epoch': 5, 'lambda_1': 0.0001, 'lambda_2': 0.1, 'half': False, 'amp_opt_level': 1, 'work_dir': 'results/ntu_NTU60_CS'}
+
+[ Sun Jun 18 14:14:40 2023 ] # Parameters: 1546572
+[ Sun Jun 18 14:14:40 2023 ] Training epoch: 1
+[ Sun Jun 18 14:15:02 2023 ] using warm up, epoch: 5
+[ Sun Jun 18 14:15:05 2023 ] Parameters:
+{'debug': False, 'log_dir': '.', 'model_saved_name': '', 'noise_ratio': 0.5, 'n_desired': 40000, 'num_point': 20, 'num_person': 1, 'num_class': 60, 'dataset': 'ntu', 'datacase': 'NTU60_CS', 'use_vel': False, 'phase': 'train', 'save_score': False, 'seed': 1, 'log_interval': 100, 'save_interval': 1, 'save_epoch': 60, 'eval_interval': 5, 'print_log': True, 'show_topk': [1, 5], 'feeder': 'feeders.feeder_ucla.Feeder', 'num_worker': 4, 'balanced_sampling': False, 'random_rot': True, 'repeat': 1, 'weights': None, 'ignore_weights': [], 'n_heads': 3, 'k': 1, 'z_prior_gain': 3, 'graph': 'graph.ucla.Graph', 'base_lr': 0.1, 'step': [90, 100], 'optimizer': 'SGD', 'nesterov': True, 'batch_size': 128, 'test_batch_size': 128, 'start_epoch': 0, 'num_epoch': 110, 'weight_decay': 0.0005, 'lr_decay_rate': 0.1, 'warm_up_epoch': 5, 'lambda_1': 0.0001, 'lambda_2': 0.1, 'half': False, 'amp_opt_level': 1, 'work_dir': 'results/ntu_NTU60_CS'}
+
+[ Sun Jun 18 14:15:05 2023 ] # Parameters: 1546572
+[ Sun Jun 18 14:15:05 2023 ] Training epoch: 1
+[ Sun Jun 18 14:15:21 2023 ] using warm up, epoch: 5
+[ Sun Jun 18 14:15:24 2023 ] Parameters:
+{'debug': False, 'log_dir': '.', 'model_saved_name': '', 'noise_ratio': 0.5, 'n_desired': 40000, 'num_point': 20, 'num_person': 1, 'num_class': 60, 'dataset': 'ntu', 'datacase': 'NTU60_CS', 'use_vel': False, 'phase': 'train', 'save_score': False, 'seed': 1, 'log_interval': 100, 'save_interval': 1, 'save_epoch': 60, 'eval_interval': 5, 'print_log': True, 'show_topk': [1, 5], 'feeder': 'feeders.feeder_ucla.Feeder', 'num_worker': 4, 'balanced_sampling': False, 'random_rot': True, 'repeat': 1, 'weights': None, 'ignore_weights': [], 'n_heads': 3, 'k': 1, 'z_prior_gain': 3, 'graph': 'graph.ucla.Graph', 'base_lr': 0.1, 'step': [90, 100], 'optimizer': 'SGD', 'nesterov': True, 'batch_size': 128, 'test_batch_size': 128, 'start_epoch': 0, 'num_epoch': 110, 'weight_decay': 0.0005, 'lr_decay_rate': 0.1, 'warm_up_epoch': 5, 'lambda_1': 0.0001, 'lambda_2': 0.1, 'half': False, 'amp_opt_level': 1, 'work_dir': 'results/ntu_NTU60_CS'}
+
+[ Sun Jun 18 14:15:24 2023 ] # Parameters: 1546572
+[ Sun Jun 18 14:15:24 2023 ] Training epoch: 1
+[ Sun Jun 18 14:15:56 2023 ] using warm up, epoch: 5
+[ Sun Jun 18 14:15:59 2023 ] Parameters:
+{'debug': False, 'log_dir': '.', 'model_saved_name': '', 'noise_ratio': 0.5, 'n_desired': 40000, 'num_point': 20, 'num_person': 1, 'num_class': 60, 'dataset': 'ntu', 'datacase': 'NTU60_CS', 'use_vel': False, 'phase': 'train', 'save_score': False, 'seed': 1, 'log_interval': 100, 'save_interval': 1, 'save_epoch': 60, 'eval_interval': 5, 'print_log': True, 'show_topk': [1, 5], 'feeder': 'feeders.feeder_ucla.Feeder', 'num_worker': 4, 'balanced_sampling': False, 'random_rot': True, 'repeat': 1, 'weights': None, 'ignore_weights': [], 'n_heads': 3, 'k': 1, 'z_prior_gain': 3, 'graph': 'graph.ucla.Graph', 'base_lr': 0.1, 'step': [90, 100], 'optimizer': 'SGD', 'nesterov': True, 'batch_size': 128, 'test_batch_size': 128, 'start_epoch': 0, 'num_epoch': 110, 'weight_decay': 0.0005, 'lr_decay_rate': 0.1, 'warm_up_epoch': 5, 'lambda_1': 0.0001, 'lambda_2': 0.1, 'half': False, 'amp_opt_level': 1, 'work_dir': 'results/ntu_NTU60_CS'}
+
+[ Sun Jun 18 14:15:59 2023 ] # Parameters: 1546572
+[ Sun Jun 18 14:15:59 2023 ] Training epoch: 1
+[ Sun Jun 18 14:16:44 2023 ] using warm up, epoch: 5
+[ Sun Jun 18 14:16:47 2023 ] Parameters:
+{'debug': False, 'log_dir': '.', 'model_saved_name': '', 'noise_ratio': 0.5, 'n_desired': 40000, 'num_point': 20, 'num_person': 1, 'num_class': 60, 'dataset': 'ntu', 'datacase': 'NTU60_CS', 'use_vel': False, 'phase': 'train', 'save_score': False, 'seed': 1, 'log_interval': 100, 'save_interval': 1, 'save_epoch': 60, 'eval_interval': 5, 'print_log': True, 'show_topk': [1, 5], 'feeder': 'feeders.feeder_ucla.Feeder', 'num_worker': 4, 'balanced_sampling': False, 'random_rot': True, 'repeat': 1, 'weights': None, 'ignore_weights': [], 'n_heads': 3, 'k': 1, 'z_prior_gain': 3, 'graph': 'graph.ucla.Graph', 'base_lr': 0.1, 'step': [90, 100], 'optimizer': 'SGD', 'nesterov': True, 'batch_size': 128, 'test_batch_size': 128, 'start_epoch': 0, 'num_epoch': 110, 'weight_decay': 0.0005, 'lr_decay_rate': 0.1, 'warm_up_epoch': 5, 'lambda_1': 0.0001, 'lambda_2': 0.1, 'half': False, 'amp_opt_level': 1, 'work_dir': 'results/ntu_NTU60_CS'}
+
+[ Sun Jun 18 14:16:47 2023 ] # Parameters: 1546572
+[ Sun Jun 18 14:16:47 2023 ] Training epoch: 1
+[ Sun Jun 18 14:17:21 2023 ] using warm up, epoch: 5
+[ Sun Jun 18 14:17:24 2023 ] Parameters:
+{'debug': False, 'log_dir': '.', 'model_saved_name': '', 'noise_ratio': 0.5, 'n_desired': 40000, 'num_point': 20, 'num_person': 1, 'num_class': 60, 'dataset': 'ntu', 'datacase': 'NTU60_CS', 'use_vel': False, 'phase': 'train', 'save_score': False, 'seed': 1, 'log_interval': 100, 'save_interval': 1, 'save_epoch': 60, 'eval_interval': 5, 'print_log': True, 'show_topk': [1, 5], 'feeder': 'feeders.feeder_ucla.Feeder', 'num_worker': 4, 'balanced_sampling': False, 'random_rot': True, 'repeat': 1, 'weights': None, 'ignore_weights': [], 'n_heads': 3, 'k': 1, 'z_prior_gain': 3, 'graph': 'graph.ucla.Graph', 'base_lr': 0.1, 'step': [90, 100], 'optimizer': 'SGD', 'nesterov': True, 'batch_size': 128, 'test_batch_size': 128, 'start_epoch': 0, 'num_epoch': 110, 'weight_decay': 0.0005, 'lr_decay_rate': 0.1, 'warm_up_epoch': 5, 'lambda_1': 0.0001, 'lambda_2': 0.1, 'half': False, 'amp_opt_level': 1, 'work_dir': 'results/ntu_NTU60_CS'}
+
+[ Sun Jun 18 14:17:24 2023 ] # Parameters: 1546572
+[ Sun Jun 18 14:17:24 2023 ] Training epoch: 1
+[ Sun Jun 18 14:17:33 2023 ] using warm up, epoch: 5
+[ Sun Jun 18 14:17:36 2023 ] Parameters:
+{'debug': False, 'log_dir': '.', 'model_saved_name': '', 'noise_ratio': 0.5, 'n_desired': 40000, 'num_point': 20, 'num_person': 1, 'num_class': 60, 'dataset': 'ntu', 'datacase': 'NTU60_CS', 'use_vel': False, 'phase': 'train', 'save_score': False, 'seed': 1, 'log_interval': 100, 'save_interval': 1, 'save_epoch': 60, 'eval_interval': 5, 'print_log': True, 'show_topk': [1, 5], 'feeder': 'feeders.feeder_ucla.Feeder', 'num_worker': 4, 'balanced_sampling': False, 'random_rot': True, 'repeat': 1, 'weights': None, 'ignore_weights': [], 'n_heads': 3, 'k': 1, 'z_prior_gain': 3, 'graph': 'graph.ucla.Graph', 'base_lr': 0.1, 'step': [90, 100], 'optimizer': 'SGD', 'nesterov': True, 'batch_size': 128, 'test_batch_size': 128, 'start_epoch': 0, 'num_epoch': 110, 'weight_decay': 0.0005, 'lr_decay_rate': 0.1, 'warm_up_epoch': 5, 'lambda_1': 0.0001, 'lambda_2': 0.1, 'half': False, 'amp_opt_level': 1, 'work_dir': 'results/ntu_NTU60_CS'}
+
+[ Sun Jun 18 14:17:36 2023 ] # Parameters: 1546572
+[ Sun Jun 18 14:17:36 2023 ] Training epoch: 1
+[ Sun Jun 18 14:17:53 2023 ] using warm up, epoch: 5
+[ Sun Jun 18 14:17:57 2023 ] Parameters:
+{'debug': False, 'log_dir': '.', 'model_saved_name': '', 'noise_ratio': 0.5, 'n_desired': 40000, 'num_point': 20, 'num_person': 1, 'num_class': 60, 'dataset': 'ntu', 'datacase': 'NTU60_CS', 'use_vel': False, 'phase': 'train', 'save_score': False, 'seed': 1, 'log_interval': 100, 'save_interval': 1, 'save_epoch': 60, 'eval_interval': 5, 'print_log': True, 'show_topk': [1, 5], 'feeder': 'feeders.feeder_ucla.Feeder', 'num_worker': 4, 'balanced_sampling': False, 'random_rot': True, 'repeat': 1, 'weights': None, 'ignore_weights': [], 'n_heads': 3, 'k': 1, 'z_prior_gain': 3, 'graph': 'graph.ucla.Graph', 'base_lr': 0.1, 'step': [90, 100], 'optimizer': 'SGD', 'nesterov': True, 'batch_size': 128, 'test_batch_size': 128, 'start_epoch': 0, 'num_epoch': 110, 'weight_decay': 0.0005, 'lr_decay_rate': 0.1, 'warm_up_epoch': 5, 'lambda_1': 0.0001, 'lambda_2': 0.1, 'half': False, 'amp_opt_level': 1, 'work_dir': 'results/ntu_NTU60_CS'}
+
+[ Sun Jun 18 14:17:57 2023 ] # Parameters: 1546572
+[ Sun Jun 18 14:17:57 2023 ] Training epoch: 1
+[ Sun Jun 18 14:18:21 2023 ] using warm up, epoch: 5
+[ Sun Jun 18 14:18:24 2023 ] Parameters:
+{'debug': False, 'log_dir': '.', 'model_saved_name': '', 'noise_ratio': 0.5, 'n_desired': 40000, 'num_point': 20, 'num_person': 1, 'num_class': 60, 'dataset': 'ntu', 'datacase': 'NTU60_CS', 'use_vel': False, 'phase': 'train', 'save_score': False, 'seed': 1, 'log_interval': 100, 'save_interval': 1, 'save_epoch': 60, 'eval_interval': 5, 'print_log': True, 'show_topk': [1, 5], 'feeder': 'feeders.feeder_ucla.Feeder', 'num_worker': 4, 'balanced_sampling': False, 'random_rot': True, 'repeat': 1, 'weights': None, 'ignore_weights': [], 'n_heads': 3, 'k': 1, 'z_prior_gain': 3, 'graph': 'graph.ucla.Graph', 'base_lr': 0.1, 'step': [90, 100], 'optimizer': 'SGD', 'nesterov': True, 'batch_size': 128, 'test_batch_size': 128, 'start_epoch': 0, 'num_epoch': 110, 'weight_decay': 0.0005, 'lr_decay_rate': 0.1, 'warm_up_epoch': 5, 'lambda_1': 0.0001, 'lambda_2': 0.1, 'half': False, 'amp_opt_level': 1, 'work_dir': 'results/ntu_NTU60_CS'}
+
+[ Sun Jun 18 14:18:24 2023 ] # Parameters: 1546572
+[ Sun Jun 18 14:18:24 2023 ] Training epoch: 1
+[ Sun Jun 18 14:19:18 2023 ] using warm up, epoch: 5
+[ Sun Jun 18 14:19:22 2023 ] Parameters:
+{'debug': False, 'log_dir': '.', 'model_saved_name': '', 'noise_ratio': 0.5, 'n_desired': 40000, 'num_point': 20, 'num_person': 1, 'num_class': 60, 'dataset': 'ntu', 'datacase': 'NTU60_CS', 'use_vel': False, 'phase': 'train', 'save_score': False, 'seed': 1, 'log_interval': 100, 'save_interval': 1, 'save_epoch': 60, 'eval_interval': 5, 'print_log': True, 'show_topk': [1, 5], 'feeder': 'feeders.feeder_ucla.Feeder', 'num_worker': 4, 'balanced_sampling': False, 'random_rot': True, 'repeat': 1, 'weights': None, 'ignore_weights': [], 'n_heads': 3, 'k': 1, 'z_prior_gain': 3, 'graph': 'graph.ucla.Graph', 'base_lr': 0.1, 'step': [90, 100], 'optimizer': 'SGD', 'nesterov': True, 'batch_size': 128, 'test_batch_size': 128, 'start_epoch': 0, 'num_epoch': 110, 'weight_decay': 0.0005, 'lr_decay_rate': 0.1, 'warm_up_epoch': 5, 'lambda_1': 0.0001, 'lambda_2': 0.1, 'half': False, 'amp_opt_level': 1, 'work_dir': 'results/ntu_NTU60_CS'}
+
+[ Sun Jun 18 14:19:22 2023 ] # Parameters: 1546572
+[ Sun Jun 18 14:19:22 2023 ] Training epoch: 1
+[ Sun Jun 18 14:19:50 2023 ] using warm up, epoch: 5
+[ Sun Jun 18 14:19:53 2023 ] Parameters:
+{'debug': False, 'log_dir': '.', 'model_saved_name': '', 'noise_ratio': 0.5, 'n_desired': 40000, 'num_point': 20, 'num_person': 1, 'num_class': 60, 'dataset': 'ntu', 'datacase': 'NTU60_CS', 'use_vel': False, 'phase': 'train', 'save_score': False, 'seed': 1, 'log_interval': 100, 'save_interval': 1, 'save_epoch': 60, 'eval_interval': 5, 'print_log': True, 'show_topk': [1, 5], 'feeder': 'feeders.feeder_ucla.Feeder', 'num_worker': 4, 'balanced_sampling': False, 'random_rot': True, 'repeat': 1, 'weights': None, 'ignore_weights': [], 'n_heads': 3, 'k': 1, 'z_prior_gain': 3, 'graph': 'graph.ucla.Graph', 'base_lr': 0.1, 'step': [90, 100], 'optimizer': 'SGD', 'nesterov': True, 'batch_size': 128, 'test_batch_size': 128, 'start_epoch': 0, 'num_epoch': 110, 'weight_decay': 0.0005, 'lr_decay_rate': 0.1, 'warm_up_epoch': 5, 'lambda_1': 0.0001, 'lambda_2': 0.1, 'half': False, 'amp_opt_level': 1, 'work_dir': 'results/ntu_NTU60_CS'}
+
+[ Sun Jun 18 14:19:53 2023 ] # Parameters: 1546572
+[ Sun Jun 18 14:19:53 2023 ] Training epoch: 1
+[ Sun Jun 18 14:20:12 2023 ] using warm up, epoch: 5
+[ Sun Jun 18 14:20:15 2023 ] Parameters:
+{'debug': False, 'log_dir': '.', 'model_saved_name': '', 'noise_ratio': 0.5, 'n_desired': 40000, 'num_point': 20, 'num_person': 1, 'num_class': 60, 'dataset': 'ntu', 'datacase': 'NTU60_CS', 'use_vel': False, 'phase': 'train', 'save_score': False, 'seed': 1, 'log_interval': 100, 'save_interval': 1, 'save_epoch': 60, 'eval_interval': 5, 'print_log': True, 'show_topk': [1, 5], 'feeder': 'feeders.feeder_ucla.Feeder', 'num_worker': 4, 'balanced_sampling': False, 'random_rot': True, 'repeat': 1, 'weights': None, 'ignore_weights': [], 'n_heads': 3, 'k': 1, 'z_prior_gain': 3, 'graph': 'graph.ucla.Graph', 'base_lr': 0.1, 'step': [90, 100], 'optimizer': 'SGD', 'nesterov': True, 'batch_size': 128, 'test_batch_size': 128, 'start_epoch': 0, 'num_epoch': 110, 'weight_decay': 0.0005, 'lr_decay_rate': 0.1, 'warm_up_epoch': 5, 'lambda_1': 0.0001, 'lambda_2': 0.1, 'half': False, 'amp_opt_level': 1, 'work_dir': 'results/ntu_NTU60_CS'}
+
+[ Sun Jun 18 14:20:15 2023 ] # Parameters: 1546572
+[ Sun Jun 18 14:20:15 2023 ] Training epoch: 1
+[ Sun Jun 18 14:20:35 2023 ] using warm up, epoch: 5
+[ Sun Jun 18 14:20:39 2023 ] Parameters:
+{'debug': False, 'log_dir': '.', 'model_saved_name': '', 'noise_ratio': 0.5, 'n_desired': 40000, 'num_point': 20, 'num_person': 1, 'num_class': 60, 'dataset': 'ntu', 'datacase': 'NTU60_CS', 'use_vel': False, 'phase': 'train', 'save_score': False, 'seed': 1, 'log_interval': 100, 'save_interval': 1, 'save_epoch': 60, 'eval_interval': 5, 'print_log': True, 'show_topk': [1, 5], 'feeder': 'feeders.feeder_ucla.Feeder', 'num_worker': 4, 'balanced_sampling': False, 'random_rot': True, 'repeat': 1, 'weights': None, 'ignore_weights': [], 'n_heads': 3, 'k': 1, 'z_prior_gain': 3, 'graph': 'graph.ucla.Graph', 'base_lr': 0.1, 'step': [90, 100], 'optimizer': 'SGD', 'nesterov': True, 'batch_size': 128, 'test_batch_size': 128, 'start_epoch': 0, 'num_epoch': 110, 'weight_decay': 0.0005, 'lr_decay_rate': 0.1, 'warm_up_epoch': 5, 'lambda_1': 0.0001, 'lambda_2': 0.1, 'half': False, 'amp_opt_level': 1, 'work_dir': 'results/ntu_NTU60_CS'}
+
+[ Sun Jun 18 14:20:39 2023 ] # Parameters: 1546572
+[ Sun Jun 18 14:20:39 2023 ] Training epoch: 1
+[ Sun Jun 18 14:22:25 2023 ] using warm up, epoch: 5
+[ Sun Jun 18 14:22:29 2023 ] Parameters:
+{'debug': False, 'log_dir': '.', 'model_saved_name': '', 'noise_ratio': 0.5, 'n_desired': 40000, 'num_point': 20, 'num_person': 1, 'num_class': 60, 'dataset': 'ntu', 'datacase': 'NTU60_CS', 'use_vel': False, 'phase': 'train', 'save_score': False, 'seed': 1, 'log_interval': 100, 'save_interval': 1, 'save_epoch': 60, 'eval_interval': 5, 'print_log': True, 'show_topk': [1, 5], 'feeder': 'feeders.feeder_ucla.Feeder', 'num_worker': 4, 'balanced_sampling': False, 'random_rot': True, 'repeat': 1, 'weights': None, 'ignore_weights': [], 'n_heads': 3, 'k': 1, 'z_prior_gain': 3, 'graph': 'graph.ucla.Graph', 'base_lr': 0.1, 'step': [90, 100], 'optimizer': 'SGD', 'nesterov': True, 'batch_size': 128, 'test_batch_size': 128, 'start_epoch': 0, 'num_epoch': 110, 'weight_decay': 0.0005, 'lr_decay_rate': 0.1, 'warm_up_epoch': 5, 'lambda_1': 0.0001, 'lambda_2': 0.1, 'half': False, 'amp_opt_level': 1, 'work_dir': 'results/ntu_NTU60_CS'}
+
+[ Sun Jun 18 14:22:29 2023 ] # Parameters: 1546572
+[ Sun Jun 18 14:22:29 2023 ] Training epoch: 1
+[ Sun Jun 18 14:23:52 2023 ] using warm up, epoch: 5
+[ Sun Jun 18 14:23:55 2023 ] Parameters:
+{'debug': False, 'log_dir': '.', 'model_saved_name': '', 'noise_ratio': 0.5, 'n_desired': 40000, 'num_point': 20, 'num_person': 1, 'num_class': 60, 'dataset': 'ntu', 'datacase': 'NTU60_CS', 'use_vel': False, 'phase': 'train', 'save_score': False, 'seed': 1, 'log_interval': 100, 'save_interval': 1, 'save_epoch': 60, 'eval_interval': 5, 'print_log': True, 'show_topk': [1, 5], 'feeder': 'feeders.feeder_ucla.Feeder', 'num_worker': 4, 'balanced_sampling': False, 'random_rot': True, 'repeat': 1, 'weights': None, 'ignore_weights': [], 'n_heads': 3, 'k': 1, 'z_prior_gain': 3, 'graph': 'graph.ucla.Graph', 'base_lr': 0.1, 'step': [90, 100], 'optimizer': 'SGD', 'nesterov': True, 'batch_size': 128, 'test_batch_size': 128, 'start_epoch': 0, 'num_epoch': 110, 'weight_decay': 0.0005, 'lr_decay_rate': 0.1, 'warm_up_epoch': 5, 'lambda_1': 0.0001, 'lambda_2': 0.1, 'half': False, 'amp_opt_level': 1, 'work_dir': 'results/ntu_NTU60_CS'}
+
+[ Sun Jun 18 14:23:55 2023 ] # Parameters: 1546572
+[ Sun Jun 18 14:23:55 2023 ] Training epoch: 1
+[ Sun Jun 18 14:24:26 2023 ] using warm up, epoch: 5
+[ Sun Jun 18 14:24:29 2023 ] Parameters:
+{'debug': False, 'log_dir': '.', 'model_saved_name': '', 'noise_ratio': 0.5, 'n_desired': 40000, 'num_point': 20, 'num_person': 1, 'num_class': 60, 'dataset': 'ntu', 'datacase': 'NTU60_CS', 'use_vel': False, 'phase': 'train', 'save_score': False, 'seed': 1, 'log_interval': 100, 'save_interval': 1, 'save_epoch': 60, 'eval_interval': 5, 'print_log': True, 'show_topk': [1, 5], 'feeder': 'feeders.feeder_ucla.Feeder', 'num_worker': 4, 'balanced_sampling': False, 'random_rot': True, 'repeat': 1, 'weights': None, 'ignore_weights': [], 'n_heads': 3, 'k': 1, 'z_prior_gain': 3, 'graph': 'graph.ucla.Graph', 'base_lr': 0.1, 'step': [90, 100], 'optimizer': 'SGD', 'nesterov': True, 'batch_size': 128, 'test_batch_size': 128, 'start_epoch': 0, 'num_epoch': 110, 'weight_decay': 0.0005, 'lr_decay_rate': 0.1, 'warm_up_epoch': 5, 'lambda_1': 0.0001, 'lambda_2': 0.1, 'half': False, 'amp_opt_level': 1, 'work_dir': 'results/ntu_NTU60_CS'}
+
+[ Sun Jun 18 14:24:29 2023 ] # Parameters: 1546572
+[ Sun Jun 18 14:24:29 2023 ] Training epoch: 1
+[ Sun Jun 18 14:24:45 2023 ] using warm up, epoch: 5
+[ Sun Jun 18 14:24:48 2023 ] Parameters:
+{'debug': False, 'log_dir': '.', 'model_saved_name': '', 'noise_ratio': 0.5, 'n_desired': 40000, 'num_point': 20, 'num_person': 1, 'num_class': 60, 'dataset': 'ntu', 'datacase': 'NTU60_CS', 'use_vel': False, 'phase': 'train', 'save_score': False, 'seed': 1, 'log_interval': 100, 'save_interval': 1, 'save_epoch': 60, 'eval_interval': 5, 'print_log': True, 'show_topk': [1, 5], 'feeder': 'feeders.feeder_ucla.Feeder', 'num_worker': 4, 'balanced_sampling': False, 'random_rot': True, 'repeat': 1, 'weights': None, 'ignore_weights': [], 'n_heads': 3, 'k': 1, 'z_prior_gain': 3, 'graph': 'graph.ucla.Graph', 'base_lr': 0.1, 'step': [90, 100], 'optimizer': 'SGD', 'nesterov': True, 'batch_size': 128, 'test_batch_size': 128, 'start_epoch': 0, 'num_epoch': 110, 'weight_decay': 0.0005, 'lr_decay_rate': 0.1, 'warm_up_epoch': 5, 'lambda_1': 0.0001, 'lambda_2': 0.1, 'half': False, 'amp_opt_level': 1, 'work_dir': 'results/ntu_NTU60_CS'}
+
+[ Sun Jun 18 14:24:48 2023 ] # Parameters: 1546572
+[ Sun Jun 18 14:24:48 2023 ] Training epoch: 1
+[ Sun Jun 18 14:25:15 2023 ] using warm up, epoch: 5
+[ Sun Jun 18 14:25:18 2023 ] Parameters:
+{'debug': False, 'log_dir': '.', 'model_saved_name': '', 'noise_ratio': 0.5, 'n_desired': 40000, 'num_point': 20, 'num_person': 1, 'num_class': 60, 'dataset': 'ntu', 'datacase': 'NTU60_CS', 'use_vel': False, 'phase': 'train', 'save_score': False, 'seed': 1, 'log_interval': 100, 'save_interval': 1, 'save_epoch': 60, 'eval_interval': 5, 'print_log': True, 'show_topk': [1, 5], 'feeder': 'feeders.feeder_ucla.Feeder', 'num_worker': 4, 'balanced_sampling': False, 'random_rot': True, 'repeat': 1, 'weights': None, 'ignore_weights': [], 'n_heads': 3, 'k': 1, 'z_prior_gain': 3, 'graph': 'graph.ucla.Graph', 'base_lr': 0.1, 'step': [90, 100], 'optimizer': 'SGD', 'nesterov': True, 'batch_size': 128, 'test_batch_size': 128, 'start_epoch': 0, 'num_epoch': 110, 'weight_decay': 0.0005, 'lr_decay_rate': 0.1, 'warm_up_epoch': 5, 'lambda_1': 0.0001, 'lambda_2': 0.1, 'half': False, 'amp_opt_level': 1, 'work_dir': 'results/ntu_NTU60_CS'}
+
+[ Sun Jun 18 14:25:18 2023 ] # Parameters: 1546572
+[ Sun Jun 18 14:25:18 2023 ] Training epoch: 1
+[ Sun Jun 18 14:30:13 2023 ] using warm up, epoch: 5
+[ Sun Jun 18 14:30:16 2023 ] Parameters:
+{'debug': False, 'log_dir': '.', 'model_saved_name': '', 'noise_ratio': 0.5, 'n_desired': 40000, 'num_point': 20, 'num_person': 1, 'num_class': 60, 'dataset': 'ntu', 'datacase': 'NTU60_CS', 'use_vel': False, 'phase': 'train', 'save_score': False, 'seed': 1, 'log_interval': 100, 'save_interval': 1, 'save_epoch': 60, 'eval_interval': 5, 'print_log': True, 'show_topk': [1, 5], 'feeder': 'feeders.feeder_ucla.Feeder', 'num_worker': 4, 'balanced_sampling': False, 'random_rot': True, 'repeat': 1, 'weights': None, 'ignore_weights': [], 'n_heads': 3, 'k': 1, 'z_prior_gain': 3, 'graph': 'graph.ucla.Graph', 'base_lr': 0.1, 'step': [90, 100], 'optimizer': 'SGD', 'nesterov': True, 'batch_size': 128, 'test_batch_size': 128, 'start_epoch': 0, 'num_epoch': 110, 'weight_decay': 0.0005, 'lr_decay_rate': 0.1, 'warm_up_epoch': 5, 'lambda_1': 0.0001, 'lambda_2': 0.1, 'half': False, 'amp_opt_level': 1, 'work_dir': 'results/ntu_NTU60_CS'}
+
+[ Sun Jun 18 14:30:16 2023 ] # Parameters: 1546572
+[ Sun Jun 18 14:30:16 2023 ] Training epoch: 1
+[ Sun Jun 18 14:30:27 2023 ] 	Training loss: 6.4683.  Training acc: 13.04%.
+[ Sun Jun 18 14:30:27 2023 ] 	Time consumption: [Data]03%, [Network]97%
+[ Sun Jun 18 14:30:27 2023 ] Eval epoch: 1
+[ Sun Jun 18 14:31:39 2023 ] using warm up, epoch: 5
+[ Sun Jun 18 14:31:42 2023 ] Parameters:
+{'debug': False, 'log_dir': '.', 'model_saved_name': '', 'noise_ratio': 0.5, 'n_desired': 40000, 'num_point': 20, 'num_person': 1, 'num_class': 60, 'dataset': 'ntu', 'datacase': 'NTU60_CS', 'use_vel': False, 'phase': 'train', 'save_score': False, 'seed': 1, 'log_interval': 100, 'save_interval': 1, 'save_epoch': 60, 'eval_interval': 5, 'print_log': True, 'show_topk': [1, 5], 'feeder': 'feeders.feeder_ucla.Feeder', 'num_worker': 4, 'balanced_sampling': False, 'random_rot': True, 'repeat': 1, 'weights': None, 'ignore_weights': [], 'n_heads': 3, 'k': 1, 'z_prior_gain': 3, 'graph': 'graph.ucla.Graph', 'base_lr': 0.1, 'step': [90, 100], 'optimizer': 'SGD', 'nesterov': True, 'batch_size': 128, 'test_batch_size': 128, 'start_epoch': 0, 'num_epoch': 110, 'weight_decay': 0.0005, 'lr_decay_rate': 0.1, 'warm_up_epoch': 5, 'lambda_1': 0.0001, 'lambda_2': 0.1, 'half': False, 'amp_opt_level': 1, 'work_dir': 'results/ntu_NTU60_CS'}
+
+[ Sun Jun 18 14:31:42 2023 ] # Parameters: 1546572
+[ Sun Jun 18 14:31:42 2023 ] Training epoch: 1
+[ Sun Jun 18 14:31:53 2023 ] 	Training loss: 6.4987.  Training acc: 13.04%.
+[ Sun Jun 18 14:31:53 2023 ] 	Time consumption: [Data]03%, [Network]97%
+[ Sun Jun 18 14:31:53 2023 ] Eval epoch: 1
+[ Sun Jun 18 14:31:55 2023 ] 	Mean test loss of 312 batches: 4.073863.
+[ Sun Jun 18 14:31:55 2023 ] 	Top1: 11.21%
+[ Sun Jun 18 14:31:55 2023 ] 	Top5: 54.96%
+[ Sun Jun 18 14:31:55 2023 ] Training epoch: 2
+[ Sun Jun 18 14:32:04 2023 ] 	Training loss: 3.0433.  Training acc: 26.22%.
+[ Sun Jun 18 14:32:04 2023 ] 	Time consumption: [Data]04%, [Network]96%
+[ Sun Jun 18 14:32:04 2023 ] Eval epoch: 2
+[ Sun Jun 18 14:32:06 2023 ] 	Mean test loss of 312 batches: 2.464789.
+[ Sun Jun 18 14:32:06 2023 ] 	Top1: 29.09%
+[ Sun Jun 18 14:32:06 2023 ] 	Top5: 84.27%
+[ Sun Jun 18 14:32:06 2023 ] Training epoch: 3
+[ Sun Jun 18 14:32:15 2023 ] 	Training loss: 2.2835.  Training acc: 39.18%.
+[ Sun Jun 18 14:32:15 2023 ] 	Time consumption: [Data]05%, [Network]95%
+[ Sun Jun 18 14:32:15 2023 ] Eval epoch: 3
+[ Sun Jun 18 14:32:17 2023 ] 	Mean test loss of 312 batches: 2.039853.
+[ Sun Jun 18 14:32:17 2023 ] 	Top1: 40.30%
+[ Sun Jun 18 14:32:17 2023 ] 	Top5: 89.44%
+[ Sun Jun 18 14:32:17 2023 ] Training epoch: 4
+[ Sun Jun 18 14:32:26 2023 ] 	Training loss: 1.8350.  Training acc: 54.51%.
+[ Sun Jun 18 14:32:26 2023 ] 	Time consumption: [Data]04%, [Network]96%
+[ Sun Jun 18 14:32:26 2023 ] Eval epoch: 4
+[ Sun Jun 18 14:32:28 2023 ] 	Mean test loss of 312 batches: 1.791927.
+[ Sun Jun 18 14:32:28 2023 ] 	Top1: 53.23%
+[ Sun Jun 18 14:32:28 2023 ] 	Top5: 96.77%
+[ Sun Jun 18 14:32:28 2023 ] Training epoch: 5
+[ Sun Jun 18 14:32:37 2023 ] 	Training loss: 1.6217.  Training acc: 62.96%.
+[ Sun Jun 18 14:32:37 2023 ] 	Time consumption: [Data]04%, [Network]96%
+[ Sun Jun 18 14:32:37 2023 ] Eval epoch: 5
+[ Sun Jun 18 14:32:39 2023 ] 	Mean test loss of 312 batches: 1.718249.
+[ Sun Jun 18 14:32:39 2023 ] 	Top1: 57.97%
+[ Sun Jun 18 14:32:39 2023 ] 	Top5: 96.98%
+[ Sun Jun 18 14:32:39 2023 ] Training epoch: 6
+[ Sun Jun 18 14:32:49 2023 ] 	Training loss: 1.4931.  Training acc: 67.61%.
+[ Sun Jun 18 14:32:49 2023 ] 	Time consumption: [Data]04%, [Network]96%
+[ Sun Jun 18 14:32:49 2023 ] Eval epoch: 6
+[ Sun Jun 18 14:32:50 2023 ] 	Mean test loss of 312 batches: 1.452654.
+[ Sun Jun 18 14:32:50 2023 ] 	Top1: 73.06%
+[ Sun Jun 18 14:32:50 2023 ] 	Top5: 98.28%
+[ Sun Jun 18 14:32:50 2023 ] Training epoch: 7
+[ Sun Jun 18 14:33:00 2023 ] 	Training loss: 1.4050.  Training acc: 71.31%.
+[ Sun Jun 18 14:33:00 2023 ] 	Time consumption: [Data]05%, [Network]95%
+[ Sun Jun 18 14:33:00 2023 ] Eval epoch: 7
+[ Sun Jun 18 14:33:02 2023 ] 	Mean test loss of 312 batches: 1.342532.
+[ Sun Jun 18 14:33:02 2023 ] 	Top1: 73.49%
+[ Sun Jun 18 14:33:02 2023 ] 	Top5: 99.14%
+[ Sun Jun 18 14:33:02 2023 ] Training epoch: 8
+[ Sun Jun 18 14:33:11 2023 ] 	Training loss: 1.3787.  Training acc: 72.88%.
+[ Sun Jun 18 14:33:11 2023 ] 	Time consumption: [Data]04%, [Network]96%
+[ Sun Jun 18 14:33:11 2023 ] Eval epoch: 8
+[ Sun Jun 18 14:33:12 2023 ] 	Mean test loss of 312 batches: 1.450539.
+[ Sun Jun 18 14:33:12 2023 ] 	Top1: 67.46%
+[ Sun Jun 18 14:33:12 2023 ] 	Top5: 97.84%
+[ Sun Jun 18 14:33:12 2023 ] Training epoch: 9
+[ Sun Jun 18 14:33:21 2023 ] 	Training loss: 1.3381.  Training acc: 74.58%.
+[ Sun Jun 18 14:33:21 2023 ] 	Time consumption: [Data]04%, [Network]96%
+[ Sun Jun 18 14:33:21 2023 ] Eval epoch: 9
+[ Sun Jun 18 14:33:23 2023 ] 	Mean test loss of 312 batches: 1.487672.
+[ Sun Jun 18 14:33:23 2023 ] 	Top1: 66.16%
+[ Sun Jun 18 14:33:23 2023 ] 	Top5: 98.71%
+[ Sun Jun 18 14:33:23 2023 ] Training epoch: 10
+[ Sun Jun 18 14:33:32 2023 ] 	Training loss: 1.2867.  Training acc: 77.38%.
+[ Sun Jun 18 14:33:32 2023 ] 	Time consumption: [Data]04%, [Network]96%
+[ Sun Jun 18 14:33:32 2023 ] Eval epoch: 10
+[ Sun Jun 18 14:33:34 2023 ] 	Mean test loss of 312 batches: 1.369268.
+[ Sun Jun 18 14:33:34 2023 ] 	Top1: 73.06%
+[ Sun Jun 18 14:33:34 2023 ] 	Top5: 98.92%
+[ Sun Jun 18 14:33:34 2023 ] Training epoch: 11
+[ Sun Jun 18 14:33:43 2023 ] 	Training loss: 1.2602.  Training acc: 78.41%.
+[ Sun Jun 18 14:33:43 2023 ] 	Time consumption: [Data]04%, [Network]96%
+[ Sun Jun 18 14:33:43 2023 ] Eval epoch: 11
+[ Sun Jun 18 14:33:46 2023 ] 	Mean test loss of 312 batches: 1.241368.
+[ Sun Jun 18 14:33:46 2023 ] 	Top1: 81.03%
+[ Sun Jun 18 14:33:46 2023 ] 	Top5: 99.57%
+[ Sun Jun 18 14:33:46 2023 ] Training epoch: 12
+[ Sun Jun 18 14:33:54 2023 ] 	Training loss: 1.2575.  Training acc: 77.90%.
+[ Sun Jun 18 14:33:54 2023 ] 	Time consumption: [Data]04%, [Network]96%
+[ Sun Jun 18 14:33:54 2023 ] Eval epoch: 12
+[ Sun Jun 18 14:33:56 2023 ] 	Mean test loss of 312 batches: 1.232747.
+[ Sun Jun 18 14:33:56 2023 ] 	Top1: 79.74%
+[ Sun Jun 18 14:33:56 2023 ] 	Top5: 99.78%
+[ Sun Jun 18 14:33:56 2023 ] Training epoch: 13
+[ Sun Jun 18 14:34:04 2023 ] 	Training loss: 1.2384.  Training acc: 78.79%.
+[ Sun Jun 18 14:34:04 2023 ] 	Time consumption: [Data]04%, [Network]96%
+[ Sun Jun 18 14:34:04 2023 ] Eval epoch: 13
+[ Sun Jun 18 14:34:06 2023 ] 	Mean test loss of 312 batches: 1.420908.
+[ Sun Jun 18 14:34:06 2023 ] 	Top1: 72.63%
+[ Sun Jun 18 14:34:06 2023 ] 	Top5: 98.28%
+[ Sun Jun 18 14:34:06 2023 ] Training epoch: 14
+[ Sun Jun 18 14:34:16 2023 ] 	Training loss: 1.1911.  Training acc: 80.99%.
+[ Sun Jun 18 14:34:16 2023 ] 	Time consumption: [Data]04%, [Network]96%
+[ Sun Jun 18 14:34:16 2023 ] Eval epoch: 14
+[ Sun Jun 18 14:34:17 2023 ] 	Mean test loss of 312 batches: 1.234106.
+[ Sun Jun 18 14:34:17 2023 ] 	Top1: 79.74%
+[ Sun Jun 18 14:34:17 2023 ] 	Top5: 99.35%
+[ Sun Jun 18 14:34:17 2023 ] Training epoch: 15
+[ Sun Jun 18 14:34:27 2023 ] 	Training loss: 1.1552.  Training acc: 83.05%.
+[ Sun Jun 18 14:34:27 2023 ] 	Time consumption: [Data]04%, [Network]95%
+[ Sun Jun 18 14:34:27 2023 ] Eval epoch: 15
+[ Sun Jun 18 14:34:29 2023 ] 	Mean test loss of 312 batches: 1.284199.
+[ Sun Jun 18 14:34:29 2023 ] 	Top1: 78.88%
+[ Sun Jun 18 14:34:29 2023 ] 	Top5: 98.92%
+[ Sun Jun 18 14:34:29 2023 ] Training epoch: 16
+[ Sun Jun 18 14:34:38 2023 ] 	Training loss: 1.1477.  Training acc: 83.71%.
+[ Sun Jun 18 14:34:38 2023 ] 	Time consumption: [Data]04%, [Network]96%
+[ Sun Jun 18 14:34:38 2023 ] Eval epoch: 16
+[ Sun Jun 18 14:34:39 2023 ] 	Mean test loss of 312 batches: 1.312899.
+[ Sun Jun 18 14:34:39 2023 ] 	Top1: 76.29%
+[ Sun Jun 18 14:34:39 2023 ] 	Top5: 99.57%
+[ Sun Jun 18 14:34:39 2023 ] Training epoch: 17
+[ Sun Jun 18 14:34:49 2023 ] 	Training loss: 1.1155.  Training acc: 84.90%.
+[ Sun Jun 18 14:34:49 2023 ] 	Time consumption: [Data]04%, [Network]96%
+[ Sun Jun 18 14:34:49 2023 ] Eval epoch: 17
+[ Sun Jun 18 14:34:51 2023 ] 	Mean test loss of 312 batches: 1.144645.
+[ Sun Jun 18 14:34:51 2023 ] 	Top1: 86.64%
+[ Sun Jun 18 14:34:51 2023 ] 	Top5: 99.57%
+[ Sun Jun 18 14:34:51 2023 ] Training epoch: 18
+[ Sun Jun 18 14:35:00 2023 ] 	Training loss: 1.1169.  Training acc: 84.68%.
+[ Sun Jun 18 14:35:00 2023 ] 	Time consumption: [Data]04%, [Network]95%
+[ Sun Jun 18 14:35:00 2023 ] Eval epoch: 18
+[ Sun Jun 18 14:35:02 2023 ] 	Mean test loss of 312 batches: 1.445418.
+[ Sun Jun 18 14:35:02 2023 ] 	Top1: 70.69%
+[ Sun Jun 18 14:35:02 2023 ] 	Top5: 98.71%
+[ Sun Jun 18 14:35:02 2023 ] Training epoch: 19
+[ Sun Jun 18 14:35:11 2023 ] 	Training loss: 1.1042.  Training acc: 84.50%.
+[ Sun Jun 18 14:35:11 2023 ] 	Time consumption: [Data]04%, [Network]96%
+[ Sun Jun 18 14:35:11 2023 ] Eval epoch: 19
+[ Sun Jun 18 14:35:13 2023 ] 	Mean test loss of 312 batches: 1.363733.
+[ Sun Jun 18 14:35:13 2023 ] 	Top1: 74.35%
+[ Sun Jun 18 14:35:13 2023 ] 	Top5: 99.57%
+[ Sun Jun 18 14:35:13 2023 ] Training epoch: 20
+[ Sun Jun 18 14:35:22 2023 ] 	Training loss: 1.0784.  Training acc: 85.96%.
+[ Sun Jun 18 14:35:22 2023 ] 	Time consumption: [Data]04%, [Network]96%
+[ Sun Jun 18 14:35:22 2023 ] Eval epoch: 20
+[ Sun Jun 18 14:35:24 2023 ] 	Mean test loss of 312 batches: 1.142006.
+[ Sun Jun 18 14:35:24 2023 ] 	Top1: 84.05%
+[ Sun Jun 18 14:35:24 2023 ] 	Top5: 99.78%
+[ Sun Jun 18 14:35:24 2023 ] Training epoch: 21
+[ Sun Jun 18 14:35:34 2023 ] 	Training loss: 1.0476.  Training acc: 87.76%.
+[ Sun Jun 18 14:35:34 2023 ] 	Time consumption: [Data]04%, [Network]96%
+[ Sun Jun 18 14:35:34 2023 ] Eval epoch: 21
+[ Sun Jun 18 14:35:36 2023 ] 	Mean test loss of 312 batches: 1.168653.
+[ Sun Jun 18 14:35:36 2023 ] 	Top1: 83.84%
+[ Sun Jun 18 14:35:36 2023 ] 	Top5: 99.57%
+[ Sun Jun 18 14:35:36 2023 ] Training epoch: 22
+[ Sun Jun 18 14:35:45 2023 ] 	Training loss: 1.0667.  Training acc: 86.60%.
+[ Sun Jun 18 14:35:45 2023 ] 	Time consumption: [Data]04%, [Network]96%
+[ Sun Jun 18 14:35:45 2023 ] Eval epoch: 22
+[ Sun Jun 18 14:35:47 2023 ] 	Mean test loss of 312 batches: 1.157816.
+[ Sun Jun 18 14:35:47 2023 ] 	Top1: 84.27%
+[ Sun Jun 18 14:35:47 2023 ] 	Top5: 99.14%
+[ Sun Jun 18 14:35:47 2023 ] Training epoch: 23
+[ Sun Jun 18 14:35:56 2023 ] 	Training loss: 1.0656.  Training acc: 87.22%.
+[ Sun Jun 18 14:35:56 2023 ] 	Time consumption: [Data]04%, [Network]96%
+[ Sun Jun 18 14:35:56 2023 ] Eval epoch: 23
+[ Sun Jun 18 14:35:58 2023 ] 	Mean test loss of 312 batches: 1.502390.
+[ Sun Jun 18 14:35:58 2023 ] 	Top1: 67.46%
+[ Sun Jun 18 14:35:58 2023 ] 	Top5: 97.84%
+[ Sun Jun 18 14:35:58 2023 ] Training epoch: 24
+[ Sun Jun 18 14:36:08 2023 ] 	Training loss: 1.0553.  Training acc: 87.60%.
+[ Sun Jun 18 14:36:08 2023 ] 	Time consumption: [Data]04%, [Network]96%
+[ Sun Jun 18 14:36:08 2023 ] Eval epoch: 24
+[ Sun Jun 18 14:36:10 2023 ] 	Mean test loss of 312 batches: 1.110353.
+[ Sun Jun 18 14:36:10 2023 ] 	Top1: 82.76%
+[ Sun Jun 18 14:36:10 2023 ] 	Top5: 100.00%
+[ Sun Jun 18 14:36:10 2023 ] Training epoch: 25
+[ Sun Jun 18 14:36:18 2023 ] 	Training loss: 1.0308.  Training acc: 88.42%.
+[ Sun Jun 18 14:36:18 2023 ] 	Time consumption: [Data]04%, [Network]96%
+[ Sun Jun 18 14:36:18 2023 ] Eval epoch: 25
+[ Sun Jun 18 14:36:20 2023 ] 	Mean test loss of 312 batches: 1.151494.
+[ Sun Jun 18 14:36:20 2023 ] 	Top1: 83.62%
+[ Sun Jun 18 14:36:20 2023 ] 	Top5: 99.78%
+[ Sun Jun 18 14:36:20 2023 ] Training epoch: 26
+[ Sun Jun 18 14:36:30 2023 ] 	Training loss: 1.0006.  Training acc: 89.92%.
+[ Sun Jun 18 14:36:30 2023 ] 	Time consumption: [Data]04%, [Network]95%
+[ Sun Jun 18 14:36:30 2023 ] Eval epoch: 26
+[ Sun Jun 18 14:36:31 2023 ] 	Mean test loss of 312 batches: 1.076513.
+[ Sun Jun 18 14:36:31 2023 ] 	Top1: 86.21%
+[ Sun Jun 18 14:36:31 2023 ] 	Top5: 99.57%
+[ Sun Jun 18 14:36:31 2023 ] Training epoch: 27
+[ Sun Jun 18 14:36:40 2023 ] 	Training loss: 0.9841.  Training acc: 90.73%.
+[ Sun Jun 18 14:36:40 2023 ] 	Time consumption: [Data]04%, [Network]96%
+[ Sun Jun 18 14:36:40 2023 ] Eval epoch: 27
+[ Sun Jun 18 14:36:42 2023 ] 	Mean test loss of 312 batches: 1.195829.
+[ Sun Jun 18 14:36:42 2023 ] 	Top1: 83.62%
+[ Sun Jun 18 14:36:42 2023 ] 	Top5: 99.14%
+[ Sun Jun 18 14:36:42 2023 ] Training epoch: 28
+[ Sun Jun 18 14:36:51 2023 ] 	Training loss: 0.9953.  Training acc: 90.06%.
+[ Sun Jun 18 14:36:51 2023 ] 	Time consumption: [Data]05%, [Network]95%
+[ Sun Jun 18 14:36:51 2023 ] Eval epoch: 28
+[ Sun Jun 18 14:36:53 2023 ] 	Mean test loss of 312 batches: 1.045512.
+[ Sun Jun 18 14:36:53 2023 ] 	Top1: 87.07%
+[ Sun Jun 18 14:36:53 2023 ] 	Top5: 99.57%
+[ Sun Jun 18 14:36:53 2023 ] Training epoch: 29
+[ Sun Jun 18 14:37:03 2023 ] 	Training loss: 0.9918.  Training acc: 90.24%.
+[ Sun Jun 18 14:37:03 2023 ] 	Time consumption: [Data]04%, [Network]96%
+[ Sun Jun 18 14:37:03 2023 ] Eval epoch: 29
+[ Sun Jun 18 14:37:05 2023 ] 	Mean test loss of 312 batches: 1.115836.
+[ Sun Jun 18 14:37:05 2023 ] 	Top1: 84.27%
+[ Sun Jun 18 14:37:05 2023 ] 	Top5: 99.57%
+[ Sun Jun 18 14:37:05 2023 ] Training epoch: 30
+[ Sun Jun 18 14:37:14 2023 ] 	Training loss: 0.9796.  Training acc: 90.75%.
+[ Sun Jun 18 14:37:14 2023 ] 	Time consumption: [Data]04%, [Network]96%
+[ Sun Jun 18 14:37:14 2023 ] Eval epoch: 30
+[ Sun Jun 18 14:37:16 2023 ] 	Mean test loss of 312 batches: 1.208007.
+[ Sun Jun 18 14:37:16 2023 ] 	Top1: 78.88%
+[ Sun Jun 18 14:37:16 2023 ] 	Top5: 98.49%
+[ Sun Jun 18 14:37:16 2023 ] Training epoch: 31
+[ Sun Jun 18 14:37:25 2023 ] 	Training loss: 0.9653.  Training acc: 91.63%.
+[ Sun Jun 18 14:37:25 2023 ] 	Time consumption: [Data]04%, [Network]96%
+[ Sun Jun 18 14:37:25 2023 ] Eval epoch: 31
+[ Sun Jun 18 14:37:27 2023 ] 	Mean test loss of 312 batches: 1.068530.
+[ Sun Jun 18 14:37:27 2023 ] 	Top1: 87.50%
+[ Sun Jun 18 14:37:27 2023 ] 	Top5: 99.57%
+[ Sun Jun 18 14:37:27 2023 ] Training epoch: 32
+[ Sun Jun 18 14:37:37 2023 ] 	Training loss: 0.9594.  Training acc: 91.55%.
+[ Sun Jun 18 14:37:37 2023 ] 	Time consumption: [Data]04%, [Network]96%
+[ Sun Jun 18 14:37:37 2023 ] Eval epoch: 32
+[ Sun Jun 18 14:37:39 2023 ] 	Mean test loss of 312 batches: 1.057321.
+[ Sun Jun 18 14:37:39 2023 ] 	Top1: 88.58%
+[ Sun Jun 18 14:37:39 2023 ] 	Top5: 99.57%
+[ Sun Jun 18 14:37:39 2023 ] Training epoch: 33
+[ Sun Jun 18 14:37:49 2023 ] 	Training loss: 0.9543.  Training acc: 91.75%.
+[ Sun Jun 18 14:37:49 2023 ] 	Time consumption: [Data]04%, [Network]96%
+[ Sun Jun 18 14:37:49 2023 ] Eval epoch: 33
+[ Sun Jun 18 14:37:50 2023 ] 	Mean test loss of 312 batches: 1.259834.
+[ Sun Jun 18 14:37:50 2023 ] 	Top1: 78.45%
+[ Sun Jun 18 14:37:50 2023 ] 	Top5: 99.35%
+[ Sun Jun 18 14:37:50 2023 ] Training epoch: 34
+[ Sun Jun 18 14:38:00 2023 ] 	Training loss: 0.9650.  Training acc: 91.45%.
+[ Sun Jun 18 14:38:00 2023 ] 	Time consumption: [Data]03%, [Network]97%
+[ Sun Jun 18 14:38:00 2023 ] Eval epoch: 34
+[ Sun Jun 18 14:38:02 2023 ] 	Mean test loss of 312 batches: 1.060577.
+[ Sun Jun 18 14:38:02 2023 ] 	Top1: 87.28%
+[ Sun Jun 18 14:38:02 2023 ] 	Top5: 99.78%
+[ Sun Jun 18 14:38:02 2023 ] Training epoch: 35
+[ Sun Jun 18 14:38:12 2023 ] 	Training loss: 0.9449.  Training acc: 92.07%.
+[ Sun Jun 18 14:38:12 2023 ] 	Time consumption: [Data]03%, [Network]97%
+[ Sun Jun 18 14:38:12 2023 ] Eval epoch: 35
+[ Sun Jun 18 14:38:14 2023 ] 	Mean test loss of 312 batches: 1.135323.
+[ Sun Jun 18 14:38:14 2023 ] 	Top1: 85.56%
+[ Sun Jun 18 14:38:14 2023 ] 	Top5: 99.57%
+[ Sun Jun 18 14:38:14 2023 ] Training epoch: 36
+[ Sun Jun 18 14:38:23 2023 ] 	Training loss: 0.9326.  Training acc: 93.13%.
+[ Sun Jun 18 14:38:23 2023 ] 	Time consumption: [Data]04%, [Network]96%
+[ Sun Jun 18 14:38:23 2023 ] Eval epoch: 36
+[ Sun Jun 18 14:38:25 2023 ] 	Mean test loss of 312 batches: 1.336194.
+[ Sun Jun 18 14:38:25 2023 ] 	Top1: 81.68%
+[ Sun Jun 18 14:38:25 2023 ] 	Top5: 97.41%
+[ Sun Jun 18 14:38:26 2023 ] Training epoch: 37
+[ Sun Jun 18 14:38:35 2023 ] 	Training loss: 0.9397.  Training acc: 92.37%.
+[ Sun Jun 18 14:38:35 2023 ] 	Time consumption: [Data]04%, [Network]96%
+[ Sun Jun 18 14:38:35 2023 ] Eval epoch: 37
+[ Sun Jun 18 14:38:37 2023 ] 	Mean test loss of 312 batches: 1.042398.
+[ Sun Jun 18 14:38:37 2023 ] 	Top1: 88.36%
+[ Sun Jun 18 14:38:37 2023 ] 	Top5: 99.14%
+[ Sun Jun 18 14:38:37 2023 ] Training epoch: 38
+[ Sun Jun 18 14:38:47 2023 ] 	Training loss: 0.9152.  Training acc: 93.65%.
+[ Sun Jun 18 14:38:47 2023 ] 	Time consumption: [Data]04%, [Network]96%
+[ Sun Jun 18 14:38:47 2023 ] Eval epoch: 38
+[ Sun Jun 18 14:38:49 2023 ] 	Mean test loss of 312 batches: 1.165406.
+[ Sun Jun 18 14:38:49 2023 ] 	Top1: 83.62%
+[ Sun Jun 18 14:38:49 2023 ] 	Top5: 99.35%
+[ Sun Jun 18 14:38:49 2023 ] Training epoch: 39
+[ Sun Jun 18 14:38:58 2023 ] 	Training loss: 0.9092.  Training acc: 93.83%.
+[ Sun Jun 18 14:38:58 2023 ] 	Time consumption: [Data]04%, [Network]96%
+[ Sun Jun 18 14:38:58 2023 ] Eval epoch: 39
+[ Sun Jun 18 14:39:00 2023 ] 	Mean test loss of 312 batches: 1.159084.
+[ Sun Jun 18 14:39:00 2023 ] 	Top1: 84.27%
+[ Sun Jun 18 14:39:00 2023 ] 	Top5: 98.71%
+[ Sun Jun 18 14:39:00 2023 ] Training epoch: 40
+[ Sun Jun 18 14:39:10 2023 ] 	Training loss: 0.8955.  Training acc: 94.79%.
+[ Sun Jun 18 14:39:10 2023 ] 	Time consumption: [Data]04%, [Network]96%
+[ Sun Jun 18 14:39:10 2023 ] Eval epoch: 40
+[ Sun Jun 18 14:39:12 2023 ] 	Mean test loss of 312 batches: 1.101139.
+[ Sun Jun 18 14:39:12 2023 ] 	Top1: 88.15%
+[ Sun Jun 18 14:39:12 2023 ] 	Top5: 99.57%
+[ Sun Jun 18 14:39:12 2023 ] Training epoch: 41
+[ Sun Jun 18 14:39:21 2023 ] 	Training loss: 0.8923.  Training acc: 94.67%.
+[ Sun Jun 18 14:39:21 2023 ] 	Time consumption: [Data]04%, [Network]96%
+[ Sun Jun 18 14:39:21 2023 ] Eval epoch: 41
+[ Sun Jun 18 14:39:23 2023 ] 	Mean test loss of 312 batches: 0.995374.
+[ Sun Jun 18 14:39:23 2023 ] 	Top1: 89.22%
+[ Sun Jun 18 14:39:23 2023 ] 	Top5: 99.35%
+[ Sun Jun 18 14:39:23 2023 ] Training epoch: 42
+[ Sun Jun 18 14:39:32 2023 ] 	Training loss: 0.8959.  Training acc: 94.19%.
+[ Sun Jun 18 14:39:32 2023 ] 	Time consumption: [Data]05%, [Network]95%
+[ Sun Jun 18 14:39:32 2023 ] Eval epoch: 42
+[ Sun Jun 18 14:39:34 2023 ] 	Mean test loss of 312 batches: 1.027705.
+[ Sun Jun 18 14:39:34 2023 ] 	Top1: 89.01%
+[ Sun Jun 18 14:39:34 2023 ] 	Top5: 99.78%
+[ Sun Jun 18 14:39:34 2023 ] Training epoch: 43
+[ Sun Jun 18 14:39:43 2023 ] 	Training loss: 0.9010.  Training acc: 94.11%.
+[ Sun Jun 18 14:39:43 2023 ] 	Time consumption: [Data]05%, [Network]95%
+[ Sun Jun 18 14:39:43 2023 ] Eval epoch: 43
+[ Sun Jun 18 14:39:45 2023 ] 	Mean test loss of 312 batches: 1.146852.
+[ Sun Jun 18 14:39:45 2023 ] 	Top1: 84.48%
+[ Sun Jun 18 14:39:45 2023 ] 	Top5: 99.35%
+[ Sun Jun 18 14:39:45 2023 ] Training epoch: 44
+[ Sun Jun 18 14:39:54 2023 ] 	Training loss: 0.8876.  Training acc: 94.85%.
+[ Sun Jun 18 14:39:54 2023 ] 	Time consumption: [Data]05%, [Network]95%
+[ Sun Jun 18 14:39:54 2023 ] Eval epoch: 44
+[ Sun Jun 18 14:39:56 2023 ] 	Mean test loss of 312 batches: 1.081545.
+[ Sun Jun 18 14:39:56 2023 ] 	Top1: 88.58%
+[ Sun Jun 18 14:39:56 2023 ] 	Top5: 98.71%
+[ Sun Jun 18 14:39:56 2023 ] Training epoch: 45
+[ Sun Jun 18 14:40:06 2023 ] 	Training loss: 0.8993.  Training acc: 94.09%.
+[ Sun Jun 18 14:40:06 2023 ] 	Time consumption: [Data]04%, [Network]96%
+[ Sun Jun 18 14:40:06 2023 ] Eval epoch: 45
+[ Sun Jun 18 14:40:08 2023 ] 	Mean test loss of 312 batches: 1.121258.
+[ Sun Jun 18 14:40:08 2023 ] 	Top1: 84.48%
+[ Sun Jun 18 14:40:08 2023 ] 	Top5: 99.35%
+[ Sun Jun 18 14:40:08 2023 ] Training epoch: 46
+[ Sun Jun 18 14:40:18 2023 ] 	Training loss: 0.8757.  Training acc: 95.29%.
+[ Sun Jun 18 14:40:18 2023 ] 	Time consumption: [Data]04%, [Network]96%
+[ Sun Jun 18 14:40:18 2023 ] Eval epoch: 46
+[ Sun Jun 18 14:40:19 2023 ] 	Mean test loss of 312 batches: 0.980521.
+[ Sun Jun 18 14:40:19 2023 ] 	Top1: 92.03%
+[ Sun Jun 18 14:40:19 2023 ] 	Top5: 99.57%
+[ Sun Jun 18 14:40:19 2023 ] Training epoch: 47
+[ Sun Jun 18 14:40:29 2023 ] 	Training loss: 0.8856.  Training acc: 94.85%.
+[ Sun Jun 18 14:40:29 2023 ] 	Time consumption: [Data]04%, [Network]96%
+[ Sun Jun 18 14:40:29 2023 ] Eval epoch: 47
+[ Sun Jun 18 14:40:31 2023 ] 	Mean test loss of 312 batches: 0.992831.
+[ Sun Jun 18 14:40:31 2023 ] 	Top1: 91.16%
+[ Sun Jun 18 14:40:31 2023 ] 	Top5: 99.78%
+[ Sun Jun 18 14:40:31 2023 ] Training epoch: 48
+[ Sun Jun 18 14:40:41 2023 ] 	Training loss: 0.8761.  Training acc: 95.01%.
+[ Sun Jun 18 14:40:41 2023 ] 	Time consumption: [Data]04%, [Network]96%
+[ Sun Jun 18 14:40:41 2023 ] Eval epoch: 48
+[ Sun Jun 18 14:40:43 2023 ] 	Mean test loss of 312 batches: 1.043035.
+[ Sun Jun 18 14:40:43 2023 ] 	Top1: 88.15%
+[ Sun Jun 18 14:40:43 2023 ] 	Top5: 99.35%
+[ Sun Jun 18 14:40:43 2023 ] Training epoch: 49
+[ Sun Jun 18 14:40:53 2023 ] 	Training loss: 0.8563.  Training acc: 96.05%.
+[ Sun Jun 18 14:40:53 2023 ] 	Time consumption: [Data]04%, [Network]96%
+[ Sun Jun 18 14:40:53 2023 ] Eval epoch: 49
+[ Sun Jun 18 14:40:55 2023 ] 	Mean test loss of 312 batches: 0.991560.
+[ Sun Jun 18 14:40:55 2023 ] 	Top1: 90.30%
+[ Sun Jun 18 14:40:55 2023 ] 	Top5: 100.00%
+[ Sun Jun 18 14:40:55 2023 ] Training epoch: 50
+[ Sun Jun 18 14:41:05 2023 ] 	Training loss: 0.8559.  Training acc: 95.91%.
+[ Sun Jun 18 14:41:05 2023 ] 	Time consumption: [Data]05%, [Network]95%
+[ Sun Jun 18 14:41:05 2023 ] Eval epoch: 50
+[ Sun Jun 18 14:41:07 2023 ] 	Mean test loss of 312 batches: 0.982544.
+[ Sun Jun 18 14:41:07 2023 ] 	Top1: 90.09%
+[ Sun Jun 18 14:41:07 2023 ] 	Top5: 100.00%
+[ Sun Jun 18 14:41:07 2023 ] Training epoch: 51
+[ Sun Jun 18 14:41:16 2023 ] 	Training loss: 0.8518.  Training acc: 96.19%.
+[ Sun Jun 18 14:41:16 2023 ] 	Time consumption: [Data]04%, [Network]96%
+[ Sun Jun 18 14:41:16 2023 ] Eval epoch: 51
+[ Sun Jun 18 14:41:18 2023 ] 	Mean test loss of 312 batches: 1.022776.
+[ Sun Jun 18 14:41:18 2023 ] 	Top1: 89.44%
+[ Sun Jun 18 14:41:18 2023 ] 	Top5: 99.35%
+[ Sun Jun 18 14:41:18 2023 ] Training epoch: 52
+[ Sun Jun 18 14:41:27 2023 ] 	Training loss: 0.8489.  Training acc: 96.11%.
+[ Sun Jun 18 14:41:27 2023 ] 	Time consumption: [Data]04%, [Network]96%
+[ Sun Jun 18 14:41:27 2023 ] Eval epoch: 52
+[ Sun Jun 18 14:41:29 2023 ] 	Mean test loss of 312 batches: 1.009937.
+[ Sun Jun 18 14:41:29 2023 ] 	Top1: 89.01%
+[ Sun Jun 18 14:41:29 2023 ] 	Top5: 100.00%
+[ Sun Jun 18 14:41:29 2023 ] Training epoch: 53
+[ Sun Jun 18 14:41:38 2023 ] 	Training loss: 0.8387.  Training acc: 96.57%.
+[ Sun Jun 18 14:41:38 2023 ] 	Time consumption: [Data]04%, [Network]96%
+[ Sun Jun 18 14:41:38 2023 ] Eval epoch: 53
+[ Sun Jun 18 14:41:40 2023 ] 	Mean test loss of 312 batches: 1.022482.
+[ Sun Jun 18 14:41:40 2023 ] 	Top1: 89.22%
+[ Sun Jun 18 14:41:40 2023 ] 	Top5: 99.57%
+[ Sun Jun 18 14:41:40 2023 ] Training epoch: 54
+[ Sun Jun 18 14:41:49 2023 ] 	Training loss: 0.8423.  Training acc: 96.73%.
+[ Sun Jun 18 14:41:49 2023 ] 	Time consumption: [Data]04%, [Network]96%
+[ Sun Jun 18 14:41:50 2023 ] Eval epoch: 54
+[ Sun Jun 18 14:41:52 2023 ] 	Mean test loss of 312 batches: 1.058661.
+[ Sun Jun 18 14:41:52 2023 ] 	Top1: 89.01%
+[ Sun Jun 18 14:41:52 2023 ] 	Top5: 99.35%
+[ Sun Jun 18 14:41:52 2023 ] Training epoch: 55
+[ Sun Jun 18 14:42:01 2023 ] 	Training loss: 0.8529.  Training acc: 96.27%.
+[ Sun Jun 18 14:42:01 2023 ] 	Time consumption: [Data]05%, [Network]95%
+[ Sun Jun 18 14:42:01 2023 ] Eval epoch: 55
+[ Sun Jun 18 14:42:03 2023 ] 	Mean test loss of 312 batches: 1.130470.
+[ Sun Jun 18 14:42:03 2023 ] 	Top1: 85.99%
+[ Sun Jun 18 14:42:03 2023 ] 	Top5: 99.35%
+[ Sun Jun 18 14:42:03 2023 ] Training epoch: 56
+[ Sun Jun 18 14:42:12 2023 ] 	Training loss: 0.8445.  Training acc: 96.57%.
+[ Sun Jun 18 14:42:12 2023 ] 	Time consumption: [Data]05%, [Network]95%
+[ Sun Jun 18 14:42:12 2023 ] Eval epoch: 56
+[ Sun Jun 18 14:42:14 2023 ] 	Mean test loss of 312 batches: 1.117231.
+[ Sun Jun 18 14:42:14 2023 ] 	Top1: 87.07%
+[ Sun Jun 18 14:42:14 2023 ] 	Top5: 99.14%
+[ Sun Jun 18 14:42:14 2023 ] Training epoch: 57
+[ Sun Jun 18 14:42:24 2023 ] 	Training loss: 0.8372.  Training acc: 96.71%.
+[ Sun Jun 18 14:42:24 2023 ] 	Time consumption: [Data]04%, [Network]96%
+[ Sun Jun 18 14:42:24 2023 ] Eval epoch: 57
+[ Sun Jun 18 14:42:26 2023 ] 	Mean test loss of 312 batches: 1.069352.
+[ Sun Jun 18 14:42:26 2023 ] 	Top1: 88.36%
+[ Sun Jun 18 14:42:26 2023 ] 	Top5: 99.78%
+[ Sun Jun 18 14:42:26 2023 ] Training epoch: 58
+[ Sun Jun 18 14:42:34 2023 ] 	Training loss: 0.8316.  Training acc: 97.04%.
+[ Sun Jun 18 14:42:34 2023 ] 	Time consumption: [Data]04%, [Network]96%
+[ Sun Jun 18 14:42:34 2023 ] Eval epoch: 58
+[ Sun Jun 18 14:42:37 2023 ] 	Mean test loss of 312 batches: 1.078967.
+[ Sun Jun 18 14:42:37 2023 ] 	Top1: 87.50%
+[ Sun Jun 18 14:42:37 2023 ] 	Top5: 100.00%
+[ Sun Jun 18 14:42:37 2023 ] Training epoch: 59
+[ Sun Jun 18 14:42:46 2023 ] 	Training loss: 0.8142.  Training acc: 97.46%.
+[ Sun Jun 18 14:42:46 2023 ] 	Time consumption: [Data]05%, [Network]95%
+[ Sun Jun 18 14:42:46 2023 ] Eval epoch: 59
+[ Sun Jun 18 14:42:48 2023 ] 	Mean test loss of 312 batches: 0.967173.
+[ Sun Jun 18 14:42:48 2023 ] 	Top1: 92.24%
+[ Sun Jun 18 14:42:48 2023 ] 	Top5: 99.14%
+[ Sun Jun 18 14:42:48 2023 ] Training epoch: 60
+[ Sun Jun 18 14:42:58 2023 ] 	Training loss: 0.8151.  Training acc: 97.60%.
+[ Sun Jun 18 14:42:58 2023 ] 	Time consumption: [Data]04%, [Network]96%
+[ Sun Jun 18 14:42:58 2023 ] Eval epoch: 60
+[ Sun Jun 18 14:43:00 2023 ] 	Mean test loss of 312 batches: 1.068678.
+[ Sun Jun 18 14:43:00 2023 ] 	Top1: 88.58%
+[ Sun Jun 18 14:43:00 2023 ] 	Top5: 99.78%
+[ Sun Jun 18 14:43:00 2023 ] Training epoch: 61
+[ Sun Jun 18 14:43:10 2023 ] 	Training loss: 0.7960.  Training acc: 98.34%.
+[ Sun Jun 18 14:43:10 2023 ] 	Time consumption: [Data]04%, [Network]96%
+[ Sun Jun 18 14:43:10 2023 ] Eval epoch: 61
+[ Sun Jun 18 14:43:12 2023 ] 	Mean test loss of 312 batches: 1.067243.
+[ Sun Jun 18 14:43:12 2023 ] 	Top1: 88.15%
+[ Sun Jun 18 14:43:12 2023 ] 	Top5: 100.00%
+[ Sun Jun 18 14:43:12 2023 ] Training epoch: 62
+[ Sun Jun 18 14:43:21 2023 ] 	Training loss: 0.8148.  Training acc: 97.60%.
+[ Sun Jun 18 14:43:21 2023 ] 	Time consumption: [Data]04%, [Network]96%
+[ Sun Jun 18 14:43:21 2023 ] Eval epoch: 62
+[ Sun Jun 18 14:43:23 2023 ] 	Mean test loss of 312 batches: 1.002655.
+[ Sun Jun 18 14:43:23 2023 ] 	Top1: 90.30%
+[ Sun Jun 18 14:43:23 2023 ] 	Top5: 99.35%
+[ Sun Jun 18 14:43:23 2023 ] Training epoch: 63
+[ Sun Jun 18 14:43:32 2023 ] 	Training loss: 0.8157.  Training acc: 97.46%.
+[ Sun Jun 18 14:43:32 2023 ] 	Time consumption: [Data]04%, [Network]96%
+[ Sun Jun 18 14:43:32 2023 ] Eval epoch: 63
+[ Sun Jun 18 14:43:34 2023 ] 	Mean test loss of 312 batches: 1.007532.
+[ Sun Jun 18 14:43:34 2023 ] 	Top1: 89.44%
+[ Sun Jun 18 14:43:34 2023 ] 	Top5: 100.00%
+[ Sun Jun 18 14:43:34 2023 ] Training epoch: 64
+[ Sun Jun 18 14:43:44 2023 ] 	Training loss: 0.8108.  Training acc: 97.76%.
+[ Sun Jun 18 14:43:44 2023 ] 	Time consumption: [Data]05%, [Network]95%
+[ Sun Jun 18 14:43:44 2023 ] Eval epoch: 64
+[ Sun Jun 18 14:43:46 2023 ] 	Mean test loss of 312 batches: 1.048443.
+[ Sun Jun 18 14:43:46 2023 ] 	Top1: 88.15%
+[ Sun Jun 18 14:43:46 2023 ] 	Top5: 99.57%
+[ Sun Jun 18 14:43:46 2023 ] Training epoch: 65
+[ Sun Jun 18 14:43:55 2023 ] 	Training loss: 0.8071.  Training acc: 97.90%.
+[ Sun Jun 18 14:43:55 2023 ] 	Time consumption: [Data]04%, [Network]96%
+[ Sun Jun 18 14:43:55 2023 ] Eval epoch: 65
+[ Sun Jun 18 14:43:57 2023 ] 	Mean test loss of 312 batches: 1.039384.
+[ Sun Jun 18 14:43:57 2023 ] 	Top1: 91.16%
+[ Sun Jun 18 14:43:57 2023 ] 	Top5: 99.14%
+[ Sun Jun 18 14:43:57 2023 ] Training epoch: 66
+[ Sun Jun 18 14:44:07 2023 ] 	Training loss: 0.8021.  Training acc: 98.06%.
+[ Sun Jun 18 14:44:07 2023 ] 	Time consumption: [Data]04%, [Network]96%
+[ Sun Jun 18 14:44:07 2023 ] Eval epoch: 66
+[ Sun Jun 18 14:44:08 2023 ] 	Mean test loss of 312 batches: 1.012775.
+[ Sun Jun 18 14:44:08 2023 ] 	Top1: 89.66%
+[ Sun Jun 18 14:44:08 2023 ] 	Top5: 99.78%
+[ Sun Jun 18 14:44:08 2023 ] Training epoch: 67
+[ Sun Jun 18 14:44:17 2023 ] 	Training loss: 0.8000.  Training acc: 97.98%.
+[ Sun Jun 18 14:44:17 2023 ] 	Time consumption: [Data]04%, [Network]96%
+[ Sun Jun 18 14:44:17 2023 ] Eval epoch: 67
+[ Sun Jun 18 14:44:19 2023 ] 	Mean test loss of 312 batches: 1.077894.
+[ Sun Jun 18 14:44:19 2023 ] 	Top1: 88.79%
+[ Sun Jun 18 14:44:19 2023 ] 	Top5: 99.57%
+[ Sun Jun 18 14:44:19 2023 ] Training epoch: 68
+[ Sun Jun 18 14:44:29 2023 ] 	Training loss: 0.7955.  Training acc: 98.38%.
+[ Sun Jun 18 14:44:29 2023 ] 	Time consumption: [Data]04%, [Network]96%
+[ Sun Jun 18 14:44:29 2023 ] Eval epoch: 68
+[ Sun Jun 18 14:44:30 2023 ] 	Mean test loss of 312 batches: 1.002982.
+[ Sun Jun 18 14:44:30 2023 ] 	Top1: 91.16%
+[ Sun Jun 18 14:44:30 2023 ] 	Top5: 100.00%
+[ Sun Jun 18 14:44:30 2023 ] Training epoch: 69
+[ Sun Jun 18 14:44:41 2023 ] 	Training loss: 0.8015.  Training acc: 98.24%.
+[ Sun Jun 18 14:44:41 2023 ] 	Time consumption: [Data]05%, [Network]95%
+[ Sun Jun 18 14:44:41 2023 ] Eval epoch: 69
+[ Sun Jun 18 14:44:42 2023 ] 	Mean test loss of 312 batches: 0.949763.
+[ Sun Jun 18 14:44:42 2023 ] 	Top1: 92.67%
+[ Sun Jun 18 14:44:42 2023 ] 	Top5: 99.78%
+[ Sun Jun 18 14:44:42 2023 ] Training epoch: 70
+[ Sun Jun 18 14:44:52 2023 ] 	Training loss: 0.8048.  Training acc: 97.94%.
+[ Sun Jun 18 14:44:52 2023 ] 	Time consumption: [Data]05%, [Network]95%
+[ Sun Jun 18 14:44:52 2023 ] Eval epoch: 70
+[ Sun Jun 18 14:44:54 2023 ] 	Mean test loss of 312 batches: 1.017687.
+[ Sun Jun 18 14:44:54 2023 ] 	Top1: 89.22%
+[ Sun Jun 18 14:44:54 2023 ] 	Top5: 100.00%
+[ Sun Jun 18 14:44:54 2023 ] Training epoch: 71
+[ Sun Jun 18 14:45:03 2023 ] 	Training loss: 0.7983.  Training acc: 98.22%.
+[ Sun Jun 18 14:45:03 2023 ] 	Time consumption: [Data]04%, [Network]96%
+[ Sun Jun 18 14:45:03 2023 ] Eval epoch: 71
+[ Sun Jun 18 14:45:04 2023 ] 	Mean test loss of 312 batches: 1.011381.
+[ Sun Jun 18 14:45:04 2023 ] 	Top1: 91.16%
+[ Sun Jun 18 14:45:04 2023 ] 	Top5: 99.57%
+[ Sun Jun 18 14:45:04 2023 ] Training epoch: 72
+[ Sun Jun 18 14:45:14 2023 ] 	Training loss: 0.7975.  Training acc: 98.18%.
+[ Sun Jun 18 14:45:14 2023 ] 	Time consumption: [Data]05%, [Network]95%
+[ Sun Jun 18 14:45:14 2023 ] Eval epoch: 72
+[ Sun Jun 18 14:45:16 2023 ] 	Mean test loss of 312 batches: 0.947490.
+[ Sun Jun 18 14:45:16 2023 ] 	Top1: 92.24%
+[ Sun Jun 18 14:45:16 2023 ] 	Top5: 100.00%
+[ Sun Jun 18 14:45:16 2023 ] Training epoch: 73
+[ Sun Jun 18 14:45:25 2023 ] 	Training loss: 0.7963.  Training acc: 97.92%.
+[ Sun Jun 18 14:45:25 2023 ] 	Time consumption: [Data]04%, [Network]96%
+[ Sun Jun 18 14:45:25 2023 ] Eval epoch: 73
+[ Sun Jun 18 14:45:27 2023 ] 	Mean test loss of 312 batches: 1.111761.
+[ Sun Jun 18 14:45:27 2023 ] 	Top1: 84.91%
+[ Sun Jun 18 14:45:27 2023 ] 	Top5: 99.35%
+[ Sun Jun 18 14:45:27 2023 ] Training epoch: 74
+[ Sun Jun 18 14:45:37 2023 ] 	Training loss: 0.7881.  Training acc: 98.30%.
+[ Sun Jun 18 14:45:37 2023 ] 	Time consumption: [Data]05%, [Network]95%
+[ Sun Jun 18 14:45:37 2023 ] Eval epoch: 74
+[ Sun Jun 18 14:45:39 2023 ] 	Mean test loss of 312 batches: 1.061334.
+[ Sun Jun 18 14:45:39 2023 ] 	Top1: 88.15%
+[ Sun Jun 18 14:45:39 2023 ] 	Top5: 99.35%
+[ Sun Jun 18 14:45:39 2023 ] Training epoch: 75
+[ Sun Jun 18 14:45:49 2023 ] 	Training loss: 0.7964.  Training acc: 98.38%.
+[ Sun Jun 18 14:45:49 2023 ] 	Time consumption: [Data]04%, [Network]96%
+[ Sun Jun 18 14:45:49 2023 ] Eval epoch: 75
+[ Sun Jun 18 14:45:51 2023 ] 	Mean test loss of 312 batches: 1.065112.
+[ Sun Jun 18 14:45:51 2023 ] 	Top1: 87.93%
+[ Sun Jun 18 14:45:51 2023 ] 	Top5: 99.57%
+[ Sun Jun 18 14:45:51 2023 ] Training epoch: 76
+[ Sun Jun 18 14:46:01 2023 ] 	Training loss: 0.7911.  Training acc: 98.52%.
+[ Sun Jun 18 14:46:01 2023 ] 	Time consumption: [Data]05%, [Network]95%
+[ Sun Jun 18 14:46:01 2023 ] Eval epoch: 76
+[ Sun Jun 18 14:46:02 2023 ] 	Mean test loss of 312 batches: 1.066104.
+[ Sun Jun 18 14:46:02 2023 ] 	Top1: 87.72%
+[ Sun Jun 18 14:46:02 2023 ] 	Top5: 98.92%
+[ Sun Jun 18 14:46:02 2023 ] Training epoch: 77
+[ Sun Jun 18 14:46:10 2023 ] 	Training loss: 0.7725.  Training acc: 99.02%.
+[ Sun Jun 18 14:46:10 2023 ] 	Time consumption: [Data]04%, [Network]96%
+[ Sun Jun 18 14:46:10 2023 ] Eval epoch: 77
+[ Sun Jun 18 14:46:12 2023 ] 	Mean test loss of 312 batches: 0.984102.
+[ Sun Jun 18 14:46:12 2023 ] 	Top1: 90.52%
+[ Sun Jun 18 14:46:12 2023 ] 	Top5: 99.35%
+[ Sun Jun 18 14:46:12 2023 ] Training epoch: 78
+[ Sun Jun 18 14:46:20 2023 ] 	Training loss: 0.7975.  Training acc: 97.92%.
+[ Sun Jun 18 14:46:20 2023 ] 	Time consumption: [Data]04%, [Network]96%
+[ Sun Jun 18 14:46:20 2023 ] Eval epoch: 78
+[ Sun Jun 18 14:46:21 2023 ] 	Mean test loss of 312 batches: 1.026231.
+[ Sun Jun 18 14:46:21 2023 ] 	Top1: 87.93%
+[ Sun Jun 18 14:46:21 2023 ] 	Top5: 99.78%
+[ Sun Jun 18 14:46:21 2023 ] Training epoch: 79
+[ Sun Jun 18 14:46:29 2023 ] 	Training loss: 0.7913.  Training acc: 98.42%.
+[ Sun Jun 18 14:46:29 2023 ] 	Time consumption: [Data]03%, [Network]96%
+[ Sun Jun 18 14:46:29 2023 ] Eval epoch: 79
+[ Sun Jun 18 14:46:31 2023 ] 	Mean test loss of 312 batches: 0.965412.
+[ Sun Jun 18 14:46:31 2023 ] 	Top1: 91.38%
+[ Sun Jun 18 14:46:31 2023 ] 	Top5: 99.35%
+[ Sun Jun 18 14:46:31 2023 ] Training epoch: 80
+[ Sun Jun 18 14:46:39 2023 ] 	Training loss: 0.7723.  Training acc: 98.90%.
+[ Sun Jun 18 14:46:39 2023 ] 	Time consumption: [Data]04%, [Network]96%
+[ Sun Jun 18 14:46:39 2023 ] Eval epoch: 80
+[ Sun Jun 18 14:46:40 2023 ] 	Mean test loss of 312 batches: 0.985204.
+[ Sun Jun 18 14:46:40 2023 ] 	Top1: 91.16%
+[ Sun Jun 18 14:46:40 2023 ] 	Top5: 99.57%
+[ Sun Jun 18 14:46:40 2023 ] Training epoch: 81
+[ Sun Jun 18 14:46:48 2023 ] 	Training loss: 0.7730.  Training acc: 98.88%.
+[ Sun Jun 18 14:46:48 2023 ] 	Time consumption: [Data]04%, [Network]96%
+[ Sun Jun 18 14:46:48 2023 ] Eval epoch: 81
+[ Sun Jun 18 14:46:49 2023 ] 	Mean test loss of 312 batches: 0.984958.
+[ Sun Jun 18 14:46:49 2023 ] 	Top1: 91.81%
+[ Sun Jun 18 14:46:49 2023 ] 	Top5: 99.57%
+[ Sun Jun 18 14:46:49 2023 ] Training epoch: 82
+[ Sun Jun 18 14:46:58 2023 ] 	Training loss: 0.7729.  Training acc: 98.98%.
+[ Sun Jun 18 14:46:58 2023 ] 	Time consumption: [Data]03%, [Network]96%
+[ Sun Jun 18 14:46:58 2023 ] Eval epoch: 82
+[ Sun Jun 18 14:46:59 2023 ] 	Mean test loss of 312 batches: 0.954587.
+[ Sun Jun 18 14:46:59 2023 ] 	Top1: 92.89%
+[ Sun Jun 18 14:46:59 2023 ] 	Top5: 100.00%
+[ Sun Jun 18 14:46:59 2023 ] Training epoch: 83
+[ Sun Jun 18 14:47:07 2023 ] 	Training loss: 0.7659.  Training acc: 99.26%.
+[ Sun Jun 18 14:47:07 2023 ] 	Time consumption: [Data]04%, [Network]96%
+[ Sun Jun 18 14:47:07 2023 ] Eval epoch: 83
+[ Sun Jun 18 14:47:09 2023 ] 	Mean test loss of 312 batches: 0.958881.
+[ Sun Jun 18 14:47:09 2023 ] 	Top1: 91.38%
+[ Sun Jun 18 14:47:09 2023 ] 	Top5: 100.00%
+[ Sun Jun 18 14:47:09 2023 ] Training epoch: 84
+[ Sun Jun 18 14:47:16 2023 ] 	Training loss: 0.7713.  Training acc: 99.10%.
+[ Sun Jun 18 14:47:16 2023 ] 	Time consumption: [Data]04%, [Network]96%
+[ Sun Jun 18 14:47:16 2023 ] Eval epoch: 84
+[ Sun Jun 18 14:47:18 2023 ] 	Mean test loss of 312 batches: 1.152500.
+[ Sun Jun 18 14:47:18 2023 ] 	Top1: 84.05%
+[ Sun Jun 18 14:47:18 2023 ] 	Top5: 99.35%
+[ Sun Jun 18 14:47:18 2023 ] Training epoch: 85
+[ Sun Jun 18 14:47:26 2023 ] 	Training loss: 0.7812.  Training acc: 98.72%.
+[ Sun Jun 18 14:47:26 2023 ] 	Time consumption: [Data]04%, [Network]96%
+[ Sun Jun 18 14:47:26 2023 ] Eval epoch: 85
+[ Sun Jun 18 14:47:28 2023 ] 	Mean test loss of 312 batches: 1.037176.
+[ Sun Jun 18 14:47:28 2023 ] 	Top1: 87.72%
+[ Sun Jun 18 14:47:28 2023 ] 	Top5: 100.00%
+[ Sun Jun 18 14:47:28 2023 ] Training epoch: 86
+[ Sun Jun 18 14:47:36 2023 ] 	Training loss: 0.7929.  Training acc: 98.14%.
+[ Sun Jun 18 14:47:36 2023 ] 	Time consumption: [Data]05%, [Network]95%
+[ Sun Jun 18 14:47:36 2023 ] Eval epoch: 86
+[ Sun Jun 18 14:47:37 2023 ] 	Mean test loss of 312 batches: 1.238533.
+[ Sun Jun 18 14:47:37 2023 ] 	Top1: 81.68%
+[ Sun Jun 18 14:47:37 2023 ] 	Top5: 98.92%
+[ Sun Jun 18 14:47:38 2023 ] Training epoch: 87
+[ Sun Jun 18 14:47:45 2023 ] 	Training loss: 0.7918.  Training acc: 98.30%.
+[ Sun Jun 18 14:47:45 2023 ] 	Time consumption: [Data]04%, [Network]96%
+[ Sun Jun 18 14:47:45 2023 ] Eval epoch: 87
+[ Sun Jun 18 14:47:47 2023 ] 	Mean test loss of 312 batches: 1.214503.
+[ Sun Jun 18 14:47:47 2023 ] 	Top1: 82.76%
+[ Sun Jun 18 14:47:47 2023 ] 	Top5: 99.57%
+[ Sun Jun 18 14:47:47 2023 ] Training epoch: 88
+[ Sun Jun 18 14:47:55 2023 ] 	Training loss: 0.7746.  Training acc: 98.94%.
+[ Sun Jun 18 14:47:55 2023 ] 	Time consumption: [Data]04%, [Network]96%
+[ Sun Jun 18 14:47:55 2023 ] Eval epoch: 88
+[ Sun Jun 18 14:47:57 2023 ] 	Mean test loss of 312 batches: 1.049853.
+[ Sun Jun 18 14:47:57 2023 ] 	Top1: 86.85%
+[ Sun Jun 18 14:47:57 2023 ] 	Top5: 99.57%
+[ Sun Jun 18 14:47:57 2023 ] Training epoch: 89
+[ Sun Jun 18 14:48:05 2023 ] 	Training loss: 0.7848.  Training acc: 98.32%.
+[ Sun Jun 18 14:48:05 2023 ] 	Time consumption: [Data]04%, [Network]96%
+[ Sun Jun 18 14:48:05 2023 ] Eval epoch: 89
+[ Sun Jun 18 14:48:07 2023 ] 	Mean test loss of 312 batches: 0.985402.
+[ Sun Jun 18 14:48:07 2023 ] 	Top1: 90.95%
+[ Sun Jun 18 14:48:07 2023 ] 	Top5: 100.00%
+[ Sun Jun 18 14:48:07 2023 ] Training epoch: 90
+[ Sun Jun 18 14:48:14 2023 ] 	Training loss: 0.7773.  Training acc: 98.76%.
+[ Sun Jun 18 14:48:14 2023 ] 	Time consumption: [Data]04%, [Network]96%
+[ Sun Jun 18 14:48:14 2023 ] Eval epoch: 90
+[ Sun Jun 18 14:48:16 2023 ] 	Mean test loss of 312 batches: 0.984123.
+[ Sun Jun 18 14:48:16 2023 ] 	Top1: 91.38%
+[ Sun Jun 18 14:48:16 2023 ] 	Top5: 99.57%
+[ Sun Jun 18 14:48:16 2023 ] Training epoch: 91
+[ Sun Jun 18 14:48:24 2023 ] 	Training loss: 0.7519.  Training acc: 99.46%.
+[ Sun Jun 18 14:48:24 2023 ] 	Time consumption: [Data]04%, [Network]96%
+[ Sun Jun 18 14:48:24 2023 ] Eval epoch: 91
+[ Sun Jun 18 14:48:25 2023 ] 	Mean test loss of 312 batches: 0.920463.
+[ Sun Jun 18 14:48:25 2023 ] 	Top1: 92.89%
+[ Sun Jun 18 14:48:25 2023 ] 	Top5: 99.78%
+[ Sun Jun 18 14:48:25 2023 ] Training epoch: 92
+[ Sun Jun 18 14:48:34 2023 ] 	Training loss: 0.7452.  Training acc: 99.74%.
+[ Sun Jun 18 14:48:34 2023 ] 	Time consumption: [Data]04%, [Network]96%
+[ Sun Jun 18 14:48:34 2023 ] Eval epoch: 92
+[ Sun Jun 18 14:48:36 2023 ] 	Mean test loss of 312 batches: 0.924058.
+[ Sun Jun 18 14:48:36 2023 ] 	Top1: 92.67%
+[ Sun Jun 18 14:48:36 2023 ] 	Top5: 99.78%
+[ Sun Jun 18 14:48:36 2023 ] Training epoch: 93
+[ Sun Jun 18 14:48:43 2023 ] 	Training loss: 0.7470.  Training acc: 99.64%.
+[ Sun Jun 18 14:48:43 2023 ] 	Time consumption: [Data]04%, [Network]96%
+[ Sun Jun 18 14:48:43 2023 ] Eval epoch: 93
+[ Sun Jun 18 14:48:45 2023 ] 	Mean test loss of 312 batches: 0.911033.
+[ Sun Jun 18 14:48:45 2023 ] 	Top1: 93.10%
+[ Sun Jun 18 14:48:45 2023 ] 	Top5: 99.78%
+[ Sun Jun 18 14:48:45 2023 ] Training epoch: 94
+[ Sun Jun 18 14:48:53 2023 ] 	Training loss: 0.7410.  Training acc: 99.82%.
+[ Sun Jun 18 14:48:53 2023 ] 	Time consumption: [Data]04%, [Network]96%
+[ Sun Jun 18 14:48:53 2023 ] Eval epoch: 94
+[ Sun Jun 18 14:48:54 2023 ] 	Mean test loss of 312 batches: 0.909610.
+[ Sun Jun 18 14:48:54 2023 ] 	Top1: 92.89%
+[ Sun Jun 18 14:48:54 2023 ] 	Top5: 99.78%
+[ Sun Jun 18 14:48:54 2023 ] Training epoch: 95
+[ Sun Jun 18 14:49:02 2023 ] 	Training loss: 0.7395.  Training acc: 99.92%.
+[ Sun Jun 18 14:49:02 2023 ] 	Time consumption: [Data]04%, [Network]96%
+[ Sun Jun 18 14:49:02 2023 ] Eval epoch: 95
+[ Sun Jun 18 14:49:04 2023 ] 	Mean test loss of 312 batches: 0.914454.
+[ Sun Jun 18 14:49:04 2023 ] 	Top1: 93.10%
+[ Sun Jun 18 14:49:04 2023 ] 	Top5: 99.78%
+[ Sun Jun 18 14:49:04 2023 ] Training epoch: 96
+[ Sun Jun 18 14:49:12 2023 ] 	Training loss: 0.7391.  Training acc: 99.84%.
+[ Sun Jun 18 14:49:12 2023 ] 	Time consumption: [Data]04%, [Network]96%
+[ Sun Jun 18 14:49:12 2023 ] Eval epoch: 96
+[ Sun Jun 18 14:49:14 2023 ] 	Mean test loss of 312 batches: 0.894284.
+[ Sun Jun 18 14:49:14 2023 ] 	Top1: 93.53%
+[ Sun Jun 18 14:49:14 2023 ] 	Top5: 99.78%
+[ Sun Jun 18 14:49:14 2023 ] Training epoch: 97
+[ Sun Jun 18 14:49:22 2023 ] 	Training loss: 0.7417.  Training acc: 99.74%.
+[ Sun Jun 18 14:49:22 2023 ] 	Time consumption: [Data]05%, [Network]95%
+[ Sun Jun 18 14:49:22 2023 ] Eval epoch: 97
+[ Sun Jun 18 14:49:23 2023 ] 	Mean test loss of 312 batches: 0.915798.
+[ Sun Jun 18 14:49:23 2023 ] 	Top1: 93.10%
+[ Sun Jun 18 14:49:23 2023 ] 	Top5: 99.78%
+[ Sun Jun 18 14:49:23 2023 ] Training epoch: 98
+[ Sun Jun 18 14:49:31 2023 ] 	Training loss: 0.7378.  Training acc: 99.94%.
+[ Sun Jun 18 14:49:31 2023 ] 	Time consumption: [Data]04%, [Network]96%
+[ Sun Jun 18 14:49:31 2023 ] Eval epoch: 98
+[ Sun Jun 18 14:49:33 2023 ] 	Mean test loss of 312 batches: 0.908839.
+[ Sun Jun 18 14:49:33 2023 ] 	Top1: 92.67%
+[ Sun Jun 18 14:49:33 2023 ] 	Top5: 99.78%
+[ Sun Jun 18 14:49:33 2023 ] Training epoch: 99
+[ Sun Jun 18 14:49:41 2023 ] 	Training loss: 0.7368.  Training acc: 99.94%.
+[ Sun Jun 18 14:49:41 2023 ] 	Time consumption: [Data]03%, [Network]96%
+[ Sun Jun 18 14:49:41 2023 ] Eval epoch: 99
+[ Sun Jun 18 14:49:43 2023 ] 	Mean test loss of 312 batches: 0.907944.
+[ Sun Jun 18 14:49:43 2023 ] 	Top1: 92.46%
+[ Sun Jun 18 14:49:43 2023 ] 	Top5: 99.78%
+[ Sun Jun 18 14:49:43 2023 ] Training epoch: 100
+[ Sun Jun 18 14:49:51 2023 ] 	Training loss: 0.7357.  Training acc: 99.94%.
+[ Sun Jun 18 14:49:51 2023 ] 	Time consumption: [Data]04%, [Network]96%
+[ Sun Jun 18 14:49:51 2023 ] Eval epoch: 100
+[ Sun Jun 18 14:49:52 2023 ] 	Mean test loss of 312 batches: 0.915813.
+[ Sun Jun 18 14:49:52 2023 ] 	Top1: 93.32%
+[ Sun Jun 18 14:49:52 2023 ] 	Top5: 99.78%
+[ Sun Jun 18 14:49:52 2023 ] Training epoch: 101
+[ Sun Jun 18 14:50:00 2023 ] 	Training loss: 0.7390.  Training acc: 99.78%.
+[ Sun Jun 18 14:50:00 2023 ] 	Time consumption: [Data]04%, [Network]96%
+[ Sun Jun 18 14:50:00 2023 ] Eval epoch: 101
+[ Sun Jun 18 14:50:02 2023 ] 	Mean test loss of 312 batches: 0.914850.
+[ Sun Jun 18 14:50:02 2023 ] 	Top1: 93.10%
+[ Sun Jun 18 14:50:02 2023 ] 	Top5: 99.78%
+[ Sun Jun 18 14:50:02 2023 ] Training epoch: 102
+[ Sun Jun 18 14:50:10 2023 ] 	Training loss: 0.7362.  Training acc: 99.94%.
+[ Sun Jun 18 14:50:10 2023 ] 	Time consumption: [Data]03%, [Network]96%
+[ Sun Jun 18 14:50:10 2023 ] Eval epoch: 102
+[ Sun Jun 18 14:50:12 2023 ] 	Mean test loss of 312 batches: 0.906251.
+[ Sun Jun 18 14:50:12 2023 ] 	Top1: 93.10%
+[ Sun Jun 18 14:50:12 2023 ] 	Top5: 99.78%
+[ Sun Jun 18 14:50:12 2023 ] Training epoch: 103
+[ Sun Jun 18 14:50:20 2023 ] 	Training loss: 0.7372.  Training acc: 99.92%.
+[ Sun Jun 18 14:50:20 2023 ] 	Time consumption: [Data]04%, [Network]96%
+[ Sun Jun 18 14:50:20 2023 ] Eval epoch: 103
+[ Sun Jun 18 14:50:21 2023 ] 	Mean test loss of 312 batches: 0.911528.
+[ Sun Jun 18 14:50:21 2023 ] 	Top1: 93.32%
+[ Sun Jun 18 14:50:21 2023 ] 	Top5: 99.78%
+[ Sun Jun 18 14:50:21 2023 ] Training epoch: 104
+[ Sun Jun 18 14:50:29 2023 ] 	Training loss: 0.7370.  Training acc: 99.92%.
+[ Sun Jun 18 14:50:29 2023 ] 	Time consumption: [Data]04%, [Network]96%
+[ Sun Jun 18 14:50:29 2023 ] Eval epoch: 104
+[ Sun Jun 18 14:50:31 2023 ] 	Mean test loss of 312 batches: 0.908844.
+[ Sun Jun 18 14:50:31 2023 ] 	Top1: 92.89%
+[ Sun Jun 18 14:50:31 2023 ] 	Top5: 99.78%
+[ Sun Jun 18 14:50:31 2023 ] Training epoch: 105
+[ Sun Jun 18 14:50:39 2023 ] 	Training loss: 0.7359.  Training acc: 99.94%.
+[ Sun Jun 18 14:50:39 2023 ] 	Time consumption: [Data]04%, [Network]96%
+[ Sun Jun 18 14:50:39 2023 ] Eval epoch: 105
+[ Sun Jun 18 14:50:42 2023 ] 	Mean test loss of 312 batches: 0.912912.
+[ Sun Jun 18 14:50:42 2023 ] 	Top1: 93.32%
+[ Sun Jun 18 14:50:42 2023 ] 	Top5: 99.78%
+[ Sun Jun 18 14:50:42 2023 ] Training epoch: 106
+[ Sun Jun 18 14:50:50 2023 ] 	Training loss: 0.7369.  Training acc: 99.90%.
+[ Sun Jun 18 14:50:50 2023 ] 	Time consumption: [Data]04%, [Network]96%
+[ Sun Jun 18 14:50:50 2023 ] Eval epoch: 106
+[ Sun Jun 18 14:50:51 2023 ] 	Mean test loss of 312 batches: 0.908231.
+[ Sun Jun 18 14:50:51 2023 ] 	Top1: 93.10%
+[ Sun Jun 18 14:50:51 2023 ] 	Top5: 99.78%
+[ Sun Jun 18 14:50:51 2023 ] Training epoch: 107
+[ Sun Jun 18 14:50:59 2023 ] 	Training loss: 0.7358.  Training acc: 99.92%.
+[ Sun Jun 18 14:50:59 2023 ] 	Time consumption: [Data]04%, [Network]96%
+[ Sun Jun 18 14:50:59 2023 ] Eval epoch: 107
+[ Sun Jun 18 14:51:00 2023 ] 	Mean test loss of 312 batches: 0.910160.
+[ Sun Jun 18 14:51:00 2023 ] 	Top1: 92.89%
+[ Sun Jun 18 14:51:00 2023 ] 	Top5: 99.78%
+[ Sun Jun 18 14:51:00 2023 ] Training epoch: 108
+[ Sun Jun 18 14:51:08 2023 ] 	Training loss: 0.7363.  Training acc: 99.94%.
+[ Sun Jun 18 14:51:08 2023 ] 	Time consumption: [Data]04%, [Network]96%
+[ Sun Jun 18 14:51:08 2023 ] Eval epoch: 108
+[ Sun Jun 18 14:51:10 2023 ] 	Mean test loss of 312 batches: 0.912089.
+[ Sun Jun 18 14:51:10 2023 ] 	Top1: 92.46%
+[ Sun Jun 18 14:51:10 2023 ] 	Top5: 99.78%
+[ Sun Jun 18 14:51:10 2023 ] Training epoch: 109
+[ Sun Jun 18 14:51:19 2023 ] 	Training loss: 0.7371.  Training acc: 99.94%.
+[ Sun Jun 18 14:51:19 2023 ] 	Time consumption: [Data]03%, [Network]97%
+[ Sun Jun 18 14:51:19 2023 ] Eval epoch: 109
+[ Sun Jun 18 14:51:20 2023 ] 	Mean test loss of 312 batches: 0.912482.
+[ Sun Jun 18 14:51:20 2023 ] 	Top1: 92.89%
+[ Sun Jun 18 14:51:20 2023 ] 	Top5: 99.78%
+[ Sun Jun 18 14:51:20 2023 ] Training epoch: 110
+[ Sun Jun 18 14:51:28 2023 ] 	Training loss: 0.7368.  Training acc: 99.92%.
+[ Sun Jun 18 14:51:28 2023 ] 	Time consumption: [Data]04%, [Network]96%
+[ Sun Jun 18 14:51:28 2023 ] Eval epoch: 110
+[ Sun Jun 18 14:51:30 2023 ] 	Mean test loss of 312 batches: 0.909013.
+[ Sun Jun 18 14:51:30 2023 ] 	Top1: 93.75%
+[ Sun Jun 18 14:51:30 2023 ] 	Top5: 99.78%
+[ Sun Jun 18 14:51:31 2023 ] Best accuracy: 0.9375
+[ Sun Jun 18 14:51:31 2023 ] Epoch number: 110
+[ Sun Jun 18 14:51:31 2023 ] Model name: results/ntu_NTU60_CS
+[ Sun Jun 18 14:51:31 2023 ] Model total number of params: 1546572
+[ Sun Jun 18 14:51:31 2023 ] Weight decay: 0.0005
+[ Sun Jun 18 14:51:31 2023 ] Base LR: 0.1
+[ Sun Jun 18 14:51:31 2023 ] Batch Size: 128
+[ Sun Jun 18 14:51:31 2023 ] Test Batch Size: 128
+[ Sun Jun 18 14:51:31 2023 ] seed: 1
