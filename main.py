@@ -68,16 +68,6 @@ class Processor():
         self.best_acc_epoch = 0
 
         model = self.model.cuda()
-
-        if self.arg.half:
-            self.model, self.optimizer = apex.amp.initialize(
-                model,
-                self.optimizer,
-                opt_level=f'O{self.arg.amp_opt_level}'
-            )
-            if self.arg.amp_opt_level != 1:
-                self.print_log('[WARN] nn.DataParallel is not yet supported by amp_opt_level != "O1"')
-
         # self.model = torch.nn.DataParallel(model, device_ids=(0,1,2))
 
     def load_data(self):
@@ -228,7 +218,7 @@ class Processor():
         self.record_time()
         return split_time
 
-    def train(self, epoch):
+    def train_predictor(self, epoch):
         self.model.train()
         self.print_log('Training epoch: {}'.format(epoch + 1))
         self.adjust_learning_rate(epoch)
@@ -266,11 +256,7 @@ class Processor():
             loss = self.arg.lambda_2* mmd_loss + self.arg.lambda_1* l2_z_mean + cls_loss
             # backward
             self.optimizer.zero_grad()
-            if self.arg.half:
-                with apex.amp.scale_loss(loss, self.optimizer) as scaled_loss:
-                    scaled_loss.backward()
-            else:
-                loss.backward()
+            loss.backward()
 
             self.optimizer.step()
 
@@ -293,7 +279,7 @@ class Processor():
         self.print_log(f'\tTraining loss: {np.mean(loss_value):.4f}.  Training acc: {np.mean(acc_value)*100:.2f}%.')
         self.print_log(f'\tTime consumption: [Data]{proportion["dataloader"]}, [Network]{proportion["model"]}')
 
-    def eval(self, epoch, save_score=False, loader_name=['test'], save_z=False, save_model=False):
+    def eval_predictor(self, epoch, save_score=False, loader_name=['test'], save_z=False, save_model=False):
         self.model.eval()
         self.print_log('Eval epoch: {}'.format(epoch + 1))
         for ln in loader_name:
@@ -391,10 +377,10 @@ class Processor():
             for epoch in range(self.arg.start_epoch, self.arg.num_epoch):
                 # save_model = (epoch + 1 == self.arg.num_epoch) and (epoch + 1 > self.arg.save_epoch)
 
-                self.train(epoch)
+                self.train_predictor(epoch)
 
                 # if epoch > 80:
-                self.eval(epoch, save_score=self.arg.save_score, loader_name=['test'], save_model=True)
+                self._predictor(epoch, save_score=self.arg.save_score, loader_name=['test'], save_model=True)
 
             # test the best model
             print(glob.glob(os.path.join(self.arg.work_dir, 'runs-'+str(self.best_acc_epoch)+'*')))
