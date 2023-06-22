@@ -1,0 +1,59 @@
+[ Tue Jun 20 04:34:12 2023 ] using warm up, epoch: 5
+[ Tue Jun 20 04:34:14 2023 ] Parameters:
+{'debug': False, 'log_dir': '.', 'model_saved_name': '', 'noise_ratio': 0.5, 'n_desired': 40000, 'num_point': 25, 'num_person': 1, 'num_class': 3, 'dataset': 'ec3d', 'datacase': 'EC3D', 'use_vel': False, 'phase': 'train', 'save_score': False, 'seed': 1, 'log_interval': 100, 'save_interval': 1, 'save_epoch': 10, 'eval_interval': 5, 'print_log': True, 'show_topk': [1, 5], 'feeder': 'feeders.feeder_ec3d.Feeder', 'num_worker': 4, 'balanced_sampling': False, 'random_rot': True, 'repeat': 1, 'weights': None, 'ignore_weights': [], 'n_heads': 3, 'k': 1, 'z_prior_gain': 3, 'graph': 'graph.ec3d.Graph', 'base_lr': 0.1, 'step': [10, 20], 'optimizer': 'Adam', 'nesterov': True, 'batch_size': 64, 'test_batch_size': 64, 'start_epoch': 0, 'num_epoch': 30, 'weight_decay': 0.0005, 'lr_decay_rate': 0.1, 'warm_up_epoch': 5, 'lambda_1': 0.0001, 'lambda_2': 0.1, 'half': False, 'amp_opt_level': 1, 'work_dir': 'results/ec3d_EC3D'}
+
+[ Tue Jun 20 04:34:14 2023 ] # Parameters: 1538958
+[ Tue Jun 20 04:34:14 2023 ] Training epoch: 1
+[ Tue Jun 20 04:34:18 2023 ] 	Training loss: 88.5274.  Training acc: 33.82%.
+[ Tue Jun 20 04:34:18 2023 ] 	Time consumption: [Data]06%, [Network]94%
+[ Tue Jun 20 04:34:18 2023 ] Eval epoch: 1
+[ Tue Jun 20 04:34:19 2023 ] 	Mean test loss of 625 batches: 1219.693628.
+[ Tue Jun 20 04:34:19 2023 ] 	Top1: 38.60%
+[ Tue Jun 20 04:34:19 2023 ] 	Top5: 100.00%
+[ Tue Jun 20 04:34:19 2023 ] Training epoch: 2
+[ Tue Jun 20 04:34:21 2023 ] 	Training loss: 8.4884.  Training acc: 35.85%.
+[ Tue Jun 20 04:34:21 2023 ] 	Time consumption: [Data]17%, [Network]83%
+[ Tue Jun 20 04:34:21 2023 ] Eval epoch: 2
+[ Tue Jun 20 04:34:22 2023 ] 	Mean test loss of 625 batches: 21.500105.
+[ Tue Jun 20 04:34:22 2023 ] 	Top1: 38.60%
+[ Tue Jun 20 04:34:22 2023 ] 	Top5: 100.00%
+[ Tue Jun 20 04:34:22 2023 ] Training epoch: 3
+[ Tue Jun 20 04:34:23 2023 ] 	Training loss: 5.2676.  Training acc: 49.36%.
+[ Tue Jun 20 04:34:23 2023 ] 	Time consumption: [Data]16%, [Network]84%
+[ Tue Jun 20 04:34:23 2023 ] Eval epoch: 3
+[ Tue Jun 20 04:34:24 2023 ] 	Mean test loss of 625 batches: 19.204166.
+[ Tue Jun 20 04:34:24 2023 ] 	Top1: 38.60%
+[ Tue Jun 20 04:34:24 2023 ] 	Top5: 100.00%
+[ Tue Jun 20 04:34:24 2023 ] Training epoch: 4
+[ Tue Jun 20 04:34:26 2023 ] 	Training loss: 2.5894.  Training acc: 72.79%.
+[ Tue Jun 20 04:34:26 2023 ] 	Time consumption: [Data]16%, [Network]84%
+[ Tue Jun 20 04:34:26 2023 ] Eval epoch: 4
+[ Tue Jun 20 04:34:26 2023 ] 	Mean test loss of 625 batches: 5.958696.
+[ Tue Jun 20 04:34:26 2023 ] 	Top1: 61.40%
+[ Tue Jun 20 04:34:26 2023 ] 	Top5: 100.00%
+[ Tue Jun 20 04:34:26 2023 ] Training epoch: 5
+[ Tue Jun 20 04:34:28 2023 ] 	Training loss: 3.7895.  Training acc: 57.72%.
+[ Tue Jun 20 04:34:28 2023 ] 	Time consumption: [Data]16%, [Network]83%
+[ Tue Jun 20 04:34:28 2023 ] Eval epoch: 5
+[ Tue Jun 20 04:34:29 2023 ] 	Mean test loss of 625 batches: 71.419635.
+[ Tue Jun 20 04:34:29 2023 ] 	Top1: 29.82%
+[ Tue Jun 20 04:34:29 2023 ] 	Top5: 100.00%
+[ Tue Jun 20 04:34:29 2023 ] Training epoch: 6
+[ Tue Jun 20 04:34:31 2023 ] 	Training loss: 5.8226.  Training acc: 60.48%.
+[ Tue Jun 20 04:34:31 2023 ] 	Time consumption: [Data]16%, [Network]84%
+[ Tue Jun 20 04:34:31 2023 ] Eval epoch: 6
+[ Tue Jun 20 04:34:31 2023 ] 	Mean test loss of 625 batches: 39.918753.
+[ Tue Jun 20 04:34:31 2023 ] 	Top1: 38.60%
+[ Tue Jun 20 04:34:31 2023 ] 	Top5: 100.00%
+[ Tue Jun 20 04:34:31 2023 ] Training epoch: 7
+[ Tue Jun 20 04:34:33 2023 ] 	Training loss: 3.9803.  Training acc: 52.67%.
+[ Tue Jun 20 04:34:33 2023 ] 	Time consumption: [Data]16%, [Network]84%
+[ Tue Jun 20 04:34:33 2023 ] Eval epoch: 7
+[ Tue Jun 20 04:34:34 2023 ] 	Mean test loss of 625 batches: 15.128516.
+[ Tue Jun 20 04:34:34 2023 ] 	Top1: 54.39%
+[ Tue Jun 20 04:34:34 2023 ] 	Top5: 100.00%
+[ Tue Jun 20 04:34:34 2023 ] Training epoch: 8
+[ Tue Jun 20 04:34:36 2023 ] 	Training loss: 3.0962.  Training acc: 31.62%.
+[ Tue Jun 20 04:34:36 2023 ] 	Time consumption: [Data]18%, [Network]82%
+[ Tue Jun 20 04:34:36 2023 ] Eval epoch: 8
+[ Tue Jun 2

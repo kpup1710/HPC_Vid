@@ -926,3 +926,5 @@
 [ Sun Jun 18 14:51:31 2023 ] Batch Size: 128
 [ Sun Jun 18 14:51:31 2023 ] Test Batch Size: 128
 [ Sun Jun 18 14:51:31 2023 ] seed: 1
+[ Mon Jun 19 15:18:53 2023 ] using warm up, epoch: 5
+[ Mon Jun 19 15:19:12 2023 ] using warm up, epoch: 5

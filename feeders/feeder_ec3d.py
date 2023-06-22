@@ -45,6 +45,7 @@ class Feeder(Dataset):
         self.use_mmap = use_mmap
         self.p_interval = p_interval
         self.random_rot = random_rot
+        self.repeat = repeat
         self.vel = vel
         self.time_steps = 40
         self.bone = [(0, 1), (1, 2), (2, 3), (3, 4), (1, 5), (5, 6), (6, 7), (1, 8),(8, 9), (9, 10), (10, 11), (8, 12), (12, 13), (13, 14), (1, 15), (1, 16), (1, 17), (1, 18), (11, 24), (14, 21), (14, 19), (14, 20), (11, 22), (11, 23)]
@@ -80,8 +81,8 @@ class Feeder(Dataset):
         return X
 
     def __getitem__(self, index: Any) -> Any:
-        label = self.label[index]
-        value = self.data[index]
+        label = self.label[index % len(self.data)]
+        value = self.data[index % len(self.data)]
         if self.split == 'train':
             random.random()
             agx = random.randint(-60, 60)
@@ -136,7 +137,7 @@ class Feeder(Dataset):
         return data, label, index
     
     def __len__(self):
-        return len(self.data)
+        return len(self.data)*self.repeat
 
     def top_k(self, score, top_k):
         rank = score.argsort()
