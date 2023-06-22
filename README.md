@@ -1,6 +1,6 @@
 # Human Pose Correction for videos
 
-This is the repo for our research project called Human Pose Correction for Videos. hehe
+This is the repo for our research project called Human Pose Correction for Videos. 
 
 This is our proposed framework:
 
