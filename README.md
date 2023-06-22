@@ -6,6 +6,8 @@ This is our proposed framework:
 
 ![1687446425083](resources/README/1687446425083.png)
 
+## To train Predictor
+
 ```
 python main.py --half=False --batch_size=64 --test_batch_size=64 \
     --step 10 20 --num_epoch=30 --n_heads=3 --num_worker=4 --k=1 \
