@@ -2,7 +2,8 @@ import torch
 import torch.nn as nn
 import torch.nn.functional as F
 from torch.autograd import Variable
-
+import sys
+sys.path.extend(['../'])
 # from init_gan.graph_ntu import graph_ntu
 # from init_gan.graph_h36m import Graph_h36m
 from graph.ec3d import graph_ntu
@@ -118,9 +119,9 @@ class Generator(nn.Module):
         kernel_size          = (temporal_kernel_size, spatial_kernel_size)
         self.t_size          = t_size
 
-        self.mlp = Mapping_Net(in_channels+n_classes, mlp_dim)
+        self.mlp = Mapping_Net(in_channels, mlp_dim)
         self.st_gcn_networks = nn.ModuleList((
-            st_gcn(in_channels+n_classes, 512, kernel_size, 1, graph=self.graph, lvl=3, bn=False, residual=False, up_s=False, up_t=1, **kwargs),
+            st_gcn(in_channels, 512, kernel_size, 1, graph=self.graph, lvl=3, bn=False, residual=False, up_s=False, up_t=1, **kwargs),
             st_gcn(512, 256, kernel_size, 1, graph=self.graph, lvl=3, up_s=False, up_t=int(t_size/16), **kwargs),
             st_gcn(256, 128, kernel_size, 1, graph=self.graph, lvl=2, bn=False, up_s=True, up_t=int(t_size/16), **kwargs),
             st_gcn(128, 64, kernel_size, 1, graph=self.graph, lvl=2, up_s=False, up_t=int(t_size/8), **kwargs),
@@ -138,14 +139,14 @@ class Generator(nn.Module):
         else:
             self.edge_importance = [1] * len(self.st_gcn_networks)
 
-        self.label_emb = nn.Embedding(n_classes, n_classes)
+        # self.label_emb = nn.Embedding(n_classes, n_classes)
         
 
     def forward(self, x, labels, trunc=None):
 
-        c = self.label_emb(labels)
-        print(f'c_shape: {c.shape}')
-        x = torch.cat((c, x), -1)
+        # c = self.label_emb(labels)
+        # print(f'c_shape: {c.shape}')
+        # x = torch.cat((c, x), -1)
 
         w = []
         for i in x:

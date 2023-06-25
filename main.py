@@ -23,6 +23,7 @@ from tqdm import tqdm
 from args import get_parser
 from loss import LabelSmoothingCrossEntropy, get_mmd_loss
 from model.infogcn import InfoGCN
+from model.model import Predictor_Corrector
 from utils import get_vector_property
 from utils import BalancedSampler as BS
 
@@ -114,18 +115,7 @@ class Processor():
             worker_init_fn=init_seed)
 
     def load_model(self):
-        self.model = InfoGCN(
-            num_class=self.arg.num_class,
-            num_point=self.arg.num_point,
-            num_person=self.arg.num_person,
-            graph=self.arg.graph,
-            in_channels=3,
-            drop_out=0,
-            num_head=self.arg.n_heads,
-            k=self.arg.k,
-            noise_ratio=self.arg.noise_ratio,
-            gain=self.arg.z_prior_gain
-        ).float()
+        self.model = Predictor_Corrector(args=self.arg).float()
         self.loss = LabelSmoothingCrossEntropy().cuda()
 
         if self.arg.weights:
@@ -219,7 +209,7 @@ class Processor():
         return split_time
 
     def train_predictor(self, epoch):
-        self.model.train()
+        self.model.predictor.train()
         self.print_log('Training epoch: {}'.format(epoch + 1))
         self.adjust_learning_rate(epoch)
 
@@ -243,10 +233,10 @@ class Processor():
             timer['dataloader'] += self.split_time()
 
             # forward
-            y_hat, z = self.model(data.float())
-            mmd_loss, l2_z_mean, z_mean = get_mmd_loss(z, self.model.z_prior, y, self.arg.num_class)
+            y_hat, z = self.model.predictor(data.float())
+            mmd_loss, l2_z_mean, z_mean = get_mmd_loss(z, self.model.predictor.z_prior, y, self.arg.num_class)
             cos_z, dis_z = get_vector_property(z_mean)
-            cos_z_prior, dis_z_prior = get_vector_property(self.model.z_prior)
+            cos_z_prior, dis_z_prior = get_vector_property(self.model.predictor.z_prior)
             cos_z_value.append(cos_z.data.item())
             dis_z_value.append(dis_z.data.item())
             cos_z_prior_value.append(cos_z_prior.data.item())
@@ -280,7 +270,7 @@ class Processor():
         self.print_log(f'\tTime consumption: [Data]{proportion["dataloader"]}, [Network]{proportion["model"]}')
 
     def eval_predictor(self, epoch, save_score=False, loader_name=['test'], save_z=False, save_model=False):
-        self.model.eval()
+        self.model.predictor.eval()
         self.print_log('Eval epoch: {}'.format(epoch + 1))
         for ln in loader_name:
             loss_value = []
@@ -301,12 +291,12 @@ class Processor():
                 with torch.no_grad():
                     data = data.float().cuda()
                     y = y.long().cuda()
-                    y_hat, z = self.model(data)
+                    y_hat, z = self.model.predictor(data)
                     if save_z:
                         z_list.append(z.data.cpu().numpy())
-                    mmd_loss, l2_z_mean, z_mean = get_mmd_loss(z, self.model.z_prior, y, self.arg.num_class)
+                    mmd_loss, l2_z_mean, z_mean = get_mmd_loss(z, self.model.predictor.z_prior, y, self.arg.num_class)
                     cos_z, dis_z = get_vector_property(z_mean)
-                    cos_z_prior, dis_z_prior = get_vector_property(self.model.z_prior)
+                    cos_z_prior, dis_z_prior = get_vector_property(self.model.predictor.z_prior)
                     cos_z_value.append(cos_z.data.item())
                     dis_z_value.append(dis_z.data.item())
                     cos_z_prior_value.append(cos_z_prior.data.item())
@@ -352,7 +342,7 @@ class Processor():
                     pickle.dump(score_dict, f)
 
                 if save_model:
-                    state_dict = self.model.state_dict()
+                    state_dict = self.model.predictor.state_dict()
                     weights = OrderedDict([[k.split('module.')[-1], v.cpu()] for k, v in state_dict.items()])
     
                     torch.save(weights, f'{self.arg.work_dir}/runs-{self.best_acc_epoch}-{int(self.global_step)}.pt')
@@ -365,7 +355,7 @@ class Processor():
 
             if save_z:
                 z_list = np.concatenate(z_list)
-                np.savez(f'{self.arg.work_dir}/z_values.npz', z=z_list, z_prior=self.model.z_prior.cpu().numpy(), y=label_list)
+                np.savez(f'{self.arg.work_dir}/z_values.npz', z=z_list, z_prior=self.model.predictor.z_prior.cpu().numpy(), y=label_list)
 
     def start(self):
         if self.arg.phase == 'train':
@@ -373,31 +363,33 @@ class Processor():
             self.global_step = 0
             def count_parameters(model):
                 return sum(p.numel() for p in model.parameters() if p.requires_grad)
-            self.print_log(f'# Parameters: {count_parameters(self.model)}')
+            self.print_log(f'# Parameters Predictor: {count_parameters(self.model.predictor)}')
+            self.print_log(f'Start training Predictor')
             for epoch in range(self.arg.start_epoch, self.arg.num_epoch):
                 # save_model = (epoch + 1 == self.arg.num_epoch) and (epoch + 1 > self.arg.save_epoch)
 
                 self.train_predictor(epoch)
 
                 # if epoch > 80:
-                self._predictor(epoch, save_score=self.arg.save_score, loader_name=['test'], save_model=True)
+                self.eval_predictor(epoch, save_score=self.arg.save_score, loader_name=['test'], save_model=True)
 
             # test the best model
             print(glob.glob(os.path.join(self.arg.work_dir, 'runs-'+str(self.best_acc_epoch)+'*')))
             weights_path = glob.glob(os.path.join(self.arg.work_dir, 'runs-'+str(self.best_acc_epoch)+'*'))[0]
-            weights = torch.load(weights_path)
-            self.model.load_state_dict(weights)
+            # weights = torch.load(weights_path)
+            # self.model.predictor.load_state_dict(weights)
+            self.model.load_predictor(path=weights_path)
 
             self.arg.print_log = False
             self.eval(epoch=0, save_score=True, loader_name=['test'])
             self.arg.print_log = True
 
 
-            num_params = sum(p.numel() for p in self.model.parameters() if p.requires_grad)
+            # num_params = sum(p.numel() for p in self.model.parameters() if p.requires_grad)
             self.print_log(f'Best accuracy: {self.best_acc}')
             self.print_log(f'Epoch number: {self.best_acc_epoch}')
             self.print_log(f'Model name: {self.arg.work_dir}')
-            self.print_log(f'Model total number of params: {num_params}')
+            # self.print_log(f'Model total number of params: {num_params}')
             self.print_log(f'Weight decay: {self.arg.weight_decay}')
             self.print_log(f'Base LR: {self.arg.base_lr}')
             self.print_log(f'Batch Size: {self.arg.batch_size}')
