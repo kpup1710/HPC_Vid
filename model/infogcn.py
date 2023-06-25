@@ -77,6 +77,7 @@ class InfoGCN(nn.Module):
 
     def forward(self, x):
         self.A_vector = self.A_vector.float()
+        print(x.shape)
         # print(self.A_vector.dtype)
         N, C, T, V, M = x.size()
         x = rearrange(x, 'n c t v m -> (n m t) v c', m=M, v=V).contiguous()

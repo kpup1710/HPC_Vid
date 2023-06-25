@@ -56,4 +56,24 @@
 [ Tue Jun 20 04:34:36 2023 ] 	Training loss: 3.0962.  Training acc: 31.62%.
 [ Tue Jun 20 04:34:36 2023 ] 	Time consumption: [Data]18%, [Network]82%
 [ Tue Jun 20 04:34:36 2023 ] Eval epoch: 8
-[ Tue Jun 2
+[ Tue Jun 2[ Sun Jun 25 15:58:51 2023 ] using warm up, epoch: 5
+[ Sun Jun 25 15:58:53 2023 ] Parameters:
+{'debug': False, 'log_dir': '.', 'model_saved_name': '', 'noise_ratio': 0.5, 'n_desired': 40000, 'num_point': 25, 'num_person': 1, 'num_class': 60, 'dataset': 'ec3d', 'datacase': 'EC3D', 'use_vel': False, 'phase': 'train', 'save_score': False, 'seed': 1, 'log_interval': 100, 'save_interval': 1, 'save_epoch': 10, 'eval_interval': 5, 'print_log': True, 'show_topk': [1, 5], 'feeder': 'feeders.feeder_ec3d.Feeder', 'num_worker': 4, 'balanced_sampling': False, 'random_rot': True, 'repeat': 1, 'weights': None, 'ignore_weights': [], 'n_heads': 3, 'k': 1, 'z_prior_gain': 3, 'graph': 'graph.ec3d.Graph', 'in_channels': 3, 'num_head': 3, 'gain': 1, 'latent_dim': 256, 'out_channels': 3, 't_size': 42, 'base_lr': 0.1, 'step': [90, 100], 'optimizer': 'Adam', 'nesterov': True, 'batch_size': 64, 'test_batch_size': 64, 'start_epoch': 0, 'num_epoch': 110, 'weight_decay': 0.0005, 'lr_decay_rate': 0.1, 'warm_up_epoch': 5, 'lambda_1': 0.0001, 'lambda_2': 0.1, 'half': False, 'amp_opt_level': 1, 'work_dir': 'results/ec3d_EC3D'}
+
+[ Sun Jun 25 15:58:53 2023 ] # Parameters Predictor: 1553607
+[ Sun Jun 25 15:58:53 2023 ] Start training Predictor
+[ Sun Jun 25 15:58:53 2023 ] Training epoch: 1
+[ Sun Jun 25 16:02:06 2023 ] using warm up, epoch: 5
+[ Sun Jun 25 16:02:07 2023 ] Parameters:
+{'debug': False, 'log_dir': '.', 'model_saved_name': '', 'noise_ratio': 0.5, 'n_desired': 40000, 'num_point': 25, 'num_person': 1, 'num_class': 60, 'dataset': 'ec3d', 'datacase': 'EC3D', 'use_vel': False, 'phase': 'train', 'save_score': False, 'seed': 1, 'log_interval': 100, 'save_interval': 1, 'save_epoch': 10, 'eval_interval': 5, 'print_log': True, 'show_topk': [1, 5], 'feeder': 'feeders.feeder_ec3d.Feeder', 'num_worker': 4, 'balanced_sampling': False, 'random_rot': True, 'repeat': 1, 'weights': None, 'ignore_weights': [], 'n_heads': 3, 'k': 1, 'z_prior_gain': 3, 'graph': 'graph.ec3d.Graph', 'in_channels': 3, 'num_head': 3, 'gain': 1, 'latent_dim': 256, 'out_channels': 3, 't_size': 42, 'base_lr': 0.1, 'step': [90, 100], 'optimizer': 'Adam', 'nesterov': True, 'batch_size': 64, 'test_batch_size': 64, 'start_epoch': 0, 'num_epoch': 110, 'weight_decay': 0.0005, 'lr_decay_rate': 0.1, 'warm_up_epoch': 5, 'lambda_1': 0.0001, 'lambda_2': 0.1, 'half': False, 'amp_opt_level': 1, 'work_dir': 'results/ec3d_EC3D'}
+
+[ Sun Jun 25 16:02:07 2023 ] # Parameters Predictor: 1553607
+[ Sun Jun 25 16:02:07 2023 ] Start training Predictor
+[ Sun Jun 25 16:02:07 2023 ] Training epoch: 1
+[ Sun Jun 25 16:02:39 2023 ] using warm up, epoch: 5
+[ Sun Jun 25 16:02:40 2023 ] Parameters:
+{'debug': False, 'log_dir': '.', 'model_saved_name': '', 'noise_ratio': 0.5, 'n_desired': 40000, 'num_point': 25, 'num_person': 1, 'num_class': 60, 'dataset': 'ec3d', 'datacase': 'EC3D', 'use_vel': False, 'phase': 'train', 'save_score': False, 'seed': 1, 'log_interval': 100, 'save_interval': 1, 'save_epoch': 10, 'eval_interval': 5, 'print_log': True, 'show_topk': [1, 5], 'feeder': 'feeders.feeder_ec3d.Feeder', 'num_worker': 4, 'balanced_sampling': False, 'random_rot': True, 'repeat': 1, 'weights': None, 'ignore_weights': [], 'n_heads': 3, 'k': 1, 'z_prior_gain': 3, 'graph': 'graph.ec3d.Graph', 'in_channels': 3, 'num_head': 3, 'gain': 1, 'latent_dim': 256, 'out_channels': 3, 't_size': 42, 'base_lr': 0.1, 'step': [90, 100], 'optimizer': 'Adam', 'nesterov': True, 'batch_size': 64, 'test_batch_size': 64, 'start_epoch': 0, 'num_epoch': 110, 'weight_decay': 0.0005, 'lr_decay_rate': 0.1, 'warm_up_epoch': 5, 'lambda_1': 0.0001, 'lambda_2': 0.1, 'half': False, 'amp_opt_level': 1, 'work_dir': 'results/ec3d_EC3D'}
+
+[ Sun Jun 25 16:02:40 2023 ] # Parameters Predictor: 1553607
+[ Sun Jun 25 16:02:40 2023 ] Start training Predictor
+[ Sun Jun 25 16:02:40 2023 ] Training epoch: 1

@@ -6,7 +6,7 @@ import sys
 sys.path.extend(['../'])
 # from init_gan.graph_ntu import graph_ntu
 # from init_gan.graph_h36m import Graph_h36m
-from graph.ec3d import graph_ntu
+from graph import graph_ntu
 import numpy as np
 
 # The based unit of graph convolutional networks.
@@ -142,7 +142,7 @@ class Generator(nn.Module):
         # self.label_emb = nn.Embedding(n_classes, n_classes)
         
 
-    def forward(self, x, labels, trunc=None):
+    def forward(self, x, trunc=None):
 
         # c = self.label_emb(labels)
         # print(f'c_shape: {c.shape}')

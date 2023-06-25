@@ -38,7 +38,7 @@ def init_seed(seed):
     torch.backends.cudnn.enabled = True
     torch.backends.cudnn.deterministic = False
     torch.backends.cudnn.benchmark = True
-    os.environ['CUDA_VISIBLE_DEVICES'] = '1'
+    os.environ['CUDA_VISIBLE_DEVICES'] = '2'
 def import_class(import_str):
     mod_str, _sep, class_str = import_str.rpartition('.')
     __import__(mod_str)
@@ -116,6 +116,10 @@ class Processor():
 
     def load_model(self):
         self.model = Predictor_Corrector(args=self.arg).float()
+
+        # x = torch.randn((64, 3, 42, 25,1))
+        # y = self.model(x)
+
         self.loss = LabelSmoothingCrossEntropy().cuda()
 
         if self.arg.weights:
@@ -356,6 +360,12 @@ class Processor():
             if save_z:
                 z_list = np.concatenate(z_list)
                 np.savez(f'{self.arg.work_dir}/z_values.npz', z=z_list, z_prior=self.model.predictor.z_prior.cpu().numpy(), y=label_list)
+    
+    def train_corrector():
+        pass
+    
+    def eval_corrector():
+        pass
 
     def start(self):
         if self.arg.phase == 'train':
@@ -381,7 +391,7 @@ class Processor():
             self.model.load_predictor(path=weights_path)
 
             self.arg.print_log = False
-            self.eval(epoch=0, save_score=True, loader_name=['test'])
+            self.eval_predictor(epoch=0, save_score=True, loader_name=['test'])
             self.arg.print_log = True
 
 

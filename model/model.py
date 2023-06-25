@@ -7,14 +7,14 @@ from .generator import Generator
 
 class Predictor_Corrector(nn.Module):
     def __init__(self, args) -> None:
-        super().__init__(self)
+        super().__init__()
         # Predictor parameters
         self.num_class = args.num_class
         self.num_point = args.num_point
         self.num_person = args.num_person
         self.graph = args.graph
         self.in_channels = args.in_channels
-        self.drop_out = args.drop_out
+        self.drop_out = 0
         self.num_head = args.num_head
         self.noise_ratio = args.noise_ratio
         self.k= args.k
@@ -29,7 +29,7 @@ class Predictor_Corrector(nn.Module):
                                  in_channels=self.in_channels, drop_out=self.drop_out, num_head=self.num_head, noise_ratio=self.noise_ratio,
                                  k=self.k, gain=self.gain)
         
-        self.corrector = Generator(n_channels=self.latent_dim, out_channels=self.out_channels, n_classes=self.num_class, t_size=self.t_size)
+        self.corrector = Generator(in_channels=self.latent_dim, out_channels=self.out_channels, n_classes=self.num_class, t_size=self.t_size)
 
     def load_predictor(self, path):
         self.predictor.load_state_dict(torch.load(path))
@@ -40,7 +40,8 @@ class Predictor_Corrector(nn.Module):
         y_hat, z = self.predictor(x)
 
         x_cor = self.corrector(z)
-
+        x_cor = x_cor.unsqueeze(-1)
+        print(f'x_cor :{x_cor.shape}')
         y_hat_cor,_ = self.predictor(x_cor)
 
         return y_hat, y_hat_cor, x_cor

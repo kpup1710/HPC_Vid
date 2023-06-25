@@ -54,6 +54,8 @@ def get_parser():
     parser.add_argument('--z_prior_gain', type=int, default=3, help='number of in channels for keypoints')
     parser.add_argument('--graph', type=str, default='graph.ntu_rgb_d.Graph', help='')
     parser.add_argument('--in_channels', type=int, default=3, )
+    parser.add_argument('--num_head', type=int, default=3)
+    parser.add_argument('--gain', type=int, default=1)
 
     parser.add_argument('--latent_dim', type=int, default=256, help='dimension of the latent vector')
     parser.add_argument('--out_channels', type=int, default=3, help='number of out channels for keypoints')
