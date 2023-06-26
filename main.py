@@ -26,7 +26,7 @@ from model.infogcn import InfoGCN
 from model.model import Predictor_Corrector
 from utils import get_vector_property
 from utils import BalancedSampler as BS
-
+from loss import SoftDTW, dtw_loss
 rlimit = resource.getrlimit(resource.RLIMIT_NOFILE)
 resource.setrlimit(resource.RLIMIT_NOFILE, (2048, rlimit[1]))
 
@@ -361,11 +361,11 @@ class Processor():
                 z_list = np.concatenate(z_list)
                 np.savez(f'{self.arg.work_dir}/z_values.npz', z=z_list, z_prior=self.model.predictor.z_prior.cpu().numpy(), y=label_list)
     
-        def train_corrector():
+        def train_corrector(self, epoch):
             self.model.corrector.train()
             self.print_log('Training epoch: {}'.format(epoch + 1))
             self.adjust_learning_rate(epoch)
-
+            crit = SoftDTW(use_cuda=True)
             loss_value = []
             dwt_loss_value = []
             ce_loss_value = []
@@ -375,7 +375,7 @@ class Processor():
             self.record_time()
             timer = dict(dataloader=0.001, model=0.001, statistics=0.001)
 
-            for data, y, index in tqdm(self.data_loader['train'], dynamic_ncols=True):
+            for data, y,_, index in tqdm(self.data_loader['train'], dynamic_ncols=True):
                 self.global_step += 1
                 with torch.no_grad():
                     data = data.float().cuda()
@@ -383,29 +383,23 @@ class Processor():
                 timer['dataloader'] += self.split_time()
 
                 # forward
-                y_hat, z = self.model.predictor(data.float())
-                mmd_loss, l2_z_mean, z_mean = get_mmd_loss(z, self.model.predictor.z_prior, y, self.arg.num_class)
-                cos_z, dis_z = get_vector_property(z_mean)
-                cos_z_prior, dis_z_prior = get_vector_property(self.model.predictor.z_prior)
-                cos_z_value.append(cos_z.data.item())
-                dis_z_value.append(dis_z.data.item())
-                cos_z_prior_value.append(cos_z_prior.data.item())
-                dis_z_prior_value.append(dis_z_prior.data.item())
+                _, y_hat_cor, x_cor = self.model(data.float())
 
-                cls_loss = self.loss(y_hat, y)
-                loss = self.arg.lambda_2* mmd_loss + self.arg.lambda_1* l2_z_mean + cls_loss
+                corr_loss,_ = dtw_loss(x_cor, data, crit, is_cuda=True)
+                cls_loss = self.loss(y_hat_cor, y)
+                loss = self.arg.lambda_2* corr_loss + self.arg.lambda_1* cls_loss
                 # backward
                 self.optimizer.zero_grad()
                 loss.backward()
 
                 self.optimizer.step()
 
-                loss_value.append(cls_loss.data.item())
-                mmd_loss_value.append(mmd_loss.data.item())
-                l2_z_mean_value.append(l2_z_mean.data.item())
+                loss_value.append(loss.data.item())
+                dwt_loss_value.append(corr_loss.data.item())
+                ce_loss_value.append(cls_loss.data.item())
                 timer['model'] += self.split_time()
 
-                value, predict_label = torch.max(y_hat.data, 1)
+                value, predict_label = torch.max(y_hat_cor.data, 1)
                 acc = torch.mean((predict_label == y.data).float())
                 acc_value.append(acc.data.item())
 

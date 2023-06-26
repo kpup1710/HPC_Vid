@@ -549,7 +549,7 @@ def dtw_loss(originals, targets, criterion, attentions=None, is_cuda=False, test
             preds.append(out[0].detach().cpu().numpy().T)
 
     if test:
-        return loss, preds, tdtw_loss_corr
+        return loss, preds, dtw_loss_corr
     else:
         return loss, dtw_loss_corr
 # ----------------------------------------------------------------------------------------------------------------------
