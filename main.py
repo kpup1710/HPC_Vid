@@ -361,65 +361,67 @@ class Processor():
                 z_list = np.concatenate(z_list)
                 np.savez(f'{self.arg.work_dir}/z_values.npz', z=z_list, z_prior=self.model.predictor.z_prior.cpu().numpy(), y=label_list)
     
-    def train_corrector():
-        self.model.corrector.train()
-        self.print_log('Training epoch: {}'.format(epoch + 1))
-        self.adjust_learning_rate(epoch)
+        def train_corrector():
+            self.model.corrector.train()
+            self.print_log('Training epoch: {}'.format(epoch + 1))
+            self.adjust_learning_rate(epoch)
 
-        loss_value = []
-        dwt_loss_value = []
-        ce_loss_value = []
+            loss_value = []
+            dwt_loss_value = []
+            ce_loss_value = []
 
-        self.record_time()
-        timer = dict(dataloader=0.001, model=0.001, statistics=0.001)
+            acc_value = []
+            
+            self.record_time()
+            timer = dict(dataloader=0.001, model=0.001, statistics=0.001)
 
-        for data, y, index in tqdm(self.data_loader['train'], dynamic_ncols=True):
-            self.global_step += 1
-            with torch.no_grad():
-                data = data.float().cuda()
-                y = y.long().cuda()
-            timer['dataloader'] += self.split_time()
+            for data, y, index in tqdm(self.data_loader['train'], dynamic_ncols=True):
+                self.global_step += 1
+                with torch.no_grad():
+                    data = data.float().cuda()
+                    y = y.long().cuda()
+                timer['dataloader'] += self.split_time()
 
-            # forward
-            y_hat, z = self.model.predictor(data.float())
-            mmd_loss, l2_z_mean, z_mean = get_mmd_loss(z, self.model.predictor.z_prior, y, self.arg.num_class)
-            cos_z, dis_z = get_vector_property(z_mean)
-            cos_z_prior, dis_z_prior = get_vector_property(self.model.predictor.z_prior)
-            cos_z_value.append(cos_z.data.item())
-            dis_z_value.append(dis_z.data.item())
-            cos_z_prior_value.append(cos_z_prior.data.item())
-            dis_z_prior_value.append(dis_z_prior.data.item())
+                # forward
+                y_hat, z = self.model.predictor(data.float())
+                mmd_loss, l2_z_mean, z_mean = get_mmd_loss(z, self.model.predictor.z_prior, y, self.arg.num_class)
+                cos_z, dis_z = get_vector_property(z_mean)
+                cos_z_prior, dis_z_prior = get_vector_property(self.model.predictor.z_prior)
+                cos_z_value.append(cos_z.data.item())
+                dis_z_value.append(dis_z.data.item())
+                cos_z_prior_value.append(cos_z_prior.data.item())
+                dis_z_prior_value.append(dis_z_prior.data.item())
 
-            cls_loss = self.loss(y_hat, y)
-            loss = self.arg.lambda_2* mmd_loss + self.arg.lambda_1* l2_z_mean + cls_loss
-            # backward
-            self.optimizer.zero_grad()
-            loss.backward()
+                cls_loss = self.loss(y_hat, y)
+                loss = self.arg.lambda_2* mmd_loss + self.arg.lambda_1* l2_z_mean + cls_loss
+                # backward
+                self.optimizer.zero_grad()
+                loss.backward()
 
-            self.optimizer.step()
+                self.optimizer.step()
 
-            loss_value.append(cls_loss.data.item())
-            mmd_loss_value.append(mmd_loss.data.item())
-            l2_z_mean_value.append(l2_z_mean.data.item())
-            timer['model'] += self.split_time()
+                loss_value.append(cls_loss.data.item())
+                mmd_loss_value.append(mmd_loss.data.item())
+                l2_z_mean_value.append(l2_z_mean.data.item())
+                timer['model'] += self.split_time()
 
-            value, predict_label = torch.max(y_hat.data, 1)
-            acc = torch.mean((predict_label == y.data).float())
-            acc_value.append(acc.data.item())
+                value, predict_label = torch.max(y_hat.data, 1)
+                acc = torch.mean((predict_label == y.data).float())
+                acc_value.append(acc.data.item())
 
-            timer['statistics'] += self.split_time()
+                timer['statistics'] += self.split_time()
 
-        # statistics of time consumption and loss
-        proportion = {
-            k: '{:02d}%'.format(int(round(v * 100 / sum(timer.values()))))
-            for k, v in timer.items()
-        }
-        self.print_log(f'\tTraining loss: {np.mean(loss_value):.4f}.  Training acc: {np.mean(acc_value)*100:.2f}%.')
-        self.print_log(f'\tTime consumption: [Data]{proportion["dataloader"]}, [Network]{proportion["model"]}')
+            # statistics of time consumption and loss
+            proportion = {
+                k: '{:02d}%'.format(int(round(v * 100 / sum(timer.values()))))
+                for k, v in timer.items()
+            }
+            self.print_log(f'\tTraining loss: {np.mean(loss_value):.4f}.  Training acc: {np.mean(acc_value)*100:.2f}%.')
+            self.print_log(f'\tTime consumption: [Data]{proportion["dataloader"]}, [Network]{proportion["model"]}')
 
     
-    def eval_corrector():
-        pass
+        def eval_corrector():
+            pass
 
     def start(self):
         if self.arg.phase == 'train':
