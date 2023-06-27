@@ -485,7 +485,7 @@ def profile(batch_size, seq_len_a, seq_len_b, dims, tol_backward):
         # GPU
         t_gpu, forward_gpu, backward_gpu = timed_run(a_gpu, b_gpu, sdtw_cuda)
 
-        print(f'forward: {forward_gpu}')
+        # print(f'forward: {forward_gpu}')
         # CPU
         t_cpu, forward_cpu, backward_cpu = timed_run(a_cpu, b_cpu, sdtw)
 

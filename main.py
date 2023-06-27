@@ -39,7 +39,7 @@ def init_seed(seed):
     torch.backends.cudnn.enabled = True
     torch.backends.cudnn.deterministic = False
     torch.backends.cudnn.benchmark = True
-    os.environ['CUDA_VISIBLE_DEVICES'] = '2'
+    os.environ['CUDA_VISIBLE_DEVICES'] = '0'
 def import_class(import_str):
     mod_str, _sep, class_str = import_str.rpartition('.')
     __import__(mod_str)
@@ -69,7 +69,7 @@ class Processor():
         self.best_acc = 0
         self.best_acc_epoch = 0
 
-        model = self.model.cuda()
+        self.model = self.model.cuda()
         # self.model = torch.nn.DataParallel(model, device_ids=(0,1,2))
 
     def load_data(self):
@@ -86,32 +86,18 @@ class Processor():
                 random_rot=self.arg.random_rot,
                 sort=True if self.arg.balanced_sampling else False,
             )
-            if self.arg.balanced_sampling:
-                sampler = BS(data_source=dt, args=self.arg)
-                shuffle = False
-            else:
-                sampler = None
-                shuffle = True
-            self.pred_data_loader['train'] = torch.utils.data.DataLoader(
-                dataset=dt,
-                sampler=sampler,
-                batch_size=self.arg.batch_size,
-                shuffle=shuffle,
-                num_workers=self.arg.num_worker,
-                drop_last=True,
-                pin_memory=True,
-                worker_init_fn=init_seed)
-
-            cor_dt = Cor_Feeder(data_path='data\ec3d\corr_ec3d.pickle', split='train',
+            cor_dt = Cor_Feeder(data_path='data/ec3d/corr_ec3d.pickle', split='train',
                                 p_interval=[0.5, 1],
                                 vel=self.arg.use_vel,
                                 random_rot=self.arg.random_rot,
                                 sort=True if self.arg.balanced_sampling else False,)
             if self.arg.balanced_sampling:
+                sampler = BS(data_source=dt, args=self.arg)
                 cor_sampler = BS(data_source=cor_dt, args=self.arg)
                 shuffle = False
             else:
                 sampler = None
+                cor_sampler = None
                 shuffle = True
 
             self.pred_data_loader['train'] = torch.utils.data.DataLoader(
@@ -123,6 +109,7 @@ class Processor():
                 drop_last=True,
                 pin_memory=True,
                 worker_init_fn=init_seed)
+
             
             self.cor_data_loader['train'] = torch.utils.data.DataLoader(
                 dataset=cor_dt,
@@ -151,7 +138,7 @@ class Processor():
         
         self.cor_data_loader['test'] = torch.utils.data.DataLoader(
             dataset=Cor_Feeder(
-                data_path='data\ec3d\corr_ec3d.pickle',
+                data_path='data/ec3d/corr_ec3d.pickle',
                 split='test',
                 p_interval=[0.95],
                 vel=self.arg.use_vel
@@ -372,22 +359,22 @@ class Processor():
             mmd_loss = np.mean(mmd_loss_value)
             l2_z_mean_loss = np.mean(l2_z_mean_value)
             if 'ec3d' in self.arg.feeder:
-                self.data_loader[ln].dataset.sample_name = np.arange(len(score))
+                self.pred_data_loader[ln].dataset.sample_name = np.arange(len(score))
 
             score_dict = dict(
-                zip(self.data_loader[ln].dataset.sample_name, score))
+                zip(self.pred_data_loader[ln].dataset.sample_name, score))
             self.print_log('\tMean {} loss of {} batches: {:4f}.'.format(
                 ln, self.arg.n_desired//self.arg.batch_size, np.mean(cls_loss_value)))
             for k in self.arg.show_topk:
                 self.print_log('\tTop{}: {:.2f}%'.format(
-                    k, 100 * self.data_loader[ln].dataset.top_k(score, k)))
+                    k, 100 * self.pred_data_loader[ln].dataset.top_k(score, k)))
 
             if save_score:
                 with open('{}/epoch{}_{}_score.pkl'.format(
                         self.arg.work_dir, epoch + 1, ln), 'wb') as f:
                     pickle.dump(score_dict, f)
 
-            accuracy = self.data_loader[ln].dataset.top_k(score, 1)
+            accuracy = self.pred_data_loader[ln].dataset.top_k(score, 1)
             if accuracy > self.best_acc:
                 self.best_acc = accuracy
                 self.best_acc_epoch = epoch + 1
@@ -410,60 +397,74 @@ class Processor():
                 z_list = np.concatenate(z_list)
                 np.savez(f'{self.arg.work_dir}/z_values.npz', z=z_list, z_prior=self.model.predictor.z_prior.cpu().numpy(), y=label_list)
     
-        def train_corrector(self, epoch):
-            self.model.corrector.train()
-            self.print_log('Training epoch: {}'.format(epoch + 1))
-            self.adjust_learning_rate(epoch)
-            crit = SoftDTW(use_cuda=True)
-            loss_value = []
-            dwt_loss_value = []
-            ce_loss_value = []
-
-            acc_value = []
-            
-            self.record_time()
-            timer = dict(dataloader=0.001, model=0.001, statistics=0.001)
-
-            for data, y,_, index in tqdm(self.cor_data_loader['train'], dynamic_ncols=True):
-                self.global_step += 1
+    def train_corrector(self, epoch):
+        self.model.predictor.eval()
+        label_list = []
+        pred_list = []
+        score_frag = []
+        for data, y,_, index in tqdm(self.cor_data_loader['test'], dynamic_ncols=True):
+                label_list.append(y)
                 with torch.no_grad():
                     data = data.float().cuda()
                     y = y.long().cuda()
-                timer['dataloader'] += self.split_time()
+                    y_hat, z = self.model.predictor(data)
+                    _, predict_label = torch.max(y_hat.data, 1)
+                    pred_list.append(predict_label.data.cpu().numpy())
+                    score_frag.append(y_hat.data.cpu().numpy())
 
-                # forward
-                _, y_hat_cor, x_cor = self.model(data.float())
+        score = np.concatenate(score_frag)
+        accuracy = self.cor_data_loader['test'].dataset.top_k(score, 1)
+        print('Accuracy: ', accuracy, ' model: ', self.arg.model_saved_name)
+        # acc for each class:
+        label_list = np.concatenate(label_list)
+        pred_list = np.concatenate(pred_list)
 
-                corr_loss,_ = dtw_loss(x_cor, data, crit, is_cuda=True)
-                cls_loss = self.loss(y_hat_cor, y)
-                loss = self.arg.lambda_2* corr_loss + self.arg.lambda_1* cls_loss
-                # backward
-                self.optimizer.zero_grad()
-                loss.backward()
-
-                self.optimizer.step()
-
-                loss_value.append(loss.data.item())
-                dwt_loss_value.append(corr_loss.data.item())
-                ce_loss_value.append(cls_loss.data.item())
-                timer['model'] += self.split_time()
-
-                value, predict_label = torch.max(y_hat_cor.data, 1)
-                acc = torch.mean((predict_label == y.data).float())
-                acc_value.append(acc.data.item())
-
-                timer['statistics'] += self.split_time()
-
-            # statistics of time consumption and loss
-            proportion = {
-                k: '{:02d}%'.format(int(round(v * 100 / sum(timer.values()))))
-                for k, v in timer.items()
-            }
-            self.print_log(f'\tTraining loss: {np.mean(loss_value):.4f}.  Training acc: {np.mean(acc_value)*100:.2f}%.')
-            self.print_log(f'\tTime consumption: [Data]{proportion["dataloader"]}, [Network]{proportion["model"]}')
+        self.model.corrector.train()
+        self.print_log('Training epoch: {}'.format(epoch + 1))
+        self.adjust_learning_rate(epoch)
+        crit = SoftDTW(use_cuda=True)
+        loss_value = []
+        dwt_loss_value = []
+        ce_loss_value = []
+        acc_value = []
+        
+        self.record_time()
+        timer = dict(dataloader=0.001, model=0.001, statistics=0.001)
+        for data, y,_, index in tqdm(self.cor_data_loader['train'], dynamic_ncols=True):
+            self.global_step += 1
+            with torch.no_grad():
+                data = data.float().cuda()
+                y = y.long().cuda()
+            timer['dataloader'] += self.split_time()
+            # forward
+            _, y_hat_cor, x_cor = self.model(data.float())
+            # print(x_cor.shape)
+            # print(data.shape)
+            corr_loss,_ = dtw_loss(x_cor, data, crit, is_cuda=True)
+            cls_loss = self.loss(y_hat_cor, y)
+            loss = self.arg.lambda_2* corr_loss + self.arg.lambda_1* cls_loss
+            # backward
+            self.optimizer.zero_grad()
+            loss.backward()
+            self.optimizer.step()
+            loss_value.append(loss.data.item())
+            dwt_loss_value.append(corr_loss.data.item())
+            ce_loss_value.append(cls_loss.data.item())
+            timer['model'] += self.split_time()
+            value, predict_label = torch.max(y_hat_cor.data, 1)
+            acc = torch.mean((predict_label == y.data).float())
+            acc_value.append(acc.data.item())
+            timer['statistics'] += self.split_time()
+        # statistics of time consumption and loss
+        proportion = {
+            k: '{:02d}%'.format(int(round(v * 100 / sum(timer.values()))))
+            for k, v in timer.items()
+        }
+        self.print_log(f'\tTraining loss: {np.mean(loss_value):.4f}.  Training acc: {np.mean(acc_value)*100:.2f}%.')
+        self.print_log(f'\tTime consumption: [Data]{proportion["dataloader"]}, [Network]{proportion["model"]}')
 
     
-        def eval_corrector():
+    def eval_corrector():
             pass
 
     def start(self):
@@ -504,6 +505,17 @@ class Processor():
             self.print_log(f'Batch Size: {self.arg.batch_size}')
             self.print_log(f'Test Batch Size: {self.arg.test_batch_size}')
             self.print_log(f'seed: {self.arg.seed}')
+
+
+
+            self.print_log(f'Start training Corrector')
+            for epoch in range(self.arg.start_epoch, self.arg.num_epoch):
+                # save_model = (epoch + 1 == self.arg.num_epoch) and (epoch + 1 > self.arg.save_epoch)
+
+                self.train_corrector(epoch)
+
+                # if epoch > 80:
+                # self.eval_corrector(epoch, save_score=self.arg.save_score, loader_name=['test'], save_model=True)
 
         elif self.arg.phase == 'test':
             if self.arg.weights is None:

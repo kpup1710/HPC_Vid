@@ -41,7 +41,7 @@ class Predictor_Corrector(nn.Module):
 
         x_cor = self.corrector(z)
         x_cor = x_cor.unsqueeze(-1)
-        print(f'x_cor :{x_cor.shape}')
+        # print(f'x_cor :{x_cor.shape}')
         y_hat_cor,_ = self.predictor(x_cor)
 
         return y_hat, y_hat_cor, x_cor

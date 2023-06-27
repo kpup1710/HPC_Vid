@@ -111,8 +111,7 @@ class Generator(nn.Module):
 
         # load graph
         self.graph = graph_ntu() 
-        self.A = [torch.tensor(Al, dtype=torch.float32, requires_grad=False) for Al in self.graph.As]
-
+        self.A = [torch.tensor(Al, dtype=torch.float32, requires_grad=False).cuda() for Al in self.graph.As]
         # build networks
         spatial_kernel_size  = [A.size(0) for A in self.A]
         temporal_kernel_size = [3 for i, _ in enumerate(self.A)]
@@ -244,7 +243,7 @@ class st_gcn(nn.Module):
         x    = self.tcn(x) + res
         
         # Noise Inject
-        noise = torch.randn(x.size(0), 1, x.size(2), x.size(3), device='cpu')
+        noise = torch.randn(x.size(0), 1, x.size(2), x.size(3), device='cuda')
         x     = self.noise(x, noise)
 
         return self.tanh(x) if self.tan else self.l_relu(x), A

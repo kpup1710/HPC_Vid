@@ -47,7 +47,7 @@ class Feeder(Dataset):
         self.random_rot = random_rot
         self.repeat = repeat
         self.vel = vel
-        self.time_steps = 40
+        self.time_steps = 42
         self.bone = [(0, 1), (1, 2), (2, 3), (3, 4), (1, 5), (5, 6), (6, 7), (1, 8),(8, 9), (9, 10), (10, 11), (8, 12), (12, 13), (13, 14), (1, 15), (1, 16), (1, 17), (1, 18), (11, 24), (14, 21), (14, 19), (14, 20), (11, 22), (11, 23)]
         self.load_data(self.data_path)
 
@@ -114,7 +114,7 @@ class Feeder(Dataset):
 
             value = scalerValue[:,:,:]
             corr_value = corr_ScalerValue[:,:,:]
-            length = value.shape[0]
+            length = min(value.shape[0], corr_value.shape[0])
 
             random_idx = random.sample(list(np.arange(length))*100, self.time_steps)
             random_idx.sort()
@@ -149,7 +149,7 @@ class Feeder(Dataset):
 
             value = scalerValue[:,:,:]
             corr_value = corr_ScalerValue[:,:,:]
-            length = value.shape[0]
+            length = min(value.shape[0], corr_value.shape[0])
 
             idx = np.linspace(0,length-1,self.time_steps).astype(int)
             data[:,:,:] = value[idx,:,:] # T,V,C
@@ -167,7 +167,7 @@ class Feeder(Dataset):
     def top_k(self, score, top_k):
         rank = score.argsort()
 
-        hit_top_k = [l in rank[i, -top_k:] for i, l in enumerate(self.label)]
+        hit_top_k = [l in rank[i, -top_k:] for i, l in enumerate(self.cls_label)]
         return sum(hit_top_k) * 1.0 / len(hit_top_k)
     
 def import_class(name):
@@ -179,4 +179,4 @@ def import_class(name):
 
 if __name__ == '__main__':
     dataset = Feeder(data_path='C:\\Users\\RedmiBook\\HUST\\Documents\\Studying\\Deep Learning\\project\\Human Pose Estimation\\code\\HPC_vid\\HPC_Vid\\data\\ec3d\\corr_ec3d.pickle')
-    print(dataset[0][0].shape)
+    # print(dataset[0][0].shape)
