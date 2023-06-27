@@ -11,6 +11,7 @@ import traceback
 import resource
 
 from collections import OrderedDict
+from feeders.feeder_corr_ec3d import Feeder as Cor_Feeder
 
 # import apex
 import torch
@@ -72,11 +73,12 @@ class Processor():
         # self.model = torch.nn.DataParallel(model, device_ids=(0,1,2))
 
     def load_data(self):
-        Feeder = import_class(self.arg.feeder)
-        self.data_loader = dict()
+        Pred_Feeder = import_class(self.arg.feeder)
+        self.pred_data_loader = dict()
+        self.cor_data_loader = dict()
         data_path = f'data/{self.arg.dataset}/{self.arg.dataset}.pickle'
         if self.arg.phase == 'train':
-            dt = Feeder(data_path=data_path,
+            dt = Pred_Feeder(data_path=data_path,
                 split='train',
                 window_size=64,
                 p_interval=[0.5, 1],
@@ -90,7 +92,7 @@ class Processor():
             else:
                 sampler = None
                 shuffle = True
-            self.data_loader['train'] = torch.utils.data.DataLoader(
+            self.pred_data_loader['train'] = torch.utils.data.DataLoader(
                 dataset=dt,
                 sampler=sampler,
                 batch_size=self.arg.batch_size,
@@ -99,11 +101,58 @@ class Processor():
                 drop_last=True,
                 pin_memory=True,
                 worker_init_fn=init_seed)
-        self.data_loader['test'] = torch.utils.data.DataLoader(
-            dataset=Feeder(
+
+            cor_dt = Cor_Feeder(data_path='data\ec3d\corr_ec3d.pickle', split='train',
+                                p_interval=[0.5, 1],
+                                vel=self.arg.use_vel,
+                                random_rot=self.arg.random_rot,
+                                sort=True if self.arg.balanced_sampling else False,)
+            if self.arg.balanced_sampling:
+                cor_sampler = BS(data_source=cor_dt, args=self.arg)
+                shuffle = False
+            else:
+                sampler = None
+                shuffle = True
+
+            self.pred_data_loader['train'] = torch.utils.data.DataLoader(
+                dataset=dt,
+                sampler=sampler,
+                batch_size=self.arg.batch_size,
+                shuffle=shuffle,
+                num_workers=self.arg.num_worker,
+                drop_last=True,
+                pin_memory=True,
+                worker_init_fn=init_seed)
+            
+            self.cor_data_loader['train'] = torch.utils.data.DataLoader(
+                dataset=cor_dt,
+                sampler=cor_sampler,
+                batch_size=self.arg.batch_size,
+                shuffle=shuffle,
+                num_workers=self.arg.num_worker,
+                drop_last=True,
+                pin_memory=True,
+                worker_init_fn=init_seed)
+            
+        self.pred_data_loader['test'] = torch.utils.data.DataLoader(
+            dataset=Pred_Feeder(
                 data_path=data_path,
                 split='test',
                 window_size=64,
+                p_interval=[0.95],
+                vel=self.arg.use_vel
+            ),
+            batch_size=self.arg.test_batch_size,
+            shuffle=False,
+            num_workers=self.arg.num_worker,
+            drop_last=False,
+            pin_memory=True,
+            worker_init_fn=init_seed)
+        
+        self.cor_data_loader['test'] = torch.utils.data.DataLoader(
+            dataset=Cor_Feeder(
+                data_path='data\ec3d\corr_ec3d.pickle',
+                split='test',
                 p_interval=[0.95],
                 vel=self.arg.use_vel
             ),
@@ -229,7 +278,7 @@ class Processor():
         self.record_time()
         timer = dict(dataloader=0.001, model=0.001, statistics=0.001)
 
-        for data, y, index in tqdm(self.data_loader['train'], dynamic_ncols=True):
+        for data, y, index in tqdm(self.pred_data_loader['train'], dynamic_ncols=True):
             self.global_step += 1
             with torch.no_grad():
                 data = data.float().cuda()
@@ -290,7 +339,7 @@ class Processor():
             dis_z_prior_value = []
             step = 0
             z_list = []
-            for data, y, index in tqdm(self.data_loader[ln], dynamic_ncols=True):
+            for data, y, index in tqdm(self.pred_data_loader[ln], dynamic_ncols=True):
                 label_list.append(y)
                 with torch.no_grad():
                     data = data.float().cuda()
@@ -375,7 +424,7 @@ class Processor():
             self.record_time()
             timer = dict(dataloader=0.001, model=0.001, statistics=0.001)
 
-            for data, y,_, index in tqdm(self.data_loader['train'], dynamic_ncols=True):
+            for data, y,_, index in tqdm(self.cor_data_loader['train'], dynamic_ncols=True):
                 self.global_step += 1
                 with torch.no_grad():
                     data = data.float().cuda()
