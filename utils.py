@@ -249,5 +249,55 @@ class BalancedSampler(Sampler[int]):
     def __len__(self):
         return self.num_samples
 
+def display_poses(poses_list, save_loc=None, custom_name=None, time=0, custom_title=None, legend_=None, color_list=None):
+    fig = plt.figure(figsize=(4,4))
+    bone_connections = [[0,1],[1,2],[1,5],[1,8],[2,3],[3,4],[5,6],[6,7],[8,9],[8,12],[9,10],
+                        [10,11],[11,17],[11,18],[12,13],[13,14],[14,15]]
+    
+    #  {0: [0, 1], 1: [1, 2, 5, 8], 2: [2, 3], 3:[3, 4], 4: [4], 5: [5, 6], 6: [6, 7], 7: [7], 
+    #      8: [8, 9, 12], 9: [9, 10], 10: [10, 11], 11: [11, 22, 24], 12: [12, 13], 13: [13, 14], 
+    #      14: [14, 19, 21], 19: [19], 21: [21], 22: [22], 24: [24]}
+
+
+    ax = fig.add_subplot(111,  projection='3d')
+    plots = []
+    for ind, poses in enumerate(poses_list):
+        X = poses[2,:]
+        Y = poses[1,:]
+        Z = poses[0,:]
+        for _, bone in enumerate(bone_connections):
+            bone = list(bone)
+            p, = ax.plot(X[bone], Y[bone], Z[bone], c=color_list[ind], marker="o", markersize=6, linewidth=3)
+
+            if len(plots) <= ind:
+                plots.append(p)
+
+        ax.set_xlim(-600,600)
+        ax.set_ylim(-600,600)
+        ax.set_zlim(-600,600)
+
+        ax.view_init(elev=-90., azim=-90)
+
+    # Hide grid lines
+    ax.grid(False)
+
+    # Hide axes ticks
+    ax.set_xticks([])
+    ax.set_yticks([])
+    ax.set_zticks([])
+    
+    # Get rid of the panes                          
+    ax.w_xaxis.set_pane_color((1.0, 1.0, 1.0, 0.0)) 
+    ax.w_yaxis.set_pane_color((1.0, 1.0, 1.0, 0.0)) 
+    ax.w_zaxis.set_pane_color((1.0, 1.0, 1.0, 0.0)) 
+
+    # Get rid of the spines                         
+    ax.w_xaxis.line.set_color((1.0, 1.0, 1.0, 0.0)) 
+    ax.w_yaxis.line.set_color((1.0, 1.0, 1.0, 0.0)) 
+    ax.w_zaxis.line.set_color((1.0, 1.0, 1.0, 0.0))
+
+    if custom_title is not None:
+        ax.set_title(custom_title)
+
 if __name__ == "__main__":
     create_aligned_dataset()

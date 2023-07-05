@@ -144,7 +144,7 @@ class Processor():
                 p_interval=[0.95],
                 vel=self.arg.use_vel
             ),
-            batch_size=self.arg.test_batch_size,
+            batch_size=1,
             shuffle=False,
             num_workers=self.arg.num_worker,
             drop_last=False,
@@ -406,7 +406,7 @@ class Processor():
                     state_dict = self.model.predictor.state_dict()
                     weights = OrderedDict([[k.split('module.')[-1], v.cpu()] for k, v in state_dict.items()])
     
-                    torch.save(weights, f'{self.arg.work_dir}/runs-{self.best_acc_epoch}-{int(self.global_step)}.pt')
+                    torch.save(weights, f'{self.arg.work_dir}/best_pred.pt')
 
 
             print('Accuracy: ', accuracy, ' model: ', self.arg.model_saved_name)
@@ -488,7 +488,6 @@ class Processor():
     
     def eval_corrector(self, epoch,save_score, loader_name, save_model):
         self.model.corrector.eval()
-        self.best_acc = 0
         self.print_log('Eval epoch: {}'.format(epoch + 1))
         for ln in loader_name:
             loss_value = []
@@ -564,7 +563,7 @@ class Processor():
                     state_dict = self.model.corrector.state_dict()
                     weights = OrderedDict([[k.split('module.')[-1], v.cpu()] for k, v in state_dict.items()])
     
-                    torch.save(weights, f'{self.arg.work_dir}/runs-cor-{self.best_acc_epoch}-{int(self.global_step)}.pt')
+                    torch.save(weights, f'{self.arg.work_dir}/best_cor.pt')
 
 
             print('Accuracy: ', accuracy, ' model: ', self.arg.model_saved_name)
@@ -572,6 +571,29 @@ class Processor():
             label_list = np.concatenate(label_list)
             pred_list = np.concatenate(pred_list)
 
+    def get_pose_list(self, pred_path, cor_path):
+        self.model.load_predictor(path=pred_path)
+        self.model.load_corrector(path=cor_path)
+        self.model.eval()
+        pose_list = []
+        label_list = []
+
+        for data, y,cor_label, index in tqdm(self.cor_data_loader['test'], dynamic_ncols=True):
+                # label_list.append(y)
+                with torch.no_grad():
+                    data = data.float().cuda()
+                    print(cor_label.shape)
+                    y = y.long().cuda()
+                    # forward
+                    _, y_hat_cor, x_cor = self.model(data.float())
+                    pose_list.append(x_cor.cpu().numpy())
+                    label_list.append(cor_label.cpu().numpy())
+        
+        with open(f'{self.arg.work_dir}/cor_pose.pkl', 'wb') as f:
+                    pickle.dump(pose_list, f)
+
+        with open(f'{self.arg.work_dir}/test_pose.pkl', 'wb') as f:
+                    pickle.dump(label_list, f)
 
     def start(self):
         if self.arg.phase == 'train':
@@ -590,8 +612,9 @@ class Processor():
                 self.eval_predictor(epoch, save_score=self.arg.save_score, loader_name=['test'], save_model=True)
 
             # test the best model
-            print(glob.glob(os.path.join(self.arg.work_dir, 'runs-'+str(self.best_acc_epoch)+'*')))
-            weights_path = glob.glob(os.path.join(self.arg.work_dir, 'runs-'+str(self.best_acc_epoch)+'*'))[0]
+            print(glob.glob(os.path.join(self.arg.work_dir, 'best_pred'+'*')))
+            weights_path = glob.glob(os.path.join(self.arg.work_dir, 'best_pred'+'*'))[0]
+            
             # weights = torch.load(weights_path)
             # self.model.predictor.load_state_dict(weights)
             self.model.load_predictor(path=weights_path)
@@ -616,6 +639,7 @@ class Processor():
 
             self.print_log(f'Start training Corrector')
             self.global_step = 0
+            self.best_acc = 0
             self.print_log(f'# Parameters Corrector: {count_parameters(self.model.corrector)}')
             for epoch in range(0, 150):
                 # save_model = (epoch + 1 == self.arg.num_epoch) and (epoch + 1 > self.arg.save_epoch)
@@ -624,14 +648,22 @@ class Processor():
 
                 # if epoch > 80:
                 self.eval_corrector(epoch, save_score=self.arg.save_score, loader_name=['test'], save_model=True)
+        
+            # num_params = sum(p.numel() for p in self.model.parameters() if p.requires_grad)
+            self.print_log(f'Best accuracy: {self.best_acc}')
+            self.print_log(f'Epoch number: {self.best_acc_epoch}')
+            self.print_log(f'Model name: {self.arg.work_dir}')
+            # self.print_log(f'Model total number of params: {num_params}')
+            self.print_log(f'Weight decay: {self.arg.weight_decay}')
+            self.print_log(f'Base LR: {self.arg.base_lr}')
+            self.print_log(f'Batch Size: {self.arg.batch_size}')
+            self.print_log(f'Test Batch Size: {self.arg.test_batch_size}')
+            self.print_log(f'seed: {self.arg.seed}')
 
         elif self.arg.phase == 'test':
-            if self.arg.weights is None:
-                raise ValueError('Please appoint --weights.')
-            self.arg.print_log = False
-            self.print_log('Model:   {}.'.format(self.arg.model))
-            self.print_log('Weights: {}.'.format(self.arg.weights))
-            self.eval(epoch=0, save_score=self.arg.save_score, loader_name=['test'], save_z=True)
+            pred_path = f'{self.arg.work_dir}/best_pred.pt'
+            cor_path = f'{self.arg.work_dir}/best_cor.pt'
+            self.get_pose_list(pred_path=pred_path, cor_path=cor_path)
             self.print_log('Done.\n')
 
 def main():

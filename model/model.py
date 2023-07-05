@@ -36,6 +36,10 @@ class Predictor_Corrector(nn.Module):
         for param in self.predictor.parameters():
           param.requires_grad = False
 
+    def load_corrector(self, path):
+        self.corrector.load_state_dict(torch.load(path))
+        for param in self.corrector.parameters():
+          param.requires_grad = False
     def forward(self, x):
         y_hat, z = self.predictor(x)
 
