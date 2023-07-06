@@ -130,7 +130,7 @@ class Feeder(Dataset):
             center = value[0,1,:]
             corr_center = pose_label[0,1,:]
             value = value - center
-            # pose_label = pose_label - corr_center
+            pose_label = pose_label - corr_center
             scalerValue = self.rand_view_transform(value, agx, agy, s)
             corr_ScalerValue = self.rand_view_transform(pose_label, agx, agy, s)
 
@@ -148,7 +148,7 @@ class Feeder(Dataset):
             corr_data = np.zeros( (self.time_steps, 25, 3) )
 
             value = scalerValue[:,:,:]
-            corr_value = pose_label.reshape(-1, 25,3)[:,:,:]
+            corr_value = corr_ScalerValue[:,:,:]
             length = min(value.shape[0], corr_value.shape[0])
 
             idx = np.linspace(0,length-1,self.time_steps).astype(int)
