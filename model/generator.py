@@ -3,7 +3,6 @@ import torch.nn as nn
 import torch.nn.functional as F
 from torch.autograd import Variable
 import sys
-sys.path.extend(['../'])
 # from init_gan.graph_ntu import graph_ntu
 # from init_gan.graph_h36m import Graph_h36m
 from graph import graph_ntu
