@@ -118,10 +118,11 @@ class graph_ntu():
 
             mapping = {}  # Change mapping labels
             for i, x in enumerate(G): 
+                # print(int(x))
                 mapping[int(x)] = i
                 if int(x)==self.center[-1]:
                     self.center.append(i)
-            
+            # print('n')
 
             G = nx.relabel_nodes(G, mapping)  # Change labels
             G = nx.convert_node_labels_to_integers(G, first_label=0)
