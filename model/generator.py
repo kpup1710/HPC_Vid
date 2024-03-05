@@ -108,10 +108,11 @@ class Generator(nn.Module):
     
     def __init__(self, in_channels, out_channels, n_classes, t_size, mlp_dim=4, edge_importance_weighting=True, dataset='ntu', **kwargs):
         super().__init__()
-
+        device = torch.device('cuda' if torch.cuda.is_available() else 'cpu') 
+        print(device)
         # load graph
         self.graph = graph_ntu() 
-        self.A = [torch.tensor(Al, dtype=torch.float32, requires_grad=False).cuda() for Al in self.graph.As]
+        self.A = [torch.tensor(Al, dtype=torch.float32, requires_grad=False).to(device) for Al in self.graph.As]
         # build networks
         spatial_kernel_size  = [A.size(0) for A in self.A]
         temporal_kernel_size = [3 for i, _ in enumerate(self.A)]
