@@ -77,7 +77,7 @@ class Processor():
         Pred_Feeder = import_class(self.arg.feeder)
         self.pred_data_loader = dict()
         self.cor_data_loader = dict()
-        data_path = f'{self.arg.root_path}/{self.arg.dataset}/{self.arg.dataset}.pickle'
+        data_path = f'{self.arg.root_path}/{self.arg.dataset}.pickle'
         if self.arg.phase == 'train':
             dt = Pred_Feeder(data_path=data_path,
                 split='train',
@@ -87,7 +87,7 @@ class Processor():
                 random_rot=self.arg.random_rot,
                 sort=True if self.arg.balanced_sampling else False,
             )
-            cor_dt = Cor_Feeder(data_path='data/ec3d/corr_ec3d.pickle', split='train',
+            cor_dt = Cor_Feeder(data_path=f'{self.arg.root_path}/corr_ec3d.pickle', split='train',
                                 p_interval=[0.5, 1],
                                 vel=self.arg.use_vel,
                                 random_rot=self.arg.random_rot,
@@ -139,7 +139,7 @@ class Processor():
         
         self.cor_data_loader['test'] = torch.utils.data.DataLoader(
             dataset=Cor_Feeder(
-                data_path='data/ec3d/corr_ec3d.pickle',
+                data_path=f'{self.arg.root_path}/corr_ec3d.pickle',
                 split='test',
                 p_interval=[0.95],
                 vel=self.arg.use_vel
