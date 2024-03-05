@@ -29,8 +29,8 @@ from model.model import Predictor_Corrector
 from utils import get_vector_property
 from utils import BalancedSampler as BS
 from loss import SoftDTW, dtw_loss
-rlimit = resource.getrlimit(resource.RLIMIT_NOFILE)
-resource.setrlimit(resource.RLIMIT_NOFILE, (2048, rlimit[1]))
+# rlimit = resource.getrlimit(resource.RLIMIT_NOFILE)
+# resource.setrlimit(resource.RLIMIT_NOFILE, (2048, rlimit[1]))
 
 def init_seed(seed):
     torch.cuda.manual_seed_all(seed)
