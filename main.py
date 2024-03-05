@@ -76,7 +76,7 @@ class Processor():
         Pred_Feeder = import_class(self.arg.feeder)
         self.pred_data_loader = dict()
         self.cor_data_loader = dict()
-        data_path = f'data/{self.arg.dataset}/{self.arg.dataset}.pickle'
+        data_path = f'{self.arg.root_path}/{self.arg.dataset}/{self.arg.dataset}.pickle'
         if self.arg.phase == 'train':
             dt = Pred_Feeder(data_path=data_path,
                 split='train',
