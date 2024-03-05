@@ -40,7 +40,7 @@ def init_seed(seed):
     torch.backends.cudnn.enabled = True
     torch.backends.cudnn.deterministic = False
     torch.backends.cudnn.benchmark = True
-    os.environ['CUDA_VISIBLE_DEVICES'] = '2'
+    # os.environ['CUDA_VISIBLE_DEVICES'] = '0'
 def import_class(import_str):
     mod_str, _sep, class_str = import_str.rpartition('.')
     __import__(mod_str)
