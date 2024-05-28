@@ -5,7 +5,7 @@ from torch.autograd import Variable
 import sys
 # from init_gan.graph_ntu import graph_ntu
 # from init_gan.graph_h36m import Graph_h36m
-from graph import graph_ntu
+from graph import Graph_ec3d
 import numpy as np
 
 # The based unit of graph convolutional networks.
@@ -110,7 +110,7 @@ class Generator(nn.Module):
         device = torch.device('cuda' if torch.cuda.is_available() else 'cpu') 
         print(device)
         # load graph
-        self.graph = graph_ntu() 
+        self.graph = Graph_ec3d() 
         self.A = [torch.tensor(Al, dtype=torch.float32, requires_grad=False).to(device) for Al in self.graph.As]
         # build networks
         spatial_kernel_size  = [A.size(0) for A in self.A]
