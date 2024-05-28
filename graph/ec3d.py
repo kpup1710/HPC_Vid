@@ -1,49 +1,15 @@
-import sys
 import numpy as np
 import networkx as nx
 import matplotlib.pyplot as plt
 
-sys.path.extend(['../'])
-from graph import tools
-
-num_node = 25
-self_link = [(i, i) for i in range(num_node)]
-inward_ori_index = [(0, 1), (1, 2), (2, 3), (3, 4), (1, 5), (5, 6), (6, 7), (1, 8),(8, 9), (9, 10), (10, 11), (8, 12), (12, 13), (13, 14), (1, 15), (1, 16), (1, 17), (1, 18), (11, 24), (14, 21), (14, 19), (14, 20), (11, 22), (11, 23)]
-inward = [(i - 1, j - 1) for (i, j) in inward_ori_index]
-outward = [(j, i) for (i, j) in inward]
-neighbor = inward + outward
-
-
-class Graph:
-    def __init__(self, labeling_mode='spatial', scale=1):
-        self.num_node = num_node
-        self.self_link = self_link
-        self.inward = inward
-        self.outward = outward
-        self.neighbor = neighbor
-        self.A = self.get_adjacency_matrix(labeling_mode)
-        self.A_outward_binary = tools.get_adjacency_matrix(self.outward, self.num_node)
-        self.A_binary = tools.edge2mat(neighbor, num_node)
-        self.A_norm = tools.normalize_adjacency_matrix(self.A_binary + 2*np.eye(num_node))
-        self.A_binary_K = tools.get_k_scale_graph(scale, self.A_binary)
-
-    def get_adjacency_matrix(self, labeling_mode=None):
-        if labeling_mode is None:
-            return self.A
-        if labeling_mode == 'spatial':
-            A = tools.get_spatial_graph(num_node, self_link, inward, outward)
-        else:
-            raise ValueError()
-        return A
-
-class graph_ntu():
+class Graph_h36m():
 
     def __init__(self,
                  max_hop=1,
                  dilation=1):
         self.max_hop  = max_hop
         self.dilation = dilation
-        self.lvls     = 4  # 25 -> 11 -> 5 -> 1
+        self.lvls     = 4  # 16 -> 7 -> 2 -> 1
         self.As       = []
         self.hop_dis  = []
 
@@ -60,18 +26,13 @@ class graph_ntu():
     def get_edge(self):
         self.num_node = []
         self.nodes = []
-        self.center = [21 - 1]
+        self.center = [8]  # Thorax
         self.nodes = []
         self.Gs = []
         
-        neighbor_base = [(1, 2), (2, 21), (3, 21), (4, 3), (5, 21),
-                        (6, 5), (7, 6), (8, 7), (9, 21), (10, 9),
-                        (11, 10), (12, 11), (1, 13), (14, 13), (15, 14),
-                        (16, 15), (1, 17), (18, 17), (19, 18), (20, 19),
-                        (22, 8), (23, 8), (24, 12), (25, 12)]
-        neighbor_link = [(i - 1, j - 1) for (i, j) in neighbor_base]
+        neighbor_link = [(0, 1), (1, 2), (2, 3), (3, 4), (1, 5), (5, 6), (6, 7), (1, 8),(8, 9), (9, 10), (10, 11), (8, 12), (12, 13), (13, 14), (1, 15), (1, 16), (1, 17), (1, 18), (11, 24), (14, 21), (14, 19), (14, 20), (11, 22), (11, 23)]
 
-        nodes = np.array([i for i in range(25)])
+        nodes = np.array([i for i in range(16)])
         G = nx.Graph()
         G.add_nodes_from(nodes)
         G.add_edges_from(neighbor_link)
@@ -86,13 +47,13 @@ class graph_ntu():
         self.num_node.append(len(G))
         self.Gs.append(G.copy())
 
-
         for _ in range(self.lvls-1):
             stay  = []
             start = 1
             while True:
                 remove = []
                 for i in G:
+                    if i==9 and _==0: continue
                     if len(G.edges(i)) == start and i not in stay:
                         lost = []
                         for j,k in G.edges(i):
@@ -118,11 +79,10 @@ class graph_ntu():
 
             mapping = {}  # Change mapping labels
             for i, x in enumerate(G): 
-                # print(int(x))
                 mapping[int(x)] = i
                 if int(x)==self.center[-1]:
                     self.center.append(i)
-            # print('n')
+            
 
             G = nx.relabel_nodes(G, mapping)  # Change labels
             G = nx.convert_node_labels_to_integers(G, first_label=0)
@@ -130,17 +90,14 @@ class graph_ntu():
             nodes = np.array([i for i in range(len(G))])
             self.nodes.append(nodes)
 
+
             self_link = [(int(i), int(i)) for i in G]
+            
             G_l = np.concatenate((np.array(G.edges), self_link), axis=0) if len(np.array(G.edges)) > 0 else self_link
             self.edge.append(G_l)
             self.num_node.append(len(G))
             self.Gs.append(G.copy())
-
-        
-        '''for i, G in enumerate(self.Gs):  # Uncomment this to visualize graphs
-            plt.clf()  # Uncomment this to visualize graphs
-            nx.draw(G, with_labels = True)
-            plt.savefig('G_' + str(i) + '.pdf')'''
+            
 
         assert len(self.num_node) == self.lvls
         assert len(self.nodes)    == self.lvls
