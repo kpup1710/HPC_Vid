@@ -2,7 +2,7 @@ import numpy as np
 import networkx as nx
 import matplotlib.pyplot as plt
 
-class Graph_h36m():
+class Graph_ec3d():
 
     def __init__(self,
                  max_hop=1,
