@@ -15,3 +15,6 @@ python main.py --half=False --batch_size=64 --test_batch_size=64 \
     --use_vel=False --datacase=EC3D --weight_decay=0.0005 \
     --num_person=1 --num_point=25 --graph=graph.ec3d.Graph --feeder=feeders.feeder_ec3d.Feeder
 ```
+
+# TODO
+Add one middle node between neck and midheep

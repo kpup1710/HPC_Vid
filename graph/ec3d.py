@@ -26,13 +26,19 @@ class Graph_ec3d():
     def get_edge(self):
         self.num_node = []
         self.nodes = []
-        self.center = [8]  # Thorax
+        self.center = [1]  # Thorax
         self.nodes = []
         self.Gs = []
+        joints = {0: 'Nose', 1: 'Neck', 2: 'RShoulder', 3: 'RElbow', 4: 'RWrist', 5: 'LShoulder',
+              6: 'LElbow', 7: 'LWrist', 8: 'MidHip', 9: 'RHip', 10: 'RKnee', 11: 'RAnkle', 12: 'LHip',
+              13: 'LKnee', 14: 'LAnkle', 15: 'REye', 16: 'LEye', 17: 'REar', 18: 'LEar', 19: 'LBigToe',
+              20: 'LSmallToe', 21: 'LHeel', 22: 'RBigToe', 23: 'RSmallToe', 24: 'RHeel'}
         
-        neighbor_link = [(0, 1), (1, 2), (2, 3), (3, 4), (1, 5), (5, 6), (6, 7), (1, 8),(8, 9), (9, 10), (10, 11), (8, 12), (12, 13), (13, 14), (1, 15), (1, 16), (1, 17), (1, 18), (11, 24), (14, 21), (14, 19), (14, 20), (11, 22), (11, 23)]
+        neighbor_link = [[0, 1], [1, 2], [2, 3], [3, 4], [1, 5], [5, 6], [6, 7], [1, 8], [8, 9], [9, 10], [10, 11],
+                        [8, 12], [12, 13], [13, 14], [1, 15], [1, 16], [1, 17], [1, 18], [11, 24], [14, 21], [14, 19],
+                        [14, 20], [11, 22], [11, 23]]
 
-        nodes = np.array([i for i in range(16)])
+        nodes = np.array([i for i in range(25)])
         G = nx.Graph()
         G.add_nodes_from(nodes)
         G.add_edges_from(neighbor_link)
